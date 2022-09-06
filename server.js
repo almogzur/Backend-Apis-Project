@@ -3,8 +3,8 @@
 const { dirname } = require('path');
 const pkg = require('./package.json');
 const expressServer = require("./app.js");
-  
-require("greenlock-express")
+const greenlock = require("greenlock-express") 
+   greenlock
     .init({
         // where to find .greenlockrc and set default paths
         packageRoot: __dirname,
