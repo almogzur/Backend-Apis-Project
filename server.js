@@ -2,8 +2,8 @@
 "use strict";
 const { dirname } = require('path');
 const pkg = require(dirname__,'./package.json');
-const app = require(dirname__,"./app");
-
+const expressServer = require(dirname__,"./app");
+  
 require("greenlock-express")
     .init({
         // where to find .greenlockrc and set default paths
@@ -17,6 +17,6 @@ require("greenlock-express")
         // whether or not to run at cloudscale
         cluster: false
     })
-    .serve(app);
+    .serve(expressServer);
 
-/////////////// HTTPS END /////////////
+/////////////// HTTPS END ////////////////
