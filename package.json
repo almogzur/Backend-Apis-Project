@@ -24,6 +24,7 @@
     "express-session": "^1.17.3",
     "fund": "^1.0.0",
     "greenlock": "^4.0.4",
+    "greenlock-express": "^4.0.3",
     "mongoose": "^6.5.3",
     "nodemon": "^2.0.19",
     "path": "^0.12.7"
