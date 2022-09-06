@@ -1,5 +1,4 @@
 //this wrapp the express app
-
 /////////////// HTTPS  /////////////
 "use strict";
 const { dirname } = require('path');
@@ -10,7 +9,7 @@ const greenlock = require("greenlock-express")
     .init({
         packageRoot: __dirname,
         configDir: "./greenlock.d",
-        maintainerEmail:pkg.author,
+        maintainerEmail:"almngzur1@gmail.com",
         cluster: false
     })
     .serve(expressServer); // the warpe 
