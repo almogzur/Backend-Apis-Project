@@ -14,15 +14,13 @@
     "accountKeyType": "EC-P256",
     "serverKeyType": "RSA-2048",
     "agreeToTerms": true,
-    "subscriberEmail": "almogzur1@gmail.com"
+    "subscriberEmail": "almogzur1@gmail.com",
+    "maintainerEmail":"almogzur1@gmail.com"
   },
   "sites": [
     {
       "subject": "sitecss.online",
-      "altnames": [
-        "sitecss.online",
-        "www.sitecss.online"
-      ],
+      "altnames": ["sitecss.online"],
       "renewAt": 1
     }
   ]
