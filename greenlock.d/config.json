@@ -1,7 +1,7 @@
 {
   "defaults": {
     "store": {
-      "module": "@greenlock/manager"
+      "module": "greenlock-store-fs"
     },
     "configDir": "./greenlock.d",
     "challenges": {

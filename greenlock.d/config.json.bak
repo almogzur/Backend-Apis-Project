@@ -3,6 +3,7 @@
     "store": {
       "module": "greenlock-store-fs"
     },
+    "configDir": "./greenlock.d",
     "challenges": {
       "http-01": {
         "module": "acme-http-01-standalone"
