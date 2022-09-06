@@ -20,10 +20,7 @@
   "sites": [
     {
       "subject": "sitecss.online",
-      "altnames": [
-        "sitecss.online",
-        "www.sitecss.online"
-      ],
+      "altnames": ["sitecss.online"],
       "renewAt": 1
     }
   ]
