@@ -15,12 +15,14 @@
     "serverKeyType": "RSA-2048",
     "agreeToTerms": true,
     "subscriberEmail": "almogzur1@gmail.com",
-    "maintainerEmail":"almogzur1@gmail.com"
+    "maintainerEmail": "almogzur1@gmail.com"
   },
   "sites": [
     {
       "subject": "sitecss.online",
-      "altnames": ["sitecss.online"],
+      "altnames": [
+        "sitecss.online"
+      ],
       "renewAt": 1
     }
   ]

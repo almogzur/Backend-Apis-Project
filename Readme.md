@@ -1,17 +1,15 @@
+  inst  == install  all packages 
+    (npm i && cd front && npm i && npm run build  )
 
-for first time deploy 
--------------
+  Reactdev -- work on react env only 
+     cd front && npm run build && npm run start
 
-npm run deploy this run npm i all and run react build and start back server 
+  Exdev  -- work on Express env only creat react build 
+     nodemon --inspect ./expressServer.js // for auto dyploy changes 
 
-scripts  options 
+  devenv // runing both servers 
 
--------------- 
-  back
-    Node server.Js
-  Fdev
-    (cd front && npm run start && npm run build )
-  build
-    (cd front && npm run build )
-  Bdev
-     nodemon --inspect ./server.js 80 
+    concurrently "npm run Reactdev" "npm run Exdev"
+
+  server
+    npm start --staging (greenlock http auto https quto cert) run Http server => Ex servr =>react build 

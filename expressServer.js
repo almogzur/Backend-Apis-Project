@@ -6,7 +6,9 @@ const session = require('express-session');
 const mongoose = require("mongoose");
 const cookieParser= require('cookie-parser');
 const path = require("path");
+const { application } = require("express");
 require('dotenv').config();
+const PORT = 3000
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(
@@ -21,7 +23,6 @@ app.use(
 console.log("from console Dir Name  => ",__dirname);
 console.log("from console Dat  => ",Date());
 console.log("from console process.env  => ",process.env["ESSION_SECRET"]);
-console.log("from console process.env  => ",typeof process.env["EMAIL"]);
 
  
 app.use(express.static(path.join(__dirname, "front", "build")))
@@ -30,7 +31,7 @@ app.get("/",(req, res )=>{
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
 
-app.use("/api/:date?",(req, res, next) => {
+app.use("/api/date/:data?",(req, res, next) => {
     const parmsJson = req.params.date;
     const raw= new Date(parmsJson);
     const toNum = new Date(Number(parmsJson));
@@ -51,5 +52,5 @@ app.use("/api/:date?",(req, res, next) => {
       console.log("passed  object ")
     }
 });
-
+// app.listen(PORT,()=>{console.log("runing")}) // for loc dev 
 module.exports = app
