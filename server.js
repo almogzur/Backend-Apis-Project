@@ -11,7 +11,7 @@ require("greenlock-express")
         // where config and certificate stuff go
         configDir: "./greenlock.d",
         // contact for security and critical bug notices
-        maintainerEmail: process.env["EMAIL"],
+        maintainerEmail: "almogzur1@gmail.com",
         // name & version for ACME client user agent
         //packageAgent: pkg.name + "/" + pkg.version,
         // whether or not to run at cloudscale
