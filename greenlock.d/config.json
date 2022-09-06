@@ -1,8 +1,9 @@
 {
   "defaults": {
     "store": {
-      "module": "greenlock-store-fs"
+      "module": "@greenlock/manager"
     },
+    "configDir": "./greenlock.d",
     "challenges": {
       "http-01": {
         "module": "acme-http-01-standalone"

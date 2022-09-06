@@ -19,4 +19,15 @@ require("greenlock-express")
     })
     .serve(expressServer);
 
+    greenlock.manager.defaults({
+        subscriberEmail: "almogzur1@gmail.com",
+        agreeToTerms: true
+    });
+
+    greenlock.sites.add({
+        subject: "sitecss.online",
+        altnames: ["sitecss.online","www.sitecss.online"]
+    });
+
+
 /////////////// HTTPS END ////////////////
