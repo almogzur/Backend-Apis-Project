@@ -1,8 +1,8 @@
 /////////////// HTTPS  /////////////
 "use strict";
 const { dirname } = require('path');
-const pkg = require(dirname__,'./package.json');
-const expressServer = require(dirname__,"./app.js");
+const pkg = require('./package.json');
+const expressServer = require("./app.js");
   
 require("greenlock-express")
     .init({
