@@ -4,11 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "inst": "(npm i && cd front && npm i && npm run build  )",
-    "frontdev": " cd front && npm run build && npm run start",
-    "backdev": " nodemon --inspect ./server.js 81",
-    "devenv": "concurrently \"npm run frontdev\" \"npm run backdev\"",
-    "back": "npm start -- --staging"
+    "inst": "(npm i && cd front && npm i && npm run build )",
+    "Reactdev": " cd front && npm run build && npm run start",
+    "Exdev": " (cd front && npm run build cd.. && nodemon --inspect ./expressServer.js)",
+    "devenv": "concurrently \"npm run Reactdev\" \"npm run Exdev\"",
+    "server": "npm start --staging"
   },
   "keywords": [
     "TimeServer"
