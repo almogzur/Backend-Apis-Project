@@ -1,5 +1,5 @@
-  inst  == install  all packages 
-    (npm i && cd front && npm i && npm run build  )
+  inst  == install  all packages and run react build script =>
+    (npm i && cd front && npm i && npm run build ) 
 
   Reactdev -- work on react env only 
      cd front && npm run build && npm run start

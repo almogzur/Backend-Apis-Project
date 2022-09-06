@@ -14,6 +14,4 @@ const greenlock = require("greenlock-express")
     })
     .serve(expressServer); // the warpe 
 
-
-
 /////////////// HTTPS END ////////////////

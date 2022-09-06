@@ -1,10 +1,14 @@
-deploy // aws Done 
-auto sync repo // intalled git gub on server // can be sync from post recive || direct from  vs code 
-fix port 80 premition  // done 
-add https    greenlock  
+deploy // aws  dns =>
+ aws cloudeflare =>
+  aws R53 => 
+  virtual privert cloud =>
+   static ip=> enstence
+    =>unutu => node =>
+    fix port 80 premition  =>
+    add https  greenlock  =>
+    auto sync repo // intalled git gub on server // can be sync from post recive
+    texting pashe 
 change app render to match project needs 
-remove text input 
-remove button
 add link to api 
 render exmple whit json.stringfiy
 
