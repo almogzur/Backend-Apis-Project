@@ -7,7 +7,7 @@
     "dep": "(npm i && cd front && npm i && npm run build && cd .. && npm run back  )",
     "frontdev": " cd front && npm run build && npm run start",
     "backdev": " nodemon --inspect ./server.js 81",
-    "back": "node server.js",
+    "back": "node server.js --staging",
     "de": "concurrently \"npm run frontdev\" \"npm run backdev\""
   },
   "keywords": [
