@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "dep": "(npm i && cd front && npm i && npm run build && cd .. && npm run back  )",
-    "frontdev":" cd front && npm run build && npm run start",
-    "backdev":" nodemon --inspect ./server.js 81",
-    "back":"node server.js",
+    "frontdev": " cd front && npm run build && npm run start",
+    "backdev": " nodemon --inspect ./server.js 81",
+    "back": "node server.js",
     "de": "concurrently \"npm run frontdev\" \"npm run backdev\""
   },
   "keywords": [
@@ -23,6 +23,7 @@
     "express": "^4.18.1",
     "express-session": "^1.17.3",
     "fund": "^1.0.0",
+    "greenlock": "^4.0.4",
     "mongoose": "^6.5.3",
     "nodemon": "^2.0.19",
     "path": "^0.12.7"

@@ -14,7 +14,7 @@ const greenlock = Greenlock.create({
     packageRoot: __dirname,
     configDir: "./greenlock.d/",
     packageAgent: pkg.name + '/' + pkg.version,
-    maintainerEmail: pkg.author,
+    maintainerEmail:"almogzur1@gmail.com",
     staging: true,
     notify: function(event, details) {
         if ('error' === event) {
@@ -26,11 +26,23 @@ const greenlock = Greenlock.create({
 greenlock.manager
     .defaults({
         agreeToTerms: true,
-        subscriberEmail: process.env["EMAIL"]
+        subscriberEmail:"almogzur1@gmail.com"
     })
     .then(function(fullConfig) {
         // ...
     });
+    const altnames = ['sitecss.online', 'www.sitecss.online'];
+
+    greenlock
+        .add({
+            subject: altnames[0],
+            altnames: altnames
+        })
+        .then(function() {
+            // saved config to db (or file system)
+        });
+
+
 
 require('dotenv').config();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -48,6 +60,8 @@ app.use(
 console.log("from console Dir Name  => ",__dirname);
 console.log("from console Dat  => ",Date());
 console.log("from console process.env  => ",process.env["ESSION_SECRET"]);
+console.log("from console process.env  => ",typeof process.env["EMAIL"]);
+
  
 app.use(express.static(path.join(__dirname, "front", "build")))
 
