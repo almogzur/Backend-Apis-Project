@@ -1,7 +1,7 @@
 /////////////// HTTPS  /////////////
 "use strict";
 const pkg = require('./package.json');
-var app = require("./app.js");
+const app = require("./app.js");
 
 require("greenlock-express")
     .init({
