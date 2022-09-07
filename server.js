@@ -1,4 +1,5 @@
-//this wrapp the express app
+//GreenLock  wrapps the express app and serve it after encrypting the trafic
+
 /////////////// HTTPS  /////////////
 "use strict";
 const { dirname } = require('path');
