@@ -8,7 +8,7 @@ const cookieParser= require('cookie-parser');
 const path = require("path");
 const { application } = require("express");
 require('dotenv').config();
-const PORT = 3000
+const PORT = 80
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(
@@ -52,5 +52,5 @@ app.use("/api/date/:data?",(req, res, next) => {
       console.log("passed  object ")
     }
 });
-// app.listen(PORT,()=>{console.log("runing")}) // for loc dev 
-module.exports = app
+app.listen(PORT,()=>{console.log("runing")}) // for loc dev 
+//module.exports = app
