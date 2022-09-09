@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const cookieParser= require('cookie-parser');
 const path = require("path");
 require('dotenv').config();
-const PORT = 80
+const PORT = 3000
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(
