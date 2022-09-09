@@ -8,7 +8,7 @@
     "Reactdev": " cd front && npm run build && npm run start",
     "Exdev": " nodemon --inspect ./expressServer.js",
     "devenv": "concurrently \"npm run Reactdev\" \"npm run Exdev\"",
-    "server": "npm start --staging"
+    "liveserver": "npm start --staging"
   },
   "keywords": [
     "TimeServer"
