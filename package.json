@@ -4,11 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "inst": "(npm i && cd front && npm i && npm run build )",
-    "Frdev": " cd front && npm run build && npm run start",
+    "I": "(npm i && cd front && npm i && npm run build )",
+    "Fdev": " cd front && npm run build && npm run start",
     "devenv": "concurrently \"npm run Reactdev\" \"npm run Exdev\"",
-    "tservert": "nodemon -- inspact  npm start",
-    "liveserver": "npm start --staging"
+    "Tserver": "nodemon -- inspect  server,js",
+    "Lserver": "npm start --staging"
   },
   "keywords": [
     "TimeServer"
