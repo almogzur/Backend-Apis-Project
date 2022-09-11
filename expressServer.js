@@ -31,18 +31,18 @@ app.get("/",(req, res )=>{
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
 
-app.use("/api/:data?",(req, res, next) => {
-    const SR = req.parms; // Server Req 
-    const SRparms = req.params.data // SR parms 
+app.use("/api/:data?",(req, res, next) => {  
+    const SR = req.params ; // Server Req 
+    const SRparms = req.params.data ;  // SR parms 
 
     const s = new Date(SRparms);  // string
     const n = new Date(Number(SRparms)); // number 
 
-    console.log("incoming req at /api:date" ,SR,typeof SRparms , SRparms )
+    console.log("incoming req at /api:date" , SR  , SRparms )
 
-    console.log(s,n,SR)
+    //console.log(s,n,SR)
 
-    if(s == ER ){
+    if(s == ER ){ 
        res.json({ "error" : ER })
     }else if( SR == undefined){
       res.json({"unix":new Date().getDate(),"utf":new Date()})
