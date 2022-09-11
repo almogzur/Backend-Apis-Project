@@ -34,14 +34,14 @@ app.get("/",(req, res )=>{
 app.use("/api/:data?",(req, res, next) => {
 
     const parmsJson = req.params.data
-    
+
     const s = new Date(parmsJson);  // string
     const n = new Date(Number(parmsJson)); // number 
 
     console.log("incoming req at /api:date",parmsJson)
     console.log(s,n,parmsJson)
 
-    if(Sf && Nf == ER ){
+    if(s && n == ER ){
        res.json({ "error" : ER })
     }else if( parmsJson == undefined){
       res.json({"unix":new Date().getDate(),"utf":new Date()})
