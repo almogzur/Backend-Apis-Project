@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const cookieParser= require('cookie-parser');
 const path = require("path");
 require('dotenv').config();
-const PORT = 3000
+const PORT = 80
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(
@@ -30,7 +30,7 @@ app.get("/",(req, res )=>{
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
 
-app.use("/api/date/:data?",(req, res, next) => {
+app.use("/api/:data?",(req, res, next) => {
     const parmsJson = req.params.date;
     const raw= new Date(parmsJson);
     const toNum = new Date(Number(parmsJson));

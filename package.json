@@ -6,8 +6,8 @@
   "scripts": {
     "inst": "(npm i && cd front && npm i && npm run build )",
     "Frdev": " cd front && npm run build && npm run start",
-    "Exdev": " nodemon --inspect ./expressServer.js",
     "devenv": "concurrently \"npm run Reactdev\" \"npm run Exdev\"",
+    "tservert": "nodemon -- inspact  npm start",
     "liveserver": "npm start --staging"
   },
   "keywords": [
