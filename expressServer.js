@@ -36,10 +36,10 @@ app.use("/api/:data?",(req, res, next) => {
     const raw= new Date(parmsJson);  // H strings 
     const toNum = new Date(Number(parmsJson)); // H numbers
 
-    console.log("incoming req at /api:date",req.params)
+    console.log("incoming req at /api:date",parmsJson)
     console.log(raw,toNum)
     
-    
+
 
    
 });
