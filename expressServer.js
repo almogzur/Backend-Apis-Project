@@ -32,24 +32,16 @@ app.get("/",(req, res )=>{
 
 app.use("/api/:data?",(req, res, next) => {
     const parmsJson = req.params.date;
-    const raw= new Date(parmsJson);
-    const toNum = new Date(Number(parmsJson));
+
+    const raw= new Date(parmsJson);  // H strings 
+    const toNum = new Date(Number(parmsJson)); // H numbers
+
     console.log("incoming req at /api:date",req.params)
-    console.log(raw)
+    console.log(raw,toNum)
+    
+    
 
-    if(parmsJson==undefined){
-      res.json({"unix":new Date().getTime(),"utc":new Date()});
-      console.log("undefinde date retunr Date now")
-    }
-
-    else if (raw && toNum == "Invalid Date"  ){
-      res.json({"error":"Invalid Date"});
-      console.log("Date object cant prase return eroor")
-
-    }else{
-      res.json({"unix":parmsJson, "utc":toNum});
-      console.log("passed  object ")
-    }
+   
 });
-//app.listen(PORT,()=>{console.log("runing on"+`${PORT}`)}) // for loc dev 
-module.exports = app
+
+module.exports = app // for GL
