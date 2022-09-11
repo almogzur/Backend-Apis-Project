@@ -40,14 +40,7 @@ app.use("/api/:data?",(req, res, next) => {
 
     console.log("incoming req at /api:date" , SR  , SRparms )
 
-    //console.log(s,n,SR)
-
-    if(s == ER ){ 
-
-       res.json({ "error" : ER })
-
-    }else if( SRparms == undefined){
-
+    if( SRparms == undefined){
       res.json({"unix":new Date().getDate(),"utf":new Date()})
     } 
   }
