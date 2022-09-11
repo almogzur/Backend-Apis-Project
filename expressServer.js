@@ -9,6 +9,7 @@ const path = require("path");
 require('dotenv').config();
 const PORT = 80
 app.use(bodyParser.urlencoded({extended: false}));
+const ER = "Invalid Date"
 
 app.use(
    session({
@@ -33,11 +34,21 @@ app.get("/",(req, res )=>{
 app.use("/api/:data?",(req, res, next) => {
     const parmsJson = req.params.data
 
-    const raw= new Date(parmsJson);  // H strings 
-    const toNum = new Date(Number(parmsJson)); // H numbers
+    const Sf = new Date(parmsJson);  // H strings 
+    const Nf = new Date(Number(parmsJson)); // H numbers
 
     console.log("incoming req at /api:date",parmsJson)
-    console.log(raw,toNum)
+    console.log(Sf,Nf)
+
+    if(Sf&&Nf == ER ){
+       res.json({ "error" : ER })
+    }else if(Sf != ER){
+      res.json({"unix":Sf.getDate(),"utf":Sf})
+    }else if(Nf != ER){
+      res.json({"unix":"","utf":""})
+    }
+  }
+)
     
 
 
