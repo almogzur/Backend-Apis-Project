@@ -33,7 +33,7 @@ app.get("/",(req, res )=>{
 
 app.use("/api/:data?",(req, res, next) => {
     const parmsJson = req.params.data
-
+    
     const Sf = new Date(parmsJson);  // H strings 
     const Nf = new Date(Number(parmsJson)); // H numbers
 
@@ -42,7 +42,10 @@ app.use("/api/:data?",(req, res, next) => {
 
     if(Sf&&Nf == ER ){
        res.json({ "error" : ER })
-    }else if(Sf != ER){
+    }else if( parmsJson == undefined){
+      res.json({"unix":new Date().getDate(),"utf":new Date()})
+    }
+    else if(Sf != ER){
       res.json({"unix":Sf.getDate(),"utf":Sf})
     }else if(Nf != ER){
       res.json({"unix":"","utf":""})
