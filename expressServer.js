@@ -32,18 +32,19 @@ app.get("/",(req, res )=>{
   })
 
 app.use("/api/:data?",(req, res, next) => {
-    const SR = req.parms;
-    const parmsJson = req.params.data
+    const SR = req.parms; // Server Req 
+    const SRparms = req.params.data // SR parms 
 
-    const s = new Date(parmsJson);  // string
-    const n = new Date(Number(parmsJson)); // number 
+    const s = new Date(SRparms);  // string
+    const n = new Date(Number(SRparms)); // number 
 
-    console.log("incoming req at /api:date",parmsJson)
-    console.log(s,n,parmsJson,SR)
+    console.log("incoming req at /api:date" ,SR,typeof SRparms , SRparms )
 
-    if(s && n == ER ){
+    console.log(s,n,SR)
+
+    if(s == ER ){
        res.json({ "error" : ER })
-    }else if( parmsJson == undefined){
+    }else if( SR == undefined){
       res.json({"unix":new Date().getDate(),"utf":new Date()})
     }
   }
