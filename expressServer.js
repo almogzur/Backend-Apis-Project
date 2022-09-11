@@ -31,7 +31,7 @@ app.get("/",(req, res )=>{
   })
 
 app.use("/api/:data?",(req, res, next) => {
-    const parmsJson = req.params
+    const parmsJson = req.params.data
 
     const raw= new Date(parmsJson);  // H strings 
     const toNum = new Date(Number(parmsJson)); // H numbers
