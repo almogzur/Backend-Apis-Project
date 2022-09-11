@@ -49,10 +49,6 @@ app.use("/api/:data?",(req, res, next) => {
     }
   }
 )
-    
 
-
-   
-});
 
 module.exports = app // for GL
