@@ -43,10 +43,13 @@ app.use("/api/:data?",(req, res, next) => {
     //console.log(s,n,SR)
 
     if(s == ER ){ 
+
        res.json({ "error" : ER })
-    }else if( SR == undefined){
+
+    }else if( SRparms == undefined){
+
       res.json({"unix":new Date().getDate(),"utf":new Date()})
-    }
+    } 
   }
 )
 
