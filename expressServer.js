@@ -32,13 +32,14 @@ app.get("/",(req, res )=>{
   })
 
 app.use("/api/:data?",(req, res, next) => {
+
     const parmsJson = req.params.data
     
-    const Sf = new Date(parmsJson);  // H strings 
-    const Nf = new Date(Number(parmsJson)); // H numbers
+    const s = new Date(parmsJson);  // string
+    const n = new Date(Number(parmsJson)); // number 
 
     console.log("incoming req at /api:date",parmsJson)
-    console.log(Sf,Nf)
+    console.log(s,n,parmsJson)
 
     if(Sf && Nf == ER ){
        res.json({ "error" : ER })
