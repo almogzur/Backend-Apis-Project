@@ -51,5 +51,5 @@ app.use("/api/date/:data?",(req, res, next) => {
       console.log("passed  object ")
     }
 });
-app.listen(PORT,()=>{console.log("runing on"+`${PORT}`)}) // for loc dev 
-//module.exports = app
+//app.listen(PORT,()=>{console.log("runing on"+`${PORT}`)}) // for loc dev 
+module.exports = app
