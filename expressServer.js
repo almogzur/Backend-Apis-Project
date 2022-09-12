@@ -44,7 +44,7 @@ app.use("/api/:data?",(req, res, next) => {
     const monthname = DATE.getUTCDate();
     const year = DATE.getFullYear();
     
-    console.log("time format " , day , month , monthname , year )
+    console.log("time format " , day,"|" , month,"|" , monthname,"|" , year,"|" )
     console.log("incoming req at /api:date" , SR  , SRparms )
 
     if( SRparms == undefined){
