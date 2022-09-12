@@ -37,7 +37,14 @@ app.use("/api/:data?",(req, res, next) => {
 
     const s = new Date(SRparms);  // string
     const n = new Date(Number(SRparms)); // number 
+    const DATE  = new Date()
 
+    const day = DATE.getDay() ; 
+    const month = DATE.getMonth()
+    const monthname = DATE.getUTCDate();
+    const year = DATE.getFullYear();
+    
+    console.log("time format " , day , month , monthname , year )
     console.log("incoming req at /api:date" , SR  , SRparms )
 
     if( SRparms == undefined){
