@@ -21,11 +21,6 @@ app.use(
  }));
 
 
- const day = DATE.getDay() ; 
- const month = DATE.getMonth()
- const monthname = DATE.getUTCDate();
- const year = DATE.getFullYear();
-
 console.log("from console Dir Name  => ",__dirname);
 console.log("time format " , day,"|" , month,"|" , monthname,"|" , year,"|" )
 console.log("time format " , Date(123), new Date(123) )
