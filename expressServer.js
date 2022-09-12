@@ -21,12 +21,12 @@ app.use(
  }));
 
 console.log("from console Dir Name  => ",__dirname);
-console.log("from console Dat  => ",Date());
-console.log("from console process.env  => ",process.env["ESSION_SECRET"]);
+app.use(express.static(path.join(__dirname, "front", "build")))
+
+
 
  
 app.use(express.static(path.join(__dirname, "front", "build")))
-
 app.get("/",(req, res )=>{  
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
@@ -44,7 +44,7 @@ app.use("/api/:data?",(req, res, next) => {
     const monthname = DATE.getUTCDate();
     const year = DATE.getFullYear();
     
-    console.log("time format " , day,"|" , month,"|" , monthname,"|" , year,"|" )
+
     console.log("incoming req at /api:date" , SR  , SRparms )
 
     if( SRparms == undefined){
