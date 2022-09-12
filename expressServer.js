@@ -49,7 +49,7 @@ app.use("/api/:data?",(req, res, next) => {
     console.log("incoming req at /api:date" , SR  , SRparms )
 
     if( SRparms == undefined){
-      res.json({"unix":Date().getTime() ,"utc":`${Date()}`})
+      res.json({"unix":DATE.getTime() ,"utc":`${Date()}`})
     } 
   }
 )
