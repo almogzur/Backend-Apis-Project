@@ -28,7 +28,7 @@ app.use(
 
 console.log("from console Dir Name  => ",__dirname);
 console.log("time format " , day,"|" , month,"|" , monthname,"|" , year,"|" )
-console.log("time format " , new Date().toJSON())
+console.log("time format " , Date() )
 
  
 app.use(express.static(path.join(__dirname, "front", "build")))
