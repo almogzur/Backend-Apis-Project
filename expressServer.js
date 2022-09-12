@@ -42,7 +42,7 @@ app.use("/api/:data?",(req, res, next) => {
     const SRparms = req.params.data ;  // SR parms 
     const s = new Date(SRparms);  // string
     const n = new Date(Number(SRparms)); // number 
-    let daysarr = ["Mon","Tuse","Wed","Thu","Fri","Sat","Sun"]
+    let daysarr = ["Sun","Mon","Tuse","Wed","Thu","Fri","Sat"]
     let monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
 
     console.log("incoming req at /api:date" , SR  , SRparms )
