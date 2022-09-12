@@ -6,15 +6,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express(); 
 const session = require('express-session');
-const mongoose = require("mongoose");
 const cookieParser= require('cookie-parser');
 const cros = require("cros")
 const path = require("path");
-require('dotenv').config();
-const PORT = 80
-app.use(bodyParser.urlencoded({extended: false}));
 const ER = "Invalid Date"
-app.use(cros())
+
+require('dotenv').config();
+
+app.use(bodyParser.urlencoded({extended: false}));
 
 const corsOptions = {
   origin:"https://www.freecodecamp.org/"
