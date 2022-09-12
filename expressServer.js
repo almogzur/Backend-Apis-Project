@@ -21,12 +21,11 @@ app.use(
  }));
 
 console.log("from console Dir Name  => ",__dirname);
-app.use(express.static(path.join(__dirname, "front", "build")))
-
-
+console.log("time format " , day,"|" , month,"|" , monthname,"|" , year,"|" )
 
  
 app.use(express.static(path.join(__dirname, "front", "build")))
+  
 app.get("/",(req, res )=>{  
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
