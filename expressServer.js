@@ -20,7 +20,7 @@ app.use(
    key:'express.sid',
  }));
 
- const DATE  = new Date()
+
  const day = DATE.getDay() ; 
  const month = DATE.getMonth()
  const monthname = DATE.getUTCDate();
@@ -48,7 +48,7 @@ app.use("/api/:data?",(req, res, next) => {
     console.log("incoming req at /api:date" , SR  , SRparms )
 
   if( SRparms == undefined){
-    res.json({"unix":DATE.getTime() , "utc":`${daysarr[DATE.getDay()]}, ${DATE.getDate()} ${monthsarr[DATE.getMonth()]} ${DATE.getFullYear()} ${DATE.getHours() }:${DATE.getMinutes()}:${DATE.getSeconds()} GMT `})
+    res.json({"unix":DATE.getTime() , "utc":`${daysarr[new Date().getDay()]}, ${new Date().getDate()} ${monthsarr[new Date().getMonth()]} ${new Date().getFullYear()} ${new Date().getHours() }:${new Date().getMinutes()}:${new Date().getSeconds()} GMT `})
     } 
   }
 )
