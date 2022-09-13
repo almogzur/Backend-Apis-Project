@@ -63,7 +63,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
 
   if(SRparms == undefined){
     res.json({
-    "unix":def.getTime,
+    "unix":def.getTime(),
     "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
     } else if(str != ER){
       console.log("s ok ")
