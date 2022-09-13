@@ -35,7 +35,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     const SR = req.params ; // Server Req 
     const SRparms = req.params.data ;  // SR parms 
     const def = new Date() ; // defult 
-    const str = new Date.parse(SRparms);  // string
+    const str =  Date.parse(SRparms);  // string
     const unix = new Date(Number(SRparms)); // number 
     const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
@@ -64,8 +64,8 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let unixS= addZero(time.getSeconds())
     res.json({"unix":test,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
 
-   }else if(new Date.parse(SRparms) != ER ){
-    const time = new Date.parse(SRparms)
+   }else if( Date.parse(SRparms) != ER ){
+    const time =  Date.parse(SRparms)
     console.log(time , "from strig")
 
    }
