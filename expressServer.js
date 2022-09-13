@@ -15,7 +15,7 @@ require('dotenv').config();
 app.use(bodyParser.urlencoded({extended: false}));
 
 const corsOptions = {
-  origin:"https://www.freecodecamp.org/",
+  origin:"https://www.freecodecamp.org",
   optionsSuccessStatus: 200
 }
 
