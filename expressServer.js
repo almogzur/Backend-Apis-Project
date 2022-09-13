@@ -83,5 +83,4 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
   }
 )
 
-
 module.exports = app // for GL
