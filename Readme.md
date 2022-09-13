@@ -1,6 +1,6 @@
 Scripts available via `npm run-script`:
   I // install and build react for Ex static serv
-    (npm install && cd front && npm install && npm run build )
+    (npm install && cd front && npm install && npm run build &&  install audit and set it to false    )
   DevFront // for Local env dev
     (cd front and npm run start)
   DevServer // for Local env dev
