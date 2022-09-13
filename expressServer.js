@@ -57,19 +57,24 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
     } 
    else if(test){
+
     const time = new Date(test)
     let unixH= addZero(time.getHours())
     let unixM= addZero(time.getMinutes())
     let unixS= addZero(time.getSeconds())
     res.json({"unix":test,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
+
    }else if(new Date(SRparms)!=ER){
+
     const time = new Date(SRparms)
     let strH= addZero(str.getHours());
     let strM= addZero(str.getMinutes());
     let strS= addZero(str.getSeconds());
-    res.json({"unix":time.getDate(),"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${strH}:${strM}:${strS} GMT`})
+    res.json({"unix":time.getTime(),"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${strH}:${strM}:${strS} GMT`})
+
    }
    else if(unix&&str==ER){
+
     res.json({"error":ER})
    }
     console.log("incoming req at /api:date" , SR   )
