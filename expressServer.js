@@ -72,15 +72,13 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let year= time.getFullYear()
     res.json({"unix":testNum,"utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${H}:${M}:${S} GMT`})
   }
-   else if( testprash != ER ){
+   else if( testprash != ER){ 
     console.log(SRparms , "from string prash ")
     const time = testprash
     let s = addZero(time.getSeconds());
     let h = addZero(time.getHours());
     let m = addZero(time.getMinutes());
     res.json({"unix":time.getTime(),"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${h}:${m}:${s} GMT`})
-    
-
    } 
    else{
     res.json({"error":ER})
