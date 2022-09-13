@@ -1,5 +1,5 @@
-// i change cros Main path file to match "server.js", defult config is lokking for index.js 
-
+// i change cros Main path file to match "server.js",
+// defult config is lokking for index.js 
 
 'use strict';
 const express = require("express");
@@ -10,7 +10,7 @@ const cookieParser= require('cookie-parser');
 const cros = require("cros")
 const path = require("path");
 const ER = "Invalid Date"
-
+app.use(cros())
 require('dotenv').config();
 
 app.use(bodyParser.urlencoded({extended: false}));
