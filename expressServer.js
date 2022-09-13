@@ -7,17 +7,17 @@ const bodyParser = require("body-parser");
 const app = express(); 
 const session = require('express-session');
 const cookieParser= require('cookie-parser');
-const cros = require("cros")
+//const cros = require("cros")
 const path = require("path");
 const ER = "Invalid Date"
-app.use(cros())
 require('dotenv').config();
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-const corsOptions = {
-  origin:"https://www.freecodecamp.org/"
-}
+/*const corsOptions = {
+  origin:"https://www.freecodecamp.org/",
+  optionsSuccessStatus: 200
+}*/
 
 app.use(
    session({
@@ -31,7 +31,6 @@ app.use(
 
 console.log("from console Dir Name  => ",__dirname);
 
- 
 app.use(express.static(path.join(__dirname, "front", "build")))
   
 app.get("/",(req, res )=>{  
