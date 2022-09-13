@@ -7,17 +7,17 @@ const bodyParser = require("body-parser");
 const app = express(); 
 const session = require('express-session');
 const cookieParser= require('cookie-parser');
-//const cros = require("cros")
+const cros = require("cros")
 const path = require("path");
 const ER = "Invalid Date"
 require('dotenv').config();
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-/*const corsOptions = {
+const corsOptions = {
   origin:"https://www.freecodecamp.org/",
   optionsSuccessStatus: 200
-}*/
+}
 
 app.use(
    session({
@@ -37,7 +37,7 @@ app.get("/",(req, res )=>{
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
 
-app.use("/api/:data?",(req, res, next) => {  
+app.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
     const SR = req.params ; // Server Req 
     const SRparms = req.params.data ;  // SR parms 
     const s = new Date(SRparms);  // string
