@@ -57,7 +57,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
 
    else if(testNum){
     const time = new Date(testNum)
-    console.log(time, "from unix ")
+    console.log(SRparms, "from unix ")
     let unixH= addZero(time.getHours())
     let unixM= addZero(time.getMinutes())
     let unixS= addZero(time.getSeconds())
@@ -71,7 +71,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let h = addZero(time.getHours());
     let m = addZero(time.getMinutes());
     res.json({"unix":time.getTime(),"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${h}:${m}:${s} GMT`})
-    console.log(time , "from strig")
+    console.log(SRparms , "from strig")
 
    } 
    else{
