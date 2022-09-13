@@ -29,6 +29,7 @@ const corsOptions = {
 
 app.use(express.static(path.join(__dirname, "front", "build")))
   
+
 app.get("/",(req, res )=>{  
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
@@ -65,7 +66,8 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     res.json({
     "unix":def.getTime(),
     "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
-    } else if(str != ER){
+    } 
+    if(str != ER){
       console.log("s ok ")
       res.json({
         "unix":str.getTime(),
