@@ -58,7 +58,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     } 
    else if(test){
     const time = new Date(test)
-    console.log(time, "from test utc ")
+    console.log(time, "from unix ",test)
     let unixH= addZero(time.getHours())
     let unixM= addZero(time.getMinutes())
     let unixS= addZero(time.getSeconds())
