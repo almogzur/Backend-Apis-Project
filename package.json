@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "I": "(npm i && cd front && npm i && npm run build )",
+    "I": "(npm install && cd front && npm install && npm run build )",
     "Fdev": " cd front && npm run build && npm run start",
     "devenv": "concurrently \"npm run Reactdev\" \"npm run Exdev\"",
     "Tserver": "nodemon -- inspect  server,js",
