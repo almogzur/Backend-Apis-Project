@@ -64,7 +64,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let unixS= addZero(time.getSeconds())
     res.json({"unix":test,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
 
-   }else if(new Date(SRparms)!=ER){
+   }else if(new Date(SRparms)!=ER &&!test ){
 
     const time = new Date(SRparms)
     let strH= addZero(str.getHours());
