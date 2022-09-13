@@ -41,7 +41,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     const num = new Date(Number(SRparms)); // number 
     let daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     let monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
-
+    console.log(str,num)
    
     function addZero(i) {
       if (i < 10) {i = "0" + i}
