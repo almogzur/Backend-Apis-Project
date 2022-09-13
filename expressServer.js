@@ -37,7 +37,7 @@ app.get("/",(req, res )=>{
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
 
-app.use("/api/:data?",cros(corsOptions),(req, res, next) => {  
+app.use("/api/:data?",(req, res, next) => {  
     const SR = req.params ; // Server Req 
     const SRparms = req.params.data ;  // SR parms 
     const s = new Date(SRparms);  // string
