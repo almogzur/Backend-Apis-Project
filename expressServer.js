@@ -72,10 +72,10 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let h = addZero(time.getHours());
     let m = addZero(time.getMinutes());
     let day =time.getDay()
-    let date =time.getDate()
+    let date =time.addZero(getDate())
     let month = time.getMonth()
     let year= time.getFullYear()
-    res.json({"unix":time.getTime(),"utc":`${daysarr[day]}, ${addZero(date)} ${monthsarr[month]} ${year} ${h}:${m}:${s} GMT`})
+    res.json({"unix":time.getTime(),"utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${h}:${m}:${s} GMT`})
    } 
    else{
     res.json({"error":ER})
