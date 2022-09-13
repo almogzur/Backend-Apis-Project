@@ -74,7 +74,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
       })
     }else if(num != ER){
       res.json({
-        "unix":num,
+        "unix":req.params.data,
         "utc":`${daysarr[num.getDay()]}, ${num.getDate()} ${monthsarr[num.getMonth()]} ${num.getFullYear()} ${numH}:${numM}:${numS} GMT`
       })
     }else if(num&&str == ER){
