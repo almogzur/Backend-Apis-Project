@@ -55,7 +55,10 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let unixM= addZero(unix.getMinutes())
     let unixS= addZero(unix.getSeconds())
     ///////// 
-    console.log(str,unix)
+    console.log(parseInt(str),parseInt(unix))
+    
+
+
     if(SRparms == undefined){
     res.json({
     "unix":def.getTime(),
