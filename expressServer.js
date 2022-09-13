@@ -65,7 +65,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let unixH= addZero(time.getHours())
     let unixM= addZero(time.getMinutes())
     let unixS= addZero(time.getSeconds())
-    res.json({"unix":test,"utc":`${daysarr[time.getDay()]},${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS}`})
+    res.json({"unix":test,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
    }
     console.log("incoming req at /api:date" , SR   )
   }
