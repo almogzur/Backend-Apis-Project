@@ -63,21 +63,21 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
 
   if(SRparms == undefined){
     res.json({
-    "unix":new Date().getTime(),
+    "unix":def,
     "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
-    } else if(s != ER){
+    } else if(str != ER){
       console.log("s ok ")
       res.json({
-        "unix":s.getTime(),
+        "unix":str.getTime(),
         "utc":`${daysarr[srt.getDay()]}, ${str.getDate()} ${monthsarr[str.getMonth()]} ${str.getFullYear()} ${srtH}:${strM}:${strS} GMT`
 
       })
-    }else if(n != ER){
+    }else if(num != ER){
       res.json({
-        "unix":num.getTime(),
+        "unix":num,
         "utc":`${daysarr[num.getDay()]}, ${num.getDate()} ${monthsarr[num.getMonth()]} ${num.getFullYear()} ${numH}:${numM}:${numS} GMT`
       })
-    }else if(n&&s == ER){
+    }else if(num&&str == ER){
       res.json({"error":ER})
     }
     console.log("incoming req at /api:date" , SR   )
