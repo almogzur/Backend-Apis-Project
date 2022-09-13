@@ -58,7 +58,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     } 
    else if(test){
     const time = new Date(test)
-    console.log(time)
+    console.log(time, "from test utc ")
     let unixH= addZero(time.getHours())
     let unixM= addZero(time.getMinutes())
     let unixS= addZero(time.getSeconds())
@@ -66,7 +66,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
 
    }else if(new Date(SRparms)!=ER ){
     const time = new Date(SRparms)
-    console.log(time)
+    console.log(time , "from strig")
  
 
    }
