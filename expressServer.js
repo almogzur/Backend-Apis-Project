@@ -60,7 +60,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     "utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${h}:${m}:${s} GMT`})
   } 
 
-   else if(testNum != ER){
+   else if(testNum){ // if the passed parms are can be converted to number the this invoke
     const time = new Date(testNum)
     console.log(SRparms, "from unix ")
     let H= addZero(time.getHours())
@@ -70,9 +70,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let date =time.getDate()
     let month = time.getMonth()
     let year= time.getFullYear()
-
     res.json({"unix":testNum,"utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${H}:${M}:${S} GMT`})
-
   }
    else if( testprash != ER ){
     console.log(SRparms , "from string prash ")
