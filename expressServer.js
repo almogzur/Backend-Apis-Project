@@ -60,7 +60,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     "utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${h}:${m}:${s} GMT`})
   } 
 
-   else if(testNum){
+   else if(testNum != ER){
     const time = new Date(testNum)
     console.log(SRparms, "from unix ")
     let H= addZero(time.getHours())
