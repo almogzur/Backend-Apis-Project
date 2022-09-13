@@ -46,6 +46,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     //////
 
     if(SRparms == undefined){
+      console.log(SRparms,"from undefined")
       const def = new Date() ; // defult 
       let s = addZero(def.getSeconds());
       let h = addZero(def.getHours());
@@ -66,12 +67,13 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
 
   }
    else if( testprash != ER ){
+    console.log(SRparms , "from string prash ")
     const time = testprash
     let s = addZero(time.getSeconds());
     let h = addZero(time.getHours());
     let m = addZero(time.getMinutes());
     res.json({"unix":time.getTime(),"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${h}:${m}:${s} GMT`})
-    console.log(SRparms , "from strig")
+    
 
    } 
    else{
