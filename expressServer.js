@@ -68,7 +68,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     const time =  Date.parse(SRparms)
     console.log(time , "from strig")
 
-   }
+   } 
    else if(unix&&str==ER){
 
     res.json({"error":ER})
