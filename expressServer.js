@@ -32,21 +32,15 @@ app.get("/",(req, res )=>{
   })
 
 app.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
-    const SR = req.params ; // Server Req 
+    function addZero(i) {if (i < 10){i = "0" + i} return i; }
     const SRparms = req.params.data ;  // SR parms 
     const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
     const testNum = Number(SRparms) // to chack parms is number in unix format 
     const testprash = new Date(Date.parse(SRparms))
-    
-    function addZero(i) {
-      if (i < 10) {i = "0" + i}
-      return i;
-    }
-    //////
 
     if(SRparms == undefined){
-      console.log(SRparms,"from undefined")
+      console.log("from undefined")
       const def = new Date() ; // defult 
       let s = addZero(def.getSeconds());
       let h = addZero(def.getHours());
@@ -59,7 +53,6 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     "unix":def.getTime(),
     "utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${h}:${m}:${s} GMT`})
   } 
-
    else if(testNum){ // if the passed parms are can be converted to number the this invoke
     const time = new Date(testNum)
     console.log(SRparms, "from unix ")
