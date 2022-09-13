@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const app = express(); 
 const session = require('express-session');
 const cookieParser= require('cookie-parser');
-const cros = require("cors")
+const cors = require("cors")
 const path = require("path");
 const ER = "Invalid Date"
 require('dotenv').config();
