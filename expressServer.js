@@ -49,12 +49,8 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let m = addZero(def.getMinutes());
     let s = addZero(def.getSeconds());
     //////
-    let strH= addZero(str.getHours());
-    let strM= addZero(str.getMinutes());
-    let strS= addZero(str.getSeconds());
-
-    
   
+
     if(SRparms == undefined){
     res.json({
     "unix":def.getTime(),
@@ -66,6 +62,15 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let unixM= addZero(time.getMinutes())
     let unixS= addZero(time.getSeconds())
     res.json({"unix":test,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
+   }else if(new Date(SRparms)!=ER){
+    const time = new Date(SRparms)
+    let strH= addZero(str.getHours());
+    let strM= addZero(str.getMinutes());
+    let strS= addZero(str.getSeconds());
+    res.json({"unix":time.getDate(),"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${strH}:${strM}:${strS} GMT`})
+   }
+   else if(unix&&str==ER){
+    res.json({"error":ER})
    }
     console.log("incoming req at /api:date" , SR   )
   }
