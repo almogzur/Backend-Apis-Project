@@ -69,7 +69,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
       console.log("s ok ")
       res.json({
         "unix":str.getTime(),
-        "utc":`${daysarr[srt.getDay()]}, ${str.getDate()} ${monthsarr[str.getMonth()]} ${str.getFullYear()} ${srtH}:${strM}:${strS} GMT`
+        "utc":`${daysarr[str.getDay()]}, ${str.getDate()} ${monthsarr[str.getMonth()]} ${str.getFullYear()} ${strH}:${strM}:${strS} GMT`
 
       })
     }else if(num != ER){
