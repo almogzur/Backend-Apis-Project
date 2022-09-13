@@ -40,19 +40,16 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     const def = new Date() ; // defult 
     const str = new Date(SRparms);  // string
     const num = new Date(Number(SRparms)); // number 
-    let daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-    let monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
-    console.log(str,num)
-   
+    const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+    const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
     function addZero(i) {
       if (i < 10) {i = "0" + i}
       return i;
     }
-
     let h = addZero(def.getHours());
     let m = addZero(def.getMinutes());
     let s = addZero(def.getSeconds());
-
+    //////
     let strH= addZero(str.getHours());
     let strM= addZero(str.getMinutes());
     let strS= addZero(str.getSeconds());
@@ -60,14 +57,14 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let numH= addZero(num.getHours())
     let numM= addZero(num.getMinutes())
     let numS= addZero(num.getSeconds())
-
-
-  if(SRparms == undefined){
+    ///////// 
+    console.log(str,num)
+    if(SRparms == undefined){
     res.json({
     "unix":def.getTime(),
     "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
     } 
-    if(str != ER){
+     else if(str != ER){
       console.log("s ok ")
       res.json({
         "unix":str.getTime(),
