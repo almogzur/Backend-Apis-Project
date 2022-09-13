@@ -77,7 +77,6 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
    else{
     res.json({"error":ER})
    }
-    console.log("incoming req at /api:date" , SR   )
   }
 )
 
