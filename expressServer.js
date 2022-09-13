@@ -39,6 +39,8 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     const unix = new Date(Number(SRparms)); // number 
     const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
+    const test = parseInt(SRparms) // to chack parms is number in unix format 
+
     function addZero(i) {
       if (i < 10) {i = "0" + i}
       return i;
@@ -51,34 +53,20 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let strM= addZero(str.getMinutes());
     let strS= addZero(str.getSeconds());
 
-    let unixH= addZero(unix.getHours())
-    let unixM= addZero(unix.getMinutes())
-    let unixS= addZero(unix.getSeconds())
-    ///////// 
-    console.log(parseInt(str),parseInt(unix))
     
-
-
+  
     if(SRparms == undefined){
     res.json({
     "unix":def.getTime(),
     "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
     } 
-     else if(str != ER){
-      console.log("s ok ")
-      res.json({
-        "unix":str.getTime(),
-        "utc":`${daysarr[str.getDay()]}, ${str.getDate()} ${monthsarr[str.getMonth()]} ${str.getFullYear()} ${strH}:${strM}:${strS} GMT`
-      })
-    }else if(unix !== ER){
-      let u = unix 
-      res.json({
-        "unix":SRparms,
-        "utc":`${daysarr[u.getDay()]}, ${u.getDate()} ${monthsarr[u.getMonth()]} ${u.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`
-      })
-    }else if(unix&&str == ER){
-      res.json({"error":ER})
-    }
+   else if(test){
+    const time = new Date(test)
+    let unixH= addZero(time.getHours())
+    let unixM= addZero(time.getMinutes())
+    let unixS= addZero(time.getSeconds())
+    res.json({"unix":test,"utc":`${daysarr[time.getDay()]},${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS}`})
+   }
     console.log("incoming req at /api:date" , SR   )
   }
 )
