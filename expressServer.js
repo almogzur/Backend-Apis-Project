@@ -39,7 +39,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     const unix = new Date(Number(SRparms)); // number 
     const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
-    const test = parseInt(SRparms) // to chack parms is number in unix format 
+    const test = Number(SRparms) // to chack parms is number in unix format 
 
     function addZero(i) {
       if (i < 10) {i = "0" + i}
