@@ -64,18 +64,17 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     "unix":def.getTime(),
     "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
     } 
-     else if(str != ER){
+     else if(str !== ER){
       console.log("s ok ")
       res.json({
         "unix":str.getTime(),
         "utc":`${daysarr[str.getDay()]}, ${str.getDate()} ${monthsarr[str.getMonth()]} ${str.getFullYear()} ${strH}:${strM}:${strS} GMT`
-
       })
-    }else if(unix != ER){
+    }else if(unix !== ER){
       let u = unix 
       res.json({
         "unix":SRparms,
-        "utc":`${daysarr[u.getDay()]}, ${u.getDate()} ${monthsarr[u.getMonth()]} ${u.getFullYear()} ${numH}:${numM}:${numS} GMT`
+        "utc":`${daysarr[u.getDay()]}, ${u.getDate()} ${monthsarr[u.getMonth()]} ${u.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`
       })
     }else if(unix&&str == ER){
       res.json({"error":ER})
