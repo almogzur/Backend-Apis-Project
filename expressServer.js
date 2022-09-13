@@ -64,10 +64,9 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     let unixS= addZero(time.getSeconds())
     res.json({"unix":test,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
 
-   }else if(new Date(SRparms)!=ER ){
+   }else if(new Date(SRparms) != ER ){
     const time = new Date(SRparms)
     console.log(time , "from strig")
- 
 
    }
    else if(unix&&str==ER){
