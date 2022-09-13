@@ -37,7 +37,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
     const testNum = Number(SRparms) // to chack parms is number in unix format 
-    const testprash = Date.parse(SRparms)
+    const testprash = new Date (Date.parse(SRparms))
     
     function addZero(i) {
       if (i < 10) {i = "0" + i}
@@ -65,8 +65,8 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     res.json({"unix":testNum,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
 
   }
-   else if( testprash != NaN ){
-    const time = new Date(testprash)
+   else if( testprash != ER ){
+    const time = testprash
     res.json({"unix":time.getTime(),"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()}`})
     console.log(time , "from strig")
 
