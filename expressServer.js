@@ -34,43 +34,44 @@ app.get("/",(req, res )=>{
 app.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
     const SR = req.params ; // Server Req 
     const SRparms = req.params.data ;  // SR parms 
-    const def = new Date() ; // defult 
-    const str =  Date.parse(SRparms);  // string
-    const unix = new Date(Number(SRparms)); // number 
     const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
-    const test = Number(SRparms) // to chack parms is number in unix format 
-
+    const testNum = Number(SRparms) // to chack parms is number in unix format 
+    const testprash = Date.parse(SRparms)
+    
     function addZero(i) {
       if (i < 10) {i = "0" + i}
       return i;
     }
-    let h = addZero(def.getHours());
-    let m = addZero(def.getMinutes());
-    let s = addZero(def.getSeconds());
     //////
-  
 
     if(SRparms == undefined){
+      const def = new Date() ; // defult 
+      let s = addZero(def.getSeconds());
+      let h = addZero(def.getHours());
+      let m = addZero(def.getMinutes());
     res.json({
     "unix":def.getTime(),
     "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
-    } 
-   else if(test){
-    const time = new Date(test)
+  } 
+
+   else if(testNum){
+    const time = new Date(testNum)
     console.log(time, "from unix ",test)
     let unixH= addZero(time.getHours())
     let unixM= addZero(time.getMinutes())
     let unixS= addZero(time.getSeconds())
+
     res.json({"unix":test,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
 
-   }else if( Date.parse(SRparms) != ER ){
+  }
+   else if( testprash != ER ){
+
     const time =  Date.parse(SRparms)
     console.log(time , "from strig")
 
    } 
-   else if(unix&&str==ER){
-
+   else{
     res.json({"error":ER})
    }
     console.log("incoming req at /api:date" , SR   )
