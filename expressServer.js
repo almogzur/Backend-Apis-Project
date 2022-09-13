@@ -36,31 +36,51 @@ app.get("/",(req, res )=>{
 app.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
     const SR = req.params ; // Server Req 
     const SRparms = req.params.data ;  // SR parms 
-    const s = new Date(SRparms);  // string
-    const n = new Date(Number(SRparms)); // number 
+    const def = new Date() ; // defult 
+    const str = new Date(SRparms);  // string
+    const num = new Date(Number(SRparms)); // number 
     let daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     let monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
 
-    console.log("incoming req at /api:date" , SR   )
+   
+    function addZero(i) {
+      if (i < 10) {i = "0" + i}
+      return i;
+    }
+
+    let h = addZero(def.getHours());
+    let m = addZero(def.getMinutes());
+    let s = addZero(def.getSeconds());
+
+    let strH= addZero(str.getHours());
+    let strM= addZero(str.getMinutes());
+    let strS= addZero(str.getSeconds());
+
+    let numH= addZero(num.getHours())
+    let numM= addZero(num.getMinutes())
+    let numS= addZero(num.getSeconds())
+
 
   if(SRparms == undefined){
     res.json({
     "unix":new Date().getTime(),
-    "utc":`${daysarr[new Date().getDay()]}, ${new Date().getDate()} ${monthsarr[new Date().getMonth()]} ${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()} GMT`})
+    "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
     } else if(s != ER){
       console.log("s ok ")
       res.json({
         "unix":s.getTime(),
-        "utc":s
+        "utc":`${daysarr[srt.getDay()]}, ${str.getDate()} ${monthsarr[str.getMonth()]} ${str.getFullYear()} ${srtH}:${strM}:${strS} GMT`
+
       })
     }else if(n != ER){
       res.json({
-        "unix":n.getTime(),
-        "utc":`${daysarr[n.getDay()]},${n.getDate()} ${monthsarr[n.getMonth()]} ${n.getFullYear()} ${n.getHours()}:${n.getMinutes()}:${n.getSeconds()} GMT`
+        "unix":num.getTime(),
+        "utc":`${daysarr[num.getDay()]}, ${num.getDate()} ${monthsarr[num.getMonth()]} ${num.getFullYear()} ${numH}:${numM}:${numS} GMT`
       })
     }else if(n&&s == ER){
       res.json({"error":ER})
     }
+    console.log("incoming req at /api:date" , SR   )
   }
 )
 
