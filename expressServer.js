@@ -37,7 +37,7 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
     const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
     const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
     const testNum = Number(SRparms) // to chack parms is number in unix format 
-    const testprash = new Date (Date.parse(SRparms))
+    const testprash = new Date(Date.parse(SRparms))
     
     function addZero(i) {
       if (i < 10) {i = "0" + i}
@@ -51,19 +51,27 @@ app.use("/api/:data?",cors(corsOptions),(req, res, next) => {
       let s = addZero(def.getSeconds());
       let h = addZero(def.getHours());
       let m = addZero(def.getMinutes());
+      let day =def.getDay()
+      let date =def.getDate()
+      let month = def.getMonth()
+      let year= def.getFullYear()
     res.json({
     "unix":def.getTime(),
-    "utc":`${daysarr[def.getDay()]}, ${def.getDate()} ${monthsarr[def.getMonth()]} ${def.getFullYear()} ${h}:${m}:${s} GMT`})
+    "utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${h}:${m}:${s} GMT`})
   } 
 
    else if(testNum){
     const time = new Date(testNum)
     console.log(SRparms, "from unix ")
-    let unixH= addZero(time.getHours())
-    let unixM= addZero(time.getMinutes())
-    let unixS= addZero(time.getSeconds())
+    let H= addZero(time.getHours())
+    let M= addZero(time.getMinutes())
+    let S= addZero(time.getSeconds())
+    let day =time.getDay()
+    let date =time.getDate()
+    let month = time.getMonth()
+    let year= time.getFullYear()
 
-    res.json({"unix":testNum,"utc":`${daysarr[time.getDay()]}, ${time.getDate()} ${monthsarr[time.getMonth()]} ${time.getFullYear()} ${unixH}:${unixM}:${unixS} GMT`})
+    res.json({"unix":testNum,"utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${H}:${M}:${S} GMT`})
 
   }
    else if( testprash != ER ){
