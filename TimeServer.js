@@ -1,6 +1,9 @@
+'use strict';
 const express = require("express");
- const app = express()
- 
+const app = express()
+
+function main (){
+
  app.timeservice.get("/",(req, res )=>{  
     res.sendFile(path.join(__dirname, "front", "build", "index.html"))
     })
@@ -56,4 +59,5 @@ const express = require("express");
      }
     }
   )
-  
+}
+module.exports = main
