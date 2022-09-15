@@ -11,7 +11,7 @@ const corsOptions = {
 }
 const timeservice = express.Router()
 
- timeservice.get("/",(req, res )=>{  
+ timeservice.get("/",(req,res )=>{  
     res.sendFile(path.join(__dirname, "front", "build", "index.html"))
     })
   
