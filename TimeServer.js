@@ -1,3 +1,6 @@
+const express = require("express");
+ const app = express()
+ 
  app.timeservice.get("/",(req, res )=>{  
     res.sendFile(path.join(__dirname, "front", "build", "index.html"))
     })
