@@ -1,5 +1,3 @@
-
-exports = function TimeService (){
 'use strict';
 const express = require("express");
 const app = express()
@@ -49,7 +47,7 @@ const timeservice = express.Router()
       let year= time.getFullYear()
       res.json({"unix":testNum,"utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${H}:${M}:${S} GMT`})
     }
-     else if( testprash != ER){ 
+     else if(testprash != ER){ 
       console.log(SRparms , "from string prash ")
       const time = testprash
       let s = addZero(time.getSeconds());
@@ -66,4 +64,3 @@ const timeservice = express.Router()
      }
     }
   )
-}
