@@ -23,9 +23,8 @@ const Howamiserver = require("./Servers/HowAmIServer")
 
 app.get("/",(req,res,next)=>{
   res.sendFile(__dirname,"front","build","index.html")
-  console.log(TimeService())
+  console.log(TimeService)
 })
-
 
 app.use(express.static(path.join(__dirname, "front", "build")))
 
