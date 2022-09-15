@@ -1,10 +1,8 @@
-module.exports{
-
-app.get("/",(req, res )=>{  
+ app.timeservice.get("/",(req, res )=>{  
     res.sendFile(path.join(__dirname, "front", "build", "index.html"))
     })
   
- app.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
+ app.timeservice.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
       function addZero(i) {if (i < 10){i = "0" + i} return i; }
       const SRparms = req.params.data ;  // SR parms 
       const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
@@ -56,4 +54,3 @@ app.get("/",(req, res )=>{
     }
   )
   
-}

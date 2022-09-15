@@ -20,6 +20,8 @@ const corsOptions = {
  app.timeservice = express.Router()
  app.howami = express.Router()
 
+ app.use(subdomain("timeservice",app.timeservice))
+ app.use(subdomain("howami",app.howami))
  app.use(bodyParser.urlencoded({extended: false}));
 
  app.use(
