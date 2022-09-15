@@ -1,0 +1,7 @@
+Main Server
+
+fix react build 
+
+Ex serv sub domain pages 
+
+chake apis 

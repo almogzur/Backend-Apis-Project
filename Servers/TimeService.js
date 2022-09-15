@@ -3,11 +3,12 @@ const express = require("express");
 const app = express()
 const cors = require("cors")
 const ER = "Invalid Date"
+
 const corsOptions = {
   origin:"https://www.freecodecamp.org",
   optionsSuccessStatus: 200
 }
-const timeservice = express.Router()
+
 
  timeservice.get("/",(req,res )=>{  
     res.sendFile(path.join(__dirname, "front", "build", "index.html"))

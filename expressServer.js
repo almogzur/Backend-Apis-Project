@@ -7,7 +7,10 @@ const cookieParser= require('cookie-parser');
 const path = require("path");
 const subdomain = require('express-subdomain');
 const TimeService = require("./Servers/TimeService")
-const Howamiserver = require("./Servers/HowAmIServer")
+const HowAmI = require("./Servers/HowAmIServer")
+
+const timeservice = express.Router()
+const howami = express.Router()
 
  require('dotenv').config();
  
@@ -21,14 +24,16 @@ const Howamiserver = require("./Servers/HowAmIServer")
   key:'express.sid',
 }));
 
+
+app.use(express.static(path.join(__dirname, "front", "build")))
+
 app.get("/",(req,res,next)=>{
   console.log(TimeService)
 })
 
-app.use(express.static(path.join(__dirname, "front", "build")))
 
 
-//app.use(subdomain("howami",))
-//app.use(subdomain("timeservice",))
+app.use(subdomain("howami",howami))
+app.use(subdomain("timeservice",timeservice))
 
 module.exports = app // for GL
