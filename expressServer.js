@@ -22,6 +22,7 @@ const corsOptions = {
 
  app.use(subdomain("timeservice",app.timeservice))
  app.use(subdomain("howami",app.howami))
+ 
  app.use(bodyParser.urlencoded({extended: false}));
 
  app.use(
