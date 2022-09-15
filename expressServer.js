@@ -6,13 +6,11 @@ const session = require('express-session');
 const cookieParser= require('cookie-parser');
 const path = require("path");
 const subdomain = require('express-subdomain');
-const TimeServer = require("./Servers/TimeServer")
+const TimeService = require("./Servers/TimeService")
 const Howamiserver = require("./Servers/HowAmIServer")
 
  require('dotenv').config();
  
- app.use(subdomain("howami",app.howami))
-
  app.use(bodyParser.urlencoded({extended: false}));
 
  app.use(
@@ -25,9 +23,9 @@ const Howamiserver = require("./Servers/HowAmIServer")
 }));
 
 app.use(express.static(path.join(__dirname, "front", "build")))
-  
-TimeServer(app)
+  console.log()
 
-
+app.use(subdomain("howami",howami))
+app.use(subdomain("timeservice",timeservice))
 
 module.exports = app // for GL

@@ -1,3 +1,5 @@
+
+exports = function TimeService (){
 'use strict';
 const express = require("express");
 const app = express()
@@ -7,18 +9,13 @@ const corsOptions = {
   origin:"https://www.freecodecamp.org",
   optionsSuccessStatus: 200
 }
+const timeservice = express.Router()
 
-function main (app){
-
- app.timeservice = express.Router()
-
- app.use(subdomain("timeservice",app.timeservice))
-
- app.timeservice.get("/",(req, res )=>{  
+ timeservice.get("/",(req, res )=>{  
     res.sendFile(path.join(__dirname, "front", "build", "index.html"))
     })
   
- app.timeservice.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
+ timeservice.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
       function addZero(i) {if (i < 10){i = "0" + i} return i; }
       const SRparms = req.params.data ;  // SR parms 
       const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
@@ -70,4 +67,3 @@ function main (app){
     }
   )
 }
-module.exports = main
