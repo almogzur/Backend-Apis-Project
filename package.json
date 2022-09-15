@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "I": "(npm install && cd front && npm install && npm run build && npm audit fix --force )",
-    "DevFront":"(cd front && npm run start )",  
+    "DevFront": "(cd front && npm run start )",
     "DevServer": "nodemon -- inspect  server.js",
     "LiveServer": "npm start --staging"
   },
@@ -22,6 +22,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
+    "express-subdomain": "^1.0.5",
     "fund": "^1.0.0",
     "greenlock": "^4.0.4",
     "greenlock-express": "^4.0.3",
