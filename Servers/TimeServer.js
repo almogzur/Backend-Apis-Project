@@ -1,8 +1,18 @@
 'use strict';
 const express = require("express");
 const app = express()
+const cors = require("cors")
+const ER = "Invalid Date"
+const corsOptions = {
+  origin:"https://www.freecodecamp.org",
+  optionsSuccessStatus: 200
+}
 
-function main (){
+function main (app){
+
+ app.timeservice = express.Router()
+
+ app.use(subdomain("timeservice",app.timeservice))
 
  app.timeservice.get("/",(req, res )=>{  
     res.sendFile(path.join(__dirname, "front", "build", "index.html"))

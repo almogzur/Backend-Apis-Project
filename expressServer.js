@@ -4,23 +4,13 @@ const bodyParser = require("body-parser");
 const app = express(); 
 const session = require('express-session');
 const cookieParser= require('cookie-parser');
-const cors = require("cors")
 const path = require("path");
 const subdomain = require('express-subdomain');
-const TimeServer = require("./TimeServer")
-const Howamiserver = require("./HowAmIServer")
-const ER = "Invalid Date"
-const corsOptions = {
-  origin:"https://www.freecodecamp.org",
-  optionsSuccessStatus: 200
-}
+const TimeServer = require("./Servers/TimeServer")
+const Howamiserver = require("./Servers/HowAmIServer")
 
  require('dotenv').config();
  
- app.timeservice = express.Router()
- app.howami = express.Router()
-
- app.use(subdomain("timeservice",app.timeservice))
  app.use(subdomain("howami",app.howami))
 
  app.use(bodyParser.urlencoded({extended: false}));
@@ -34,7 +24,7 @@ const corsOptions = {
   key:'express.sid',
 }));
 
-app.timeservice.use(express.static(path.join(__dirname, "front", "build")))
+app.use(express.static(path.join(__dirname, "front", "build")))
   
 TimeServer(app)
 
