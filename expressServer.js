@@ -22,7 +22,7 @@ const corsOptions = {
 
  app.use(subdomain("timeservice",app.timeservice))
  app.use(subdomain("howami",app.howami))
- 
+
  app.use(bodyParser.urlencoded({extended: false}));
 
  app.use(
@@ -36,7 +36,7 @@ const corsOptions = {
 
 app.timeservice.use(express.static(path.join(__dirname, "front", "build")))
   
-TimeServer
+TimeServer(app)
 
 
 
