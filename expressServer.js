@@ -12,7 +12,6 @@ const Howamiserver = require("./Servers/HowAmIServer")
  require('dotenv').config();
  
  app.use(bodyParser.urlencoded({extended: false}));
-
  app.use(
   session({
   secret: process.env["ESSION_SECRET"],
@@ -22,10 +21,16 @@ const Howamiserver = require("./Servers/HowAmIServer")
   key:'express.sid',
 }));
 
-app.use(express.static(path.join(__dirname, "front", "build")))
-  console.log()
+app.get("/",(req,res,next)=>{
+  res.sendFile(__dirname,"front","build","index.html")
+  console.log(TimeService())
+})
 
-app.use(subdomain("howami",howami))
-app.use(subdomain("timeservice",timeservice))
+
+app.use(express.static(path.join(__dirname, "front", "build")))
+
+
+//app.use(subdomain("howami",))
+//app.use(subdomain("timeservice",))
 
 module.exports = app // for GL
