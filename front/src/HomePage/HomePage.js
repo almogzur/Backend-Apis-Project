@@ -1,8 +1,8 @@
-import './index.css';
+import './HomePage.css';
 import React from 'react';
 
 
-class App extends React.Component{
+export default class HomePage extends React.Component{
 render(){
   return( <div id="mdiv">
   <h1 className="text-center p-5" >Main</h1>
@@ -11,4 +11,4 @@ render(){
   )
 } 
 }
-export default App;
+

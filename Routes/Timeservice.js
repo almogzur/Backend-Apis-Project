@@ -3,7 +3,6 @@ const app = express();
 const cors = require("cors")
 const ER = "Invalid Date"
 const path = require("path");
-
 const corsOptions = {
   origin:"https://www.freecodecamp.org",
   optionsSuccessStatus: 200

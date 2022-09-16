@@ -1,5 +1,6 @@
-
-class App extends React.Component{
+import React from 'react';
+import "./TimeService.css"
+export default class TimeService extends React.Component{
   render(){
     return( <div id="mdiv">
     <h1 className="text-center p-5" >Timestamp Microservice</h1>
