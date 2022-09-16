@@ -1,7 +1,13 @@
-Main Server
+Main Server - 1 domain 1 cert 5 projects 
+
+Tree - in futher explane the file tree
 
 fix react build 
 
-Ex serv sub domain pages 
+Ex serv subdomain  -- ABENDED THIS METHOED <- ssl cert dont work proplay on subdomain - from online reserch
 
-chake apis 
+build sub folers insted /proj1/ and proj1/api 
+                        /prij2/ and proj2/api 
+
+
+

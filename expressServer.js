@@ -6,9 +6,12 @@ const app = express();
 const session = require('express-session');
 const cookieParser= require('cookie-parser');
 const path = require("path");
-const subdomain = require('express-subdomain');
 const cors = require("cors")
 const ER = "Invalid Date"
+
+let main = express.Router()
+let howami = express.Router()
+var time = express.Router() 
 
 const corsOptions = {
   origin:"https://www.freecodecamp.org",
@@ -16,10 +19,9 @@ const corsOptions = {
 }
 
 app.use(bodyParser.urlencoded({extended: false}));
-time.use(bodyParser.urlencoded({extended: false}));
-howami.use(bodyParser.urlencoded({extended: false}));
 
- app.use(
+
+app.use(
   session({
   secret: process.env["ESSION_SECRET"],
   resave: true,
@@ -27,43 +29,20 @@ howami.use(bodyParser.urlencoded({extended: false}));
   cookie: { secure: false },
   key:'express.sid',
 }));
-
-time.use(
-  session({
-  secret: process.env["ESSION_SECRET"],
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: false },
-  key:'express.sid',
-}));
-
-howami.use(
-  session({
-  secret: process.env["ESSION_SECRET"],
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: false },
-  key:'express.sid',
-}));
-
-
-let howami = express.Router()
-let time = express.Router() 
 
 app.use(express.static(path.join(__dirname, "front", "build")))
-time.use(express.static(path.join(__dirname, "front", "build")))
-howami.use(express.static(path.join(__dirname, "front", "build")))
+
 
 app.get("/",(req,res,next)=>{
   res.json({"almog":"almog"})
-  console.log()
+  next()
 })
 
-time.get("/",(req,res )=>{  
+app.get("/TimeService",(req,res )=>{  
   res.sendFile(path.join(__dirname, "front", "build", "index.html"))
   })
 
-time.use("/api/:data?",cors(corsOptions),(req, res, next) => {  
+app.get("/TimeService/api/:data?",cors(corsOptions),(req, res, next) => {  
     function addZero(i) {if (i < 10){i = "0" + i} return i; }
     const SRparms = req.params.data ;  // SR parms 
     const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
@@ -115,9 +94,8 @@ time.use("/api/:data?",cors(corsOptions),(req, res, next) => {
   }
 )
 
-howami.use("/",(res,req,next)=>{console.log("route working")})
+app.get("/howami",(res,req,next)=>{console.log("howami")})
 
-app.use(subdomain('time',time))
-app.use(subdomain('howami',howami))
+app.get("/howami/api",(req,res)=>{})
 
 module.exports = app // for GL
