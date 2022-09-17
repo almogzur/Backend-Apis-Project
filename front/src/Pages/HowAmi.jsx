@@ -1,5 +1,5 @@
 import React from 'react';
- import "./howami.css"
+ import "./Howami.css"
  
  export default class HowamI extends React.Component{
     constructor(props) {

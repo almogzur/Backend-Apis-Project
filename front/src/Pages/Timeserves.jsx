@@ -1,5 +1,7 @@
 import React from 'react';
-import "./TimeService.css"
+
+import './Timeserves.css'
+
 export default class TimeService extends React.Component{
   render(){
     return( <div id="mdiv">
