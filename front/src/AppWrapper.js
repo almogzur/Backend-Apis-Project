@@ -1,6 +1,6 @@
 import HomePage from './Pages/HomePage'
 import Timeservice from './Pages/Timeserves-index';
-import Howami from './Pages/HowAmi'
+import Howami from './Pages/Howami.css'
 import './TimeService/Timeserves.css';
 import './Pages/HomePage.css'
 import './Pages/HowAmi.css'
@@ -13,11 +13,9 @@ export default function App (){
      <BrowserRouter>
      <Nav/>
      <Routes>
-     <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NoPage />} />
+          <Route path="/" element={<HomePage />}>
+          <Route path="TimeService" element={<Timeservice />} />
+          <Route path="HowAmI" element={<Howami/>} />
         </Route>
      </Routes>
      </BrowserRouter>
