@@ -1,11 +1,12 @@
-import HomePage from './Pages/HomePage'
-import Timeservice from './Pages/Timeserves-index';
-import Howami from './Pages/Howami.css'
-import './TimeService/Timeserves.css';
-import './Pages/HomePage.css'
-import './Pages/HowAmi.css'
-import Nav from './Nav'
+import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from './Pages/HomePage'
+import Timeservice from './Pages/Timeserves';
+import Howami from './Pages/HowAmi'
+import './Pages/Timeserves.css';
+import './Pages/HomePage.css'
+import './Pages/Howami.css'
+import Nav from './Nav'
 
 
 export default function App (){
