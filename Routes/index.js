@@ -4,7 +4,7 @@ const path = require("path");
 
 module.exports = function main(app){
 app.get("/",(req,res,next)=>{
-    res.json({"almog":"almog"})
+  res.sendFile(path.join(__dirname, "front", "build", "index.html"))
     next()
   })
 }

@@ -9,10 +9,6 @@ const corsOptions = {
 }
 module.exports = function TimeService(app){
 
-app.get("/TimeService",(req,res )=>{  
-    res.sendFile(path.join(__dirname, "front", "build", "index.html"))
-    })
-  
   app.get("/TimeService/api/:data?",cors(corsOptions),(req, res, next) => {  
       function addZero(i) {if (i < 10){i = "0" + i} return i; }
       const SRparms = req.params.data ;  // SR parms 
