@@ -4,6 +4,7 @@ import HomePage from './Pages/HomePage'
 import Timeservice from './Pages/Timeserves';
 import Howami from './Pages/HowAmi'
 import Layout from "./Layout";
+import './index.css'
 
 export default function AppWrapper (){
     return (
