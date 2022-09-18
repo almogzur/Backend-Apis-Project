@@ -4,9 +4,7 @@ import HomePage from './Pages/HomePage'
 import Timeservice from './Pages/Timeserves';
 import Howami from './Pages/HowAmi'
 import Layout from "./Pages/Layout";
-import './Pages/Timeserves.css';
-import './Pages/HomePage.css'
-import './Pages/Howami.css'
+import './index.css'
 import Nav from './Nav'
 
 

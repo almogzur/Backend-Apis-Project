@@ -1,10 +1,8 @@
-import React from 'react';
 
-import './Timeserves.css'
 
 export default class TimeService extends React.Component{
   render(){
-    return( <div id="mdiv">
+    return( <div id="time">
     <h1 className="text-center p-5" >Timestamp Microservice</h1>
     <br/>
        <a className="text-center p-2 " href="https://sitecss.online/api/2020-01-01">[Url]/api/2020-01-01</a>

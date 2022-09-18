@@ -1,0 +1,14 @@
+body{
+    background-image: linear-gradient(to right, rgb(212, 135, 205) , rgb(220, 135, 92))
+}
+#time{
+    margin-top:5vh;
+    text-align: center;
+    padding-bottom: 10vh;
+}
+
+.howami{
+    text-align: center;
+    margin-top: 5vh;
+    
+}
