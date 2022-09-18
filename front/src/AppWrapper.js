@@ -3,11 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage'
 import Timeservice from './Pages/Timeserves';
 import Howami from './Pages/HowAmi'
-import Layout from "./Pages/Layout";
-import "./index.css"
+import Layout from "./Layout";
 
-
-export default function App (){
+export default function AppWrapper (){
     return (
      <BrowserRouter>
      <Routes>
