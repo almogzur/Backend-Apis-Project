@@ -4,8 +4,7 @@ import HomePage from './Pages/HomePage'
 import Timeservice from './Pages/Timeserves';
 import Howami from './Pages/HowAmi'
 import Layout from "./Pages/Layout";
-import './index.css'
-import Nav from './Nav'
+import "./index.css"
 
 
 export default function App (){
