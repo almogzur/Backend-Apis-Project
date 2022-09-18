@@ -1,14 +1,11 @@
 
 const express = require("express");
-const app = express(); 
-const path = require("path");
 const cors = require("cors")
 
 const corsOptions = {
     origin:"https://www.freecodecamp.org",
     optionsSuccessStatus: 200
   }
-
 
 module.exports =  function Whoami (app){ 
 

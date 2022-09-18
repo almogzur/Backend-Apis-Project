@@ -6,16 +6,40 @@ fix react build  done
 
 Ex serv subdomain  -- ABENDED THIS METHOED <- ssl cert dont work proplay on subdomain - from online reserch
 
+
+------------------------
+
 build sub folers insted /proj1/ and proj1/api 
                         /prij2/ and proj2/api 
 
+--------------------
+
+fix nav css  not complite 
+
+fix how am i css  done 
+
+get req  ip  done 
+
+---------- 
 
 
-fix nav css 
+fix nav 
+fix box placemnt 
 
-fix how am i css 
+set react button to redirect 
 
-get req  ip 
+build url id , store it , 
+
+add route  for incoming req whid the route incloded 
+finde the route in data bace 
+and redirect do site 
+
+create react button that interact whid Ex api bace on text input value
+
+
+
+
+
 
 
 
