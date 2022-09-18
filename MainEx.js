@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const session = require('express-session');
 const Whoami= require ("./Routes/Whoami")
 const TimeService= require ("./Routes/Timeservice")
+const UrlShort = require('./Routes/Url')
 const index = require("./Routes/index")
 const path = require("path");
 
@@ -27,6 +28,8 @@ app.use(express.static(path.join(__dirname, "front", "build")))
 index(app)
 Whoami(app)
 TimeService(app)
+UrlShort(app)
+
 
 ////End Route invoke
 
