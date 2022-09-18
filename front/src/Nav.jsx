@@ -1,12 +1,14 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+// link is like 'a' tag 
 
 function Navbar() {
   return (
     <div id="nav">
     <Link to="/">Home | </Link>
     <Link to="/TimeService">TimeService | </Link>
-    <Link to="/Howami">Howami</Link>
+    <Link to="/Whoami">Whoami | </Link>
     <Link to="/UrlShort">UrlShort</Link>
    </div>
   );

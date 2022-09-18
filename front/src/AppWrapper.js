@@ -14,7 +14,7 @@ export default function AppWrapper (){
        <Route path="/" element={< Layout />}>
           <Route index element={<HomePage />} />
           <Route path="TimeService" element={<Timeservice />} />
-          <Route path="Whoami" element={<Whoami />} />
+          <Route path="whoami" element={<Whoami />} />
           <Route path="Urlshort" element={<UrlShort/>}/>
        </Route>
      </Routes>

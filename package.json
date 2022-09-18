@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "I": "(npm install && cd front && npm install && npm audit fix --force )",
-    "DevFront": "(cd front && npm run start )",
+    "DF": "(cd front && npm run start )",
     "DevServer": "nodemon -- inspect  server.js",
     "L": "npm start --staging",
     "RB":"(cd front && npm run build)"
