@@ -10,14 +10,11 @@ const corsOptions = {
   }
 
 
-module.exports =  function howami (app){ 
+module.exports =  function Whoami (app){ 
 
-
-app.get("/api/howami",cors(corsOptions),(req,res)=>{
+app.get("/api/whoami",cors(corsOptions),(req,res)=>{
  const ipH1 = req.headers['x-real-ip']
  const ipH2 = req.connection.remoteAddress;
- console.log()
-
 
     res.json({
         "ipaddress": ipH1? ipH1 : ipH2,

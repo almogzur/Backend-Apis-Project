@@ -4,7 +4,7 @@ const express = require("express");
 const app = express(); 
 const bodyParser = require("body-parser");
 const session = require('express-session');
-const howami= require ("./Routes/howami")
+const Whoami= require ("./Routes/Whoami")
 const TimeService= require ("./Routes/Timeservice")
 const index = require("./Routes/index")
 const path = require("path");
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, "front", "build")))
 /// Routes invoke ///
 
 index(app)
-howami(app)
+Whoami(app)
 TimeService(app)
 
 ////End Route invoke
