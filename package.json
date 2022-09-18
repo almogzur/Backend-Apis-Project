@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "I": "(npm install && cd front && npm install && npm run build && npm audit fix --force )",
+    "I": "(npm install && cd front && npm install && npm audit fix --force )",
     "DevFront": "(cd front && npm run start )",
     "DevServer": "nodemon -- inspect  server.js",
     "L": "npm start --staging",
