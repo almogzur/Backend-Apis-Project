@@ -7,9 +7,9 @@ module.exports =  function howami (app){
 
 
 app.get("/api/howami",(req,res)=>{
-    console.log(req)
+    console.log(req.header('x-forwarded-for'))
     res.json({
-        "ip":req.header('x-forwarded-for'),
+        "ip":"",
         "Os":""
     })
 })
