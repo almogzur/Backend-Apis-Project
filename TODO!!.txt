@@ -23,15 +23,17 @@ get req  ip  done
 ---------- 
 
 
-fix nav 
-fix box placemnt 
+fix nav -  css
+fix box placemnt  - css
 
 set react button to redirect 
 
-build url id , store it , 
+build url id , store it ,  -- conact mongo to store data 
 
 add route  for incoming req whid the route incloded 
+
 finde the route in data bace 
+
 and redirect do site 
 
 create react button that interact whid Ex api bace on text input value

@@ -9,8 +9,11 @@ const TimeService= require ("./Routes/Timeservice")
 const UrlShort = require('./Routes/Url')
 const index = require("./Routes/index")
 const path = require("path");
+const db = require('./DB');
+const mongoose = require('mongoose');
 
 app.use(bodyParser.urlencoded({extended: false}));
+
 
 app.use(
   session({
@@ -23,13 +26,13 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "front", "build")))
 
+
+
 /// Routes invoke ///
-
-index(app)
-Whoami(app)
-TimeService(app)
-UrlShort(app)
-
+index(app,db)
+Whoami(app,db)
+TimeService(db)
+UrlShort(app,db)
 
 ////End Route invoke
 
