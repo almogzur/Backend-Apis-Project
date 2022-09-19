@@ -5,14 +5,14 @@ const corsOptions = {
   origin: "https://www.freecodecamp.org",
   optionsSuccessStatus: 200
 }
+ 
 
-const Url = require('../DB').UrlModole
+
+function UrlShort(app) {
+
+const URL = require('../DB').UrlModole
 const createUrl = require('../DB').createAndSaveUrl
 const findUrl = require('../DB').findUrlById
-
-
-
-function Url(app,DB) {
 
 
   app.get("/api/shorturl/:url?", cors(corsOptions), (req, res) => {
@@ -33,11 +33,10 @@ function Url(app,DB) {
 
   )
 
-  app.post("/api/test",(req,res)=>{
+  app.get("/api/test",(req,res)=>{
 
-    console.log(createUrl, typeof createUrl)
   })
 }
 
 
-module.exports = Url
+module.exports = UrlShort
