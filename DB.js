@@ -1,7 +1,10 @@
 
+
   require('dotenv').config();
- const mongoose = require('mongoose');
- const URI = process.env["MONGO"]
+
+  let mongoose ; try { mongoose = require("mongoose");}catch(e){console.log(e)}
+
+  const URI = process.env["MONGO"]
 
  mongoose.connect(URI,{ 
         useNewUrlParser: true,
@@ -9,10 +12,13 @@
         //useUnifiedTopology: true 
     });
 
+
+
 const UrlSchma = new mongoose.Schema({
     Url : String,
    });
   
+   
 const UrlModle = mongoose.model('Url', UrlSchma);
    
 function createAndSaveUrl(done,url){
@@ -37,7 +43,13 @@ const findUrlById = (URIId, done) => {
       return done(null, data)
     })
   };
-       
+let conectionSataus  = mongoose.connection.readyState
+
+if (mongoose ){
+    console.log(mongoose)
+}
+
+
 module.exports = UrlModle
 module.exports = createAndSaveUrl 
 module.exports = findUrlById
