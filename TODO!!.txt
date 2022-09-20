@@ -21,7 +21,11 @@ fix how am i css  done
 get req  ip  done 
 
 ---------- 
+Export req.parms jsob 
 
+Inport in db
+
+And add condition
 
 fix nav -  css
 fix box placemnt  - css
