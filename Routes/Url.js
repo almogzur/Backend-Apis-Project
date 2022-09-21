@@ -6,7 +6,7 @@ const corsOptions = {
   optionsSuccessStatus: 200
 }
  
-let parmsForExports ;
+let parmsForExports =""
 
 function UrlShort(app) {
 
