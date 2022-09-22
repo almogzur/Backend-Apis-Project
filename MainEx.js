@@ -34,5 +34,4 @@ UrlShort(app,db)
 ////End Route invoke
 
 
-
 module.exports = app // for GL

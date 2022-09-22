@@ -22,7 +22,7 @@ async function main (callback){
     await callback(db)
 
   }catch(e){
-    console(e)
+    console.log(e)
   }
   }
 
