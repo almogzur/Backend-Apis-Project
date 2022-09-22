@@ -9,7 +9,7 @@ const TimeService= require ("./Routes/Timeservice")
 const UrlShort = require('./Routes/Url').UrlShort
 const index = require("./Routes/index")
 const path = require("path");
-const db = require('./dbConnection')
+const db = require('./dbConnection').main
 
 app.use(bodyParser.urlencoded({extended: false}));
 

@@ -8,3 +8,4 @@ app.get("/",(req,res,next)=>{
     next()
   })
 }
+console.log(module.exports,"exports from Index Route")

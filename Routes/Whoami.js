@@ -21,3 +21,4 @@ app.get("/api/whoami",cors(corsOptions),(req,res)=>{
     })
 })
 }
+console.log(module.exports,"exports from Whoami Route")

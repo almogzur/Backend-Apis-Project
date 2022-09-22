@@ -8,48 +8,42 @@ const corsOptions = {
  
 function UrlShort(app,db) {
 
-  db(async client => {
+  let counte = 0 
 
-  app.get("/api/shorturl/:url?", cors(corsOptions), (req, res) => {
+  db(async (client) => {
+   const db_URLS = await client.db("Urlshort").collection("urls")
 
-    const  url = req.params;
+  app.get("/api/urlshort/:url?", cors(corsOptions), (req, res) => {
 
+    const  url = req.params.url;
     let reg = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g //<=  taken forn https://regexr.com/39nr7
-    
     let result = url.match(reg)
     
-    console.log(`from raout parms => ${req.params}`)
-
+    console.log(`req to "/api/urlshort/" Route Params => ${req.params.url} `)
+    ++counte 
+    
     result == null ? 
       res.json({ "original_url": "", "short_url": 1 }) :
-      res.json({ "original_url":result.toString(),"short_url":0  })
 
-   
+      res.json({ "original_url":result.toString(),"short_url":0  }
+
+       , db_URLS.insertOne(
+        { url: result },
+        (err,data)=>{
+          if(!data)err
+        if(err)console.log(err)
+       })
+    )
+      
+  
+ 
   })
 
-  app.get("/api/:test?",(req,res)=>{
-
-    const url = req.params;
 
 
-    function createAndSaveUrl(done,url){
-
-      console.log(url,"from db")
-     
-        const doc = new UrlModle({Url:url});
-    
-          doc.save(function(err, data) {
-    
-            if (err) return console.error(err);
-    
-            return done(null, data);
-          })
-          // mongoos auto creat id for evry instence 1
-    }
-    
     const findUrlById = (done) => {
     
-      UrlModle.findById((err, data) => {
+      db_URLS.findById((err, data) => {
     
           if (err) return console.error(err)
     
@@ -57,23 +51,15 @@ function UrlShort(app,db) {
         })
       };
 
-    
-
-  
-
-    console.log("Express")
-
-  
-  })
+    console.log("URL short page ",counte)
 
   })
 
 }
 
-console.log(module.exports,"exports")
-
 exports.UrlShort= UrlShort
 
+console.log(module.exports,"exports from Urlshort Route")
 
 
 

@@ -62,3 +62,5 @@ module.exports = function TimeService(app){
     }
   )
 }
+
+console.log(module.exports,"exports from Timeservice Route")
