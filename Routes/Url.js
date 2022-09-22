@@ -6,13 +6,9 @@ const corsOptions = {
   optionsSuccessStatus: 200
 }
  
-let parmsForExports =""
+function UrlShort(app,db) {
 
-function UrlShort(app) {
-
-const URL = require('../DB').UrlModole
-const createUrl = require('../DB').createAndSaveUrl
-const findUrl = require('../DB').findUrlById
+  db(async client => {
 
   app.get("/api/shorturl/:url?", cors(corsOptions), (req, res) => {
 
@@ -35,30 +31,49 @@ const findUrl = require('../DB').findUrlById
 
     const url = req.params;
 
-    parmsForExports += url 
 
-    console.log(url.test)
-    exports.url = url 
-    createUrl(function (err,data){
+    function createAndSaveUrl(done,url){
 
-     console.log(data," Ex invoking DV ")
-
+      console.log(url,"from db")
      
+        const doc = new UrlModle({Url:url});
+    
+          doc.save(function(err, data) {
+    
+            if (err) return console.error(err);
+    
+            return done(null, data);
+          })
+          // mongoos auto creat id for evry instence 1
+    }
+    
+    const findUrlById = (done) => {
+    
+      UrlModle.findById((err, data) => {
+    
+          if (err) return console.error(err)
+    
+          return done(null, data)
+        })
+      };
 
-    })
+    
 
+  
 
     console.log("Express")
 
   
   })
 
+  })
+
 }
 
-exports.parmsForExports = parmsForExports? parmsForExports: null
+console.log(module.exports,"exports")
+
 exports.UrlShort= UrlShort
 
-console.log(module.exports)
 
 
 
