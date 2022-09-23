@@ -8,7 +8,7 @@ const corsOptions = {
   origin:"https://www.freecodecamp.org",
   optionsSuccessStatus: 200
 }
-module.exports = function TimeService(app){
+exports.TimeService = function TimeService(app){
 
   app.get("/TimeService/api/:data?",cors(corsOptions),(req, res, next) => {  
       function addZero(i) {if (i < 10){i = "0" + i} return i; }
