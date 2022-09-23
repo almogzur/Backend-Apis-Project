@@ -21,33 +21,42 @@ exports.UrlShort = function UrlShort(app,db) {
         const  url = req.params.url;
         let reg = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g //<=  taken forn https://regexr.com/39nr7
         let result = url.match(reg)
+        
+        if(result)
+        console.log(result,"from test result ")
+        else
+        console.log("error","from test result ")
 
-        console.log(result)
-
+        
         result ? 
         db_URLS.findOne({url:result.toString()},function(err,url){
+
           if(err){
-          console.log(err);
+          console.log(err,"find");
           next(err);
+
           }else if(url){
-           console.log(url)
-          res.redirect('/')
+
+           console.log(url, "from find")
           }else{
-          db_URLS.insertOne({ "url":result }),function(err,doc){
-            if(err){
-              return console.log(err)
-            }else{
-              console.log(doc)
+          db_URLS.insertOne(
+                  { "url":result.toString() }),
+           function(err,doc){
+             if(err){
+              console.log(err)
+              next()
+             }else{
+              console.log(doc,"from insert one")
               next(null,doc)
             }
-            }
-          }
-        }):null
+          }}
+         }):null
 
         })
       
   
        .get(cors(corsOptions),function(res,req){ // retrive data from db 
+
         console.log("get")
 
 
