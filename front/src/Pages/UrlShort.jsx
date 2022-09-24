@@ -2,10 +2,16 @@ import React from "react";
 import { useState } from "react";
 
  const Urlshot = ()=>{
-const [state, setstate]= useState({})
+
+const [state, setState]= useState({"input" : "" })
 
 const click =  (e)=>{
-    console.log("click working",e)
+
+fetch('/api/urlsort/' +this.state.input, { method: 'POST', /* or 'PUT'*/ })
+    console.log(state.input)
+}
+const change = (e)=>{
+    setState(input = e.target.value)
 
 }
 return (
@@ -16,6 +22,8 @@ return (
             <input
             placeholder=" www.exmple.com"
             className="text-center"
+            value={state.input}
+            onChange={change}
             >
             </input>
             <br/>
