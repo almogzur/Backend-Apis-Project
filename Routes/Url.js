@@ -44,7 +44,6 @@ exports.UrlShort = function UrlShort(app,db) {
            function(err,doc){
              if(err){
               console.log(err)
-              next()
              }else{
               console.log(doc,"from insert one")
               next(null,doc)
@@ -56,8 +55,19 @@ exports.UrlShort = function UrlShort(app,db) {
       
   
        .get(cors(corsOptions),function(res,req){ // retrive data from db 
+        const  url = req.params.url;
+        console.log("GET  //api/urlsort/:url? ")
+        console.log(db_URLS)
+        db_URLS.findOne({url:url} , function(err,url){
+          if(err)
+          console.log(err)
+          else if(url)
+          console.log(url)
+          else
+          db_URLS.f
 
-        console.log("get")
+        })
+
 
 
       })
