@@ -18,7 +18,7 @@ exports.TimeService = function TimeService(app){
       const testNum = Number(SRparms) // to chack parms is number in unix format 
       const testprash = new Date(Date.parse(SRparms))
   
-      if(SRparms == undefined){
+     if(SRparms == undefined){
         console.log("from undefined")
         const def = new Date() ; // defult 
         let s = addZero(def.getSeconds());

@@ -11,6 +11,7 @@ const corsOptions = {
 module.exports =  function Whoami (app){ 
 
 app.get("/api/whoami",cors(corsOptions),(req,res)=>{
+  
  const ipH1 = req.headers['x-real-ip']
  const ipH2 = req.connection.remoteAddress;
 
