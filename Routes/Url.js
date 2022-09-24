@@ -10,6 +10,7 @@ exports.UrlShort = function UrlShort(app,db) {
    let counte = 1
 
    db(async (client) => { ///api/urlsort/:url?
+    
      const db_URLS = await client.db("Urlshort").collection("urls")
 
         app.route("/api/urlsort/:url?")
