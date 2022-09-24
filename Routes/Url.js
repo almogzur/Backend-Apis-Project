@@ -18,8 +18,9 @@ exports.UrlShort = function UrlShort(app,db) {
        .post(cors(corsOptions),(req,res,next)=>{ // HTTP POST REQ Hendler to update data 
 
         console.log(`req to "/api/urlshort/" Hendler POST  `);  ++counte ;
-
+        const par = req.params
         const  url = req.params.url;
+        console.log(par)
         let reg = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g //<=  taken forn https://regexr.com/39nr7
         let result = url.match(reg)
         
