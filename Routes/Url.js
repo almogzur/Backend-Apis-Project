@@ -27,14 +27,13 @@ exports.UrlShort = function UrlShort(app,db) {
         else
         console.log("error","from test result ")
 
-        
+     
         result ? 
         db_URLS.findOne({url:result.toString()},function(err,url){
 
           if(err){
           console.log(err,"find");
           next(err);
-
           }else if(url){
 
            console.log(url, "from find")
@@ -54,25 +53,21 @@ exports.UrlShort = function UrlShort(app,db) {
         })
       
   
-       .get(cors(corsOptions),function(res,req){ // retrive data from db 
-        const  url = req.params.url;
+       .get(cors(corsOptions),function(req,res){ // retrive data from db 
+
+        const url = req.params.url;
+
         console.log("GET  //api/urlsort/:url? ")
+
         console.log(db_URLS)
+
         db_URLS.findOne({url:url} , function(err,url){
           if(err)
-          console.log(err)
+          console.log(err, "from Get find one")
           else if(url)
-          console.log(url)
-          else
-          db_URLS.f
-
+          console.log(url ,"from Get find one")
         })
-
-
-
       })
-
-      
   })
          
 }
@@ -81,4 +76,4 @@ exports.UrlShort = function UrlShort(app,db) {
        
       
 
-    
+console.log(module.exports,"exports from Timeservice Route")
