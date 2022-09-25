@@ -24,12 +24,6 @@ exports.UrlShort = function UrlShort(app,db) {
         let reg = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g //<=  taken forn https://regexr.com/39nr7
         let result = url.match(reg)
         
-        if(result)
-        console.log(result,"from test result ")
-        else
-        console.log("error","from test result ")
-
-     
         result ? 
         db_URLS.findOne({url:result.toString()},function(err,url){
 
@@ -41,7 +35,7 @@ exports.UrlShort = function UrlShort(app,db) {
            console.log(url, "from find")
           }else{
           db_URLS.insertOne(
-                  { "url":result.toString() }),
+                  { "url":result.toString(),"num":counte }),
            function(err,doc){
              if(err){
               console.log(err)
@@ -50,7 +44,7 @@ exports.UrlShort = function UrlShort(app,db) {
               next(null,doc)
             }
           }}
-         }):null
+         }): res.json({ "error": 'invalid url' })
 
         })
       

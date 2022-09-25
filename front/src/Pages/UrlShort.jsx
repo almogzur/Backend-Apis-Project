@@ -6,15 +6,14 @@ import { useState } from "react";
 const [input, setInput]= useState("")
 
 const change = (e)=>{
-    if(input){
-        setInput("")
-    }else{
+
         setInput(input + e.target.value)
-    }
+    
 }
 const click =  (e)=>{
+    console.log(input)
    // fetch('/api/urlsort/' + input, { method: 'POST', /* or 'PUT'*/ })
-        console.log(input)
+    setInput("")
     }
 return (
     <div className="Url" >
