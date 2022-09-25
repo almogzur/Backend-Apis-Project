@@ -6,16 +6,16 @@ import { useState } from "react";
 const [input, setInput]= useState("")
 
 const change = (e)=>{
-
-        setInput(input + e.target.value)
-    
+        setInput( input+ e.target.value)
 }
 const click =  (e)=>{
     console.log(input)
    // fetch('/api/urlsort/' + input, { method: 'POST', /* or 'PUT'*/ })
     setInput("")
+
     }
 return (
+    <div id="outerbox">
     <div className="Url" >
         <h1>URL Shortener Microservice</h1>
         <div id="urlmainbox">
@@ -24,6 +24,7 @@ return (
             placeholder=" www.exmple.com"
             className="text-center"
             onChange={change}
+            value={input} // the text value aka text 
             >
             </input>
             <br/>
@@ -32,6 +33,7 @@ return (
         </div>
          
         <h3>Short URL Creation</h3>
+    </div>
     </div>
 )
 
