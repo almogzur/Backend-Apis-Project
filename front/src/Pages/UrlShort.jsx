@@ -10,7 +10,7 @@ const change = (e)=>{
 }
 const click =  (e)=>{
     console.log(input)
-   fetch('/api/urlsort/' + input, { method: 'POST', /* or 'PUT'*/ })
+   fetch('/api/shorturl/' + input, { method: 'POST', /* or 'PUT'*/ })
     setInput("")
 }
 return (
