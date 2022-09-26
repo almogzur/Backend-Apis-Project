@@ -11,6 +11,13 @@ const index = require("./Routes/index")
 const path = require("path");
 const db = require('./dbConnection').main
 
+const cors = require("cors");
+const corsOptions = {
+  origin: "https://www.freecodecamp.org",
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
+
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(

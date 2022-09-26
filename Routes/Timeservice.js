@@ -1,16 +1,12 @@
 const express = require("express");
 const app = express(); 
-const cors = require("cors")
 const ER = "Invalid Date"
 const path = require("path");
 
-const corsOptions = {
-  origin:"https://www.freecodecamp.org",
-  optionsSuccessStatus: 200
-}
+
 exports.TimeService = function TimeService(app){
 
-  app.get("/TimeService/api/:data?",cors(corsOptions),(req, res, next) => {  
+  app.get("/TimeService/api/:data?",(req, res, next) => {  
       function addZero(i) {if (i < 10){i = "0" + i} return i; }
       const SRparms = req.params.data ;  // SR parms 
       const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]

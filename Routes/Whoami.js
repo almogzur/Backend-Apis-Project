@@ -1,16 +1,9 @@
 
 const express = require("express");
-const cors = require("cors")
-
-
-const corsOptions = {
-    origin:"https://www.freecodecamp.org",
-    optionsSuccessStatus: 200
-  }
 
 module.exports =  function Whoami (app){ 
 
-app.get("/api/whoami",cors(corsOptions),(req,res)=>{
+app.get("/api/whoami",(req,res)=>{
   
  const ipH1 = req.headers['x-real-ip']
  const ipH2 = req.connection.remoteAddress;

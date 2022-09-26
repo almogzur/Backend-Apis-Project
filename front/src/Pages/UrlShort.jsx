@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
- const Urlshot = ()=>{
+  const Urlshot = ()=>{
 
 const [input, setInput]= useState("")
 
@@ -12,8 +12,7 @@ const click =  (e)=>{
     console.log(input)
    fetch('/api/urlsort/' + input, { method: 'POST', /* or 'PUT'*/ })
     setInput("")
-
-    }
+}
 return (
     <div id="outerbox">
     <div className="Url" >
