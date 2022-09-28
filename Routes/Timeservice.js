@@ -1,10 +1,7 @@
-const express = require("express");
-const app = express(); 
-const ER = "Invalid Date"
-const path = require("path");
-
 
 exports.TimeService = function TimeService(app){
+
+  const ER = "Invalid Date"
 
   app.get("/TimeService/api/:data?",(req, res, next) => {  
       function addZero(i) {if (i < 10){i = "0" + i} return i; }

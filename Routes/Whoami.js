@@ -1,6 +1,4 @@
 
-const express = require("express");
-
 module.exports =  function Whoami (app){ 
 
 app.get("/api/whoami",(req,res)=>{
