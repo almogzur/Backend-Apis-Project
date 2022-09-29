@@ -10,7 +10,11 @@ const change = (e)=>{
 }
 const click =  (e)=>{
     console.log(input)
-   fetch('/api/shorturl/' + input, { method: 'POST', /* or 'PUT'*/ })
+   fetch('/api/shorturl/' , {
+     method: 'POST', /* or 'PUT'*/
+     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+     body:`url=${input}`
+     })
     setInput("")
 }
 return (
