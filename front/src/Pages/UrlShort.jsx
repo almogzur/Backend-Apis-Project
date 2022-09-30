@@ -13,9 +13,11 @@ const click =  (e)=>{
    fetch('/api/shorturl/' , {
      method: 'POST', /* or 'PUT'*/
      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-     body:`url=${input}`
+     body:`url=${input}`,
+     redirect: 'manual'
      })
     setInput("")
+
 }
 return (
    
@@ -27,6 +29,7 @@ return (
      <h3 >URL Shortener</h3>
        <p>"Example: POST [project_url]/api/shorturl - https://www.google.com"</p>
         <div id="inbox">
+          <form>
         <input
             placeholder="https://www.exmple.com"
             id="input"
@@ -35,9 +38,11 @@ return (
             value={input} // the text value aka text 
             >
          </input>
+         </form>
          <br/>
          <br/>
          <button
+         type="submit"
         id="bot"
         className="btn btn-primary"
          onClick={click}
