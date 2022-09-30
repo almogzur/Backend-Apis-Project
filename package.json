@@ -1,6 +1,6 @@
 {
-  "name": "proj-slim",
-  "version": "1.0.0",
+  "name": "main-server",
+  "version": "1.0.1",
   "description": "",
   "main": "server.js",
   "scripts": {
