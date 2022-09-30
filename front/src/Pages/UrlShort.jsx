@@ -18,9 +18,10 @@ const click =  (e)=>{
     setInput("")
 }
 return (
-    <div id="outerbox">
+   
     <div className="Url" >
         <h1>URL Shortener Microservice</h1>
+        <div id="outerbox">
         <div id="urlmainbox">
             <h3>URL</h3>
             <input
@@ -37,8 +38,8 @@ return (
          
         <h3>Short URL Creation</h3>
     </div>
-    </div>
-)
+    </div>)
+    
 
 }
 
