@@ -19,28 +19,38 @@ const click =  (e)=>{
 }
 return (
    
-    <div className="Url" >
-        <h1>URL Shortener Microservice</h1>
-        <div id="outerbox">
-        <div id="urlmainbox">
-            <h3>URL</h3>
-            <input
-            placeholder=" www.exmple.com"
+<div className="Url" >
+
+<h1 className="text-center">URL Shortener Microservice</h1>
+
+     <div id="outbox">
+     <h3 >URL Shortener</h3>
+       <p>"Example: POST [project_url]/api/shorturl - https://www.google.com"</p>
+        <div id="inbox">
+        <input
+            placeholder="https://www.exmple.com"
+            id="input"
             className="text-center"
             onChange={change}
             value={input} // the text value aka text 
             >
-            </input>
-            <br/>
-            <br/>
-        <button onClick={click}>POST Url</button>
-        </div>
-         
-        <h3>Short URL Creation</h3>
+         </input>
+         <br/>
+         <br/>
+         <button
+        id="bot"
+        className="btn btn-primary"
+         onClick={click}
+         >POST Url
+         </button>
+       
+         </div>
+         <h3>Example Usage:</h3>
+         <p>[this_project_url]/api/shorturl/_id</p>
     </div>
-    </div>)
-    
-
+     Mady By Almog Zur for FreeCodeCamp :)
+</div>
+)
 }
 
 

@@ -1,32 +1,55 @@
-body{
-    background-image: linear-gradient(to right, rgb(212, 135, 205) , rgb(220, 135, 92));
-}
+
 #time{
+    height: 100vh;
     margin-top:5vh;
     text-align: center;
     padding-bottom: 10vh;
 }
-
 .howami{
+    height: 100vh;
     text-align: center;
     margin-top: 5vh;
     
 }
-
 .Url{ 
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
     padding-top: 5vh;
     
 }
+#outbox{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid;
+    border-color: aquamarine;
+    width: 600px;
+    height: 300px;
+    border-width: 2px;
+}
 
-#urlmainbox{
-    
+#inbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+  
     width:250px;
     border: solid;
     border-style: groove;
-
+}
+#bot{
+    margin-top: -20px;
+    margin-bottom: 15px;
+}
+#input{
+    margin-top: 10px;
+    font-size: small;
 }
 #nav{
     background-color: #fff;
+   margin-left: 40vw;
 
 }
