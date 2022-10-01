@@ -1,19 +1,19 @@
 import React from "react";
 import { useState } from "react";
 
-
-const getData = async ()=>{
- const res = await fetch('/api/shorturl/' , {
-    method: 'POST', /* or 'PUT'*/
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body:`url=${input}`,
-    })
-  const data = await res.json()
-  return data
-
-}
-
   const Urlshot = ()=>{
+
+
+ const getData = async ()=>{
+      const res = await fetch('/api/shorturl/' , {
+         method: 'POST', /* or 'PUT'*/
+         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+         body:`url=${input}`,
+         })
+       const data = await res.json()
+       return data
+     
+     }
 
 const [input, setInput]= useState("")
 
