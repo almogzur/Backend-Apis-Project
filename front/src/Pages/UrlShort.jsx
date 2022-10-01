@@ -1,7 +1,9 @@
 import React from "react";
 import { useState , useEffect  } from "react";
+  //window.location.href='/api/shorturl/' 
 
  const Urlshot = ()=>{
+
     const getData = async ()=>{
       const res = await fetch('/api/shorturl/' , {
          method: 'POST', /* or 'PUT'*/
@@ -10,7 +12,6 @@ import { useState , useEffect  } from "react";
          })
        const data = await res.json()
        return data
-     
      }
 
 const [input, setInput]= useState("")
@@ -19,6 +20,12 @@ const [apiData, setapiData]=useState("")
 useEffect(()=>{
    if(apiData){
     console.log("useEf inc",apiData)
+    let html = document.getElementsByClassName('Url')
+    console.log(html,"useEf")
+      //console.log("sddsada")
+      //the app redirect to 'api/irl../ 
+      // add the redirect 
+      // fix app.get at 'api/url
    }
 
 })
@@ -29,10 +36,11 @@ const change = (e)=>{
 }
 const click =  (e) => {
   console.log(input,"click inv")
-     //window.location.href='/api/shorturl/' 
   setInput("")
   getData().then((data)=>{
+    console.log(data)
     setapiData(data)
+    console.log(apiData)
   })
 
 }
