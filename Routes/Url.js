@@ -24,9 +24,7 @@ exports.UrlShort = function UrlShort(app,db) {
                 }
                 else if(url){
                        console.log(url, "FIND")
-                             res.jsonp({
-                               original_url : url.url, 
-                               short_url : url._id})
+                       res.send({  original_url : url.url,  short_url : url._id})
           }else{
                 db_URLS.insertOne(
                                  { "url":result.toString()},
@@ -36,7 +34,7 @@ exports.UrlShort = function UrlShort(app,db) {
                                     }else{
                                          console.log(doc,"from insert one")
                                          next(null,doc)
-                                         res.jsonp({
+                                         res.send({
                                         original_url :result.toString(),
                                          short_url :doc.insertedId
                                         })
