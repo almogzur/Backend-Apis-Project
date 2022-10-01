@@ -16,18 +16,21 @@ exports.UrlShort = function UrlShort(app,db) {
         let result = url.match(reg)
 
         if(result!==null){
-              console.log("VALID URL" , result.toString())
-              db_URLS.findOne({url:result.toString()},
+          const Furl = result.toString()
+              console.log("VALID URL" ,Furl )
+              db_URLS.findOne({url:Furl},
                (err,url)=>{
                 if(err){
                   console.log(err)
                 }
-                else if(url){
+                  else if(url){
                        console.log(url, "FIND")
-                       res.send({  original_url : url.url,  short_url : url._id})
-          }else{
+                       res.send({
+                         original_url : url.url, 
+                         short_url : url._id})
+                          }else{
                 db_URLS.insertOne(
-                                 { "url":result.toString()},
+                                 { "url":Furl},
                     (err,doc)=>{
                                    if(err){
                                            console.log(err)
@@ -35,7 +38,7 @@ exports.UrlShort = function UrlShort(app,db) {
                                          console.log(doc,"from insert one")
                                          next(null,doc)
                                          res.send({
-                                        original_url :result.toString(),
+                                         original_url :Furl,
                                          short_url :doc.insertedId
                                         })
             }
@@ -48,9 +51,9 @@ exports.UrlShort = function UrlShort(app,db) {
            
         })
         .get((req,res,next)=>{
-         const Rurl = req.body
-         console.log("Get at 'api/shorturl/",Rurl)
-         db_URLS.findOne({_id:Rurl},function(err,url){
+         const _id = req.params.url
+         console.log("Get at 'api/shorturl/",_id)
+         db_URLS.findOne({_id:_id},function(err,url){
           if(!err){
             console.log(url)
           }

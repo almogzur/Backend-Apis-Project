@@ -1,10 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState , useEffect  } from "react";
 
-  const Urlshot = ()=>{
-
-
- const getData = async ()=>{
+ const Urlshot = ()=>{
+    const getData = async ()=>{
       const res = await fetch('/api/shorturl/' , {
          method: 'POST', /* or 'PUT'*/
          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -17,23 +15,24 @@ import { useState } from "react";
 
 const [input, setInput]= useState("")
 
+useEffect((e)=>{
+  console.log("useEffect inv",e)
+
+})
+
 const change = (e)=>{
         setInput(e.target.value)
+        console.log("change fun inv")
 }
-const click =  (e)=>{
-    console.log(input)
-    getData().then((data)=>{
-      console.log(data)
-    })
+const click =  (e) => {
+  console.log(input,"click inv")
      //window.location.href='/api/shorturl/' 
-    setInput("")
-   
+  setInput("")
 
 }
 return (
    
 <div className="Url" >
-
 <h1 className="text-center">URL Shortener Microservice</h1>
 
      <div id="outbox">
