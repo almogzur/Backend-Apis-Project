@@ -14,9 +14,12 @@ import { useState , useEffect  } from "react";
      }
 
 const [input, setInput]= useState("")
+const [apiData, setapiData]=useState("")
 
-useEffect((e)=>{
-  console.log("useEffect inv",e)
+useEffect(()=>{
+   if(apiData){
+    console.log("useEf inc",apiData)
+   }
 
 })
 
@@ -28,6 +31,9 @@ const click =  (e) => {
   console.log(input,"click inv")
      //window.location.href='/api/shorturl/' 
   setInput("")
+  getData().then((data)=>{
+    setapiData(data)
+  })
 
 }
 return (
