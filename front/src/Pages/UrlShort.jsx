@@ -1,25 +1,20 @@
 import React from "react";
 import { useState , useEffect  } from "react";
-
+//window.location.href='/api/shorturl/'+data["short_url"]
 
  const Urlshot = ()=>{
 
-    const getData = async ()=>{
+ const postData = async ()=>{
       const res = await fetch('/api/shorturl/' , {
          method: 'POST', /* or 'PUT'*/
          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
          body:`url=${input}`,
          })
        const data = await res.json()
-       return data
-     }
+           return data}
 
 const [input, setInput]= useState("")
 const [json, setJson]=useState("")
-
-useEffect(()=>{
-
-})
 
 const change = (e)=>{
         setInput(e.target.value)
@@ -27,14 +22,8 @@ const change = (e)=>{
 }
 const click =  (e) => {
   console.log(input,"click inv")
-  getData().then((data)=>{
-    console.log(data)
-    if(data["short_url"]){
-      window.location.href='/api/shorturl/'+data["short_url"]
-    }else{
-      alert(JSON.stringify(data))
-    }
-   
+  postData().then((data)=>{
+    console.log(data)   
   })
   setInput("")
 }
@@ -42,10 +31,9 @@ return (
    
 <div className="Url" >
 <h1 className="text-center">URL Shortener Microservice</h1>
-
      <div id="outbox">
      <h3 >URL Shortener</h3>
-       <p>"Example: POST [project_url]/api/shorturl - https://www.google.com"</p>
+     <p>"Example: POST [project_url]/api/shorturl - https://www.google.com"</p>
         <div id="inbox">
           <form>
         <input
@@ -70,11 +58,12 @@ return (
          </div>
          <h3>Example Usage:</h3>
          <p>[this_project_url]/api/shorturl/_id</p>
-    </div>
+         </div>
      Mady By Almog Zur for FreeCodeCamp :)
 </div>
 )
 }
+
 
 
 export default Urlshot
