@@ -1,7 +1,7 @@
-
+const ObjectId = require('mongodb').ObjectID;
 exports.UrlShort = function UrlShort(app,db) {
    db(async (callback) => { ///api/urlsort/:url?
-    
+  
   const db_URLS = await callback.db("Urlshort").collection("urls")
 
    app.route("/api/shorturl/:url?")
@@ -14,14 +14,15 @@ exports.UrlShort = function UrlShort(app,db) {
 
         if(result!==null){
           const Furl = result.toString()
-              console.log("VALID URL" ,Furl )
+              console.log("VALID URL" ,Furl)
+              console.log("Serching DB")
               db_URLS.findOne({url:Furl},
                (err,url)=>{
                 if(err){
                   console.log(err)
                 }
                   else if(url){
-                       console.log(url, "FIND")
+                       console.log(url, "POST FIND")
                        res.send({
                          original_url : url.url, 
                          short_url : url._id})
@@ -32,7 +33,8 @@ exports.UrlShort = function UrlShort(app,db) {
                                    if(err){
                                            console.log(err)
                                     }else{
-                                         console.log(doc,"from insert one")
+                                         console.log(doc,"POST SAVE")
+                                         console.log("Saving Url")
                                          next(null,doc)
                                          res.send({
                                          original_url :Furl,
@@ -42,21 +44,21 @@ exports.UrlShort = function UrlShort(app,db) {
           })}
          })} 
           else{
-              console.log("err bad URL ")
+              console.log(" Invalid URL ")
               res.json({"error":"invalid url"})
           }
            
         })
 
    .get((req,res,next)=>{
-         const _id = req.params.url
-         console.log("Get at 'api/shorturl/",_id)
-         db_URLS.findOne({_id:ObjectId(_id)},function(err,id){
+         const id = req.params.url
+         console.log("Get at 'api/shorturl/",id)
+         db_URLS.findOne({_id:ObjectId(id)},function(err,data){
           if(err){
             console.log(err)
-          }else if(id){
+          }else if(data){
             console.log(id,"GET find ")
-            res.json({"a":"s"})
+            res.json({original_url:data.url,short_url:id})
           }else{
             console.log("GET Else")
           }
