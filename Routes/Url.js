@@ -50,7 +50,7 @@ exports.UrlShort = function UrlShort(app,db) {
            
         })
 
-   .get((req,res,next)=>{
+   /*.get((req,res,next)=>{ // need to be free for redirect call 
          const id = req.params.url
          console.log("Get at 'api/shorturl/",id)
          db_URLS.findOne({_id:ObjectId(id)},function(err,data){
@@ -63,7 +63,7 @@ exports.UrlShort = function UrlShort(app,db) {
             console.log("GET Else")
           }
          })
-        })
+           }) */ 
   })
          
 }
