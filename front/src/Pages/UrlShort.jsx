@@ -1,6 +1,6 @@
 import React from "react";
 import { useState , useEffect  } from "react";
-  //window.location.href='/api/shorturl/' 
+
 
  const Urlshot = ()=>{
 
@@ -15,18 +15,9 @@ import { useState , useEffect  } from "react";
      }
 
 const [input, setInput]= useState("")
-const [apiData, setapiData]=useState("")
+const [json, setJson]=useState("")
 
 useEffect(()=>{
-   if(apiData){
-    console.log("useEf inc",apiData)
-    let html = document.getElementsByClassName('Url')
-    console.log(html,"useEf")
-      //console.log("sddsada")
-      //the app redirect to 'api/irl../ 
-      // add the redirect 
-      // fix app.get at 'api/url
-   }
 
 })
 
@@ -36,13 +27,16 @@ const change = (e)=>{
 }
 const click =  (e) => {
   console.log(input,"click inv")
-  setInput("")
   getData().then((data)=>{
     console.log(data)
-    setapiData(data)
-    console.log(apiData)
+    if(data["short_url"]){
+      window.location.href='/api/shorturl/'+data["short_url"]
+    }else{
+      alert(JSON.stringify(data))
+    }
+   
   })
-
+  setInput("")
 }
 return (
    

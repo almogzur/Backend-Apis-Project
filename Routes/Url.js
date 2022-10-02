@@ -1,16 +1,13 @@
 
 exports.UrlShort = function UrlShort(app,db) {
-
    db(async (callback) => { ///api/urlsort/:url?
     
-     const db_URLS = await callback.db("Urlshort").collection("urls")
+  const db_URLS = await callback.db("Urlshort").collection("urls")
 
+   app.route("/api/shorturl/:url?")
 
-        app.route("/api/shorturl/:url?")
-
-       .post((req,res,next)=>{ // HTTP POST REQ Hendler to update data 
+   .post((req,res,next)=>{ // HTTP POST REQ Hendler to update data 
         console.log(`POST /api/shorturl/`);  
-        console.log(req.body.url)
         const url = req.body.url
         let reg = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g //<=  taken forn https://regexr.com/39nr7
         let result = url.match(reg)
@@ -50,21 +47,20 @@ exports.UrlShort = function UrlShort(app,db) {
           }
            
         })
-        .get((req,res,next)=>{
+
+   .get((req,res,next)=>{
          const _id = req.params.url
          console.log("Get at 'api/shorturl/",_id)
-         db_URLS.findOne({_id:_id},function(err,url){
-          if(!err){
-            console.log(url)
+         db_URLS.findOne({_id:ObjectId(_id)},function(err,id){
+          if(err){
+            console.log(err)
+          }else if(id){
+            console.log(id,"GET find ")
+            res.json({"a":"s"})
+          }else{
+            console.log("GET Else")
           }
          })
-
-          if(!Rurl){
-            //db_URLS.findOne({})
-            res.json({"blbl":"blbla"})
-         }else{
-          res.json({"ble":"ble"})
-         }
         })
   })
          
