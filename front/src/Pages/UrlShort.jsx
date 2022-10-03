@@ -27,7 +27,6 @@ const click =  (e) => {
   console.log(input,"click inv")
   postData().then((data)=>{
     console.log(data)   
-   // alert(JSON.stringify(data))
     window.location.href='/api/shorturl/'
   })
   setInput("")
