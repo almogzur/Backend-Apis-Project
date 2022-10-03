@@ -2,19 +2,19 @@ import React from "react";
 import { useState , useEffect  } from "react";
 
 
-//window.location.href='/api/shorturl/'+data["short_url"]
 
  const Urlshot = ()=>{
   
-
  const postData = async ()=>{
+  
       const res = await fetch('/api/shorturl/' , {
       method: 'POST', /* or 'PUT'*/
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body:`url=${input}`,
     })
        const data = await res.json()
-           return data}
+           return data
+          }
 
 const [input, setInput]= useState("")
 
@@ -27,6 +27,8 @@ const click =  (e) => {
   console.log(input,"click inv")
   postData().then((data)=>{
     console.log(data)   
+   // alert(JSON.stringify(data))
+    window.location.href='/api/shorturl/'
   })
   setInput("")
 }
