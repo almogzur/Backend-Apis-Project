@@ -7,7 +7,6 @@ import { useState , useEffect  } from "react";
  const Urlshot = ()=>{
   
 
-
  const postData = async ()=>{
       const res = await fetch('/api/shorturl/' , {
       method: 'POST', /* or 'PUT'*/
