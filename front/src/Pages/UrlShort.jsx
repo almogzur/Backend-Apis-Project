@@ -7,14 +7,14 @@ import { useState , useEffect  } from "react";
   
  const postData = async ()=>{
   
-      const res = await fetch('/api/shorturl/' , {
-      method: 'POST', /* or 'PUT'*/
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body:`url=${input}`,
-    })
-       const data = await res.json()
-           return data
-          }
+     const res = await fetch('/api/shorturl/' ,{
+        method: 'POST', /* or 'PUT'*/
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body:`url=${input}`,
+                       })
+     const data = await res.json()
+             return data
+  }
 
 const [input, setInput]= useState("")
 
@@ -27,7 +27,7 @@ const click =  (e) => {
   console.log(input,"click inv")
   postData().then((data)=>{
     console.log(data)   
-    window.location.href='/api/shorturl/'
+   // window.location.href='/api/shorturl/'
   })
   setInput("")
 }
@@ -56,6 +56,7 @@ return (
         id="bot"
         className="btn btn-primary"
          onClick={click}
+         formTarget="_self"
          >POST Url
          </button>
        
