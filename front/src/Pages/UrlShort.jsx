@@ -1,36 +1,32 @@
 import React from "react";
 import { useState , useEffect  } from "react";
 
-
-
- const Urlshot = ()=>{
+const Urlshot = ()=>{
   
- const postData = async ()=>{
+   const postData = async ()=>{
   
-     const res = await fetch('/api/shorturl/' ,{
+    const res = await fetch('/api/shorturl/' ,{
         method: 'POST', /* or 'PUT'*/
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body:`url=${input}`,
                        })
-     const data = await res.json()
+    const data = await res.json()
              return data
   }
+   const [input, setInput]= useState("")
 
-const [input, setInput]= useState("")
-
-
-const change = (e)=>{
+   const change = (e)=>{
         setInput(e.target.value)
         console.log("change fun inv")
-}
-const click =  (e) => {
+    }
+   const click = (e) => {
   console.log(input,"click inv")
   postData().then((data)=>{
     console.log(data)   
    // window.location.href='/api/shorturl/'
   })
   setInput("")
-}
+   }  
 return (
    
 <div className="Url" >
@@ -67,8 +63,8 @@ return (
      Mady By Almog Zur for FreeCodeCamp :)
 </div>
 )
-}
 
+}
 
 
 export default Urlshot
