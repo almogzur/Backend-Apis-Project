@@ -12,6 +12,7 @@ db(async (callback) => { ///api/urlsort/:url?
         console.log(`POST /api/shorturl/`);  
         const url = req.body.url
         let reg = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g //<=  taken forn https://regexr.com/39nr7
+        
         let result = url.match(reg)
         if(result!==null){
           const Furl = result.toString()
@@ -24,6 +25,7 @@ db(async (callback) => { ///api/urlsort/:url?
                 }
                 else if(url){
                        console.log(url, "POST FIND")
+                       res.redirect()
                        res.send({
                          original_url : url.url, 
                          short_url : url._id})
@@ -61,7 +63,7 @@ db(async (callback) => { ///api/urlsort/:url?
             console.log(err)
             }else if(data){
             console.log(id,"GET find ")
-           res.redirect(data.url)
+           res.redirect(`http://${data.url}`)
             }else{
             console.log("GET Eroor")
             }
