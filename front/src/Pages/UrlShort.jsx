@@ -23,7 +23,11 @@ const Urlshot = ()=>{
   console.log(input,"click inv")
   postData().then((data)=>{
     console.log(data)   
-   // window.location.href='/api/shorturl/'
+    if(data._id){
+      window.location.href='/api/shorturl/'
+    }else{
+      window.location.href='/api/shorturl/'
+    }
   })
   setInput("")
    }  

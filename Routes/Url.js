@@ -56,6 +56,9 @@ db(async (callback) => { ///api/urlsort/:url?
    .get((req,res,next)=>{ // need to be free for redirect call 
          const id = req.params.url
 
+         3
+
+
 
 
 
