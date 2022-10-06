@@ -12,7 +12,7 @@ db(async (callback) => { ///api/urlsort/:url?
         console.log(`POST /api/shorturl/`);  
         const url = req.body.url
         let reg = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g //<=  taken forn https://regexr.com/39nr7
-        
+        let reg2 = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
         let result = url.match(reg)
         if(result!==null){
           const Furl = result.toString()
@@ -25,24 +25,24 @@ db(async (callback) => { ///api/urlsort/:url?
                 }
                 else if(url){
                        console.log(url, "POST FIND")
-                       res.redirect()
                        res.send({
                          original_url : url.url, 
-                         short_url : url._id})
+                         short_url : url._id
+                        })
                 }else{
                   db_URLS.insertOne(
-                        { "url":Furl},
-                    (err,doc)=>{
+                        {"url":Furl},
+                   function(err,doc){
                            if(err){
-                                           console.log(err)
+                               console.log(err)
                             }else{
                                console.log(doc,"POST SAVE")
                               console.log("Saving Url")
-                              next(null,doc)
-                             
+                              next(null,doc)             
                              res.send({
                                original_url :Furl,
                               short_url :doc.insertedId
+                             
                      })
             }
           })}
@@ -56,6 +56,11 @@ db(async (callback) => { ///api/urlsort/:url?
 
    .get((req,res,next)=>{ // need to be free for redirect call 
          const id = req.params.url
+
+
+
+
+
          console.log("Get at 'api/shorturl/")
          if(id){
          db_URLS.findOne({_id:ObjectId(id)},function(err,data){
