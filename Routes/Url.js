@@ -11,8 +11,7 @@ db(async (callback) => { ///api/urlsort/:url?
    .post((req,res,next)=>{ // HTTP POST REQ Hendler to update data 
         console.log(`POST /api/shorturl/`);  
         const url = req.body.url
-        let reg = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g //<=  taken forn https://regexr.com/39nr7
-        let reg2 = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
+        let reg = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/ // <- from https://uibakery.io/regex-library/url
         let result = url.match(reg)
         if(result!==null){
           const Furl = result.toString()
@@ -68,7 +67,7 @@ db(async (callback) => { ///api/urlsort/:url?
             console.log(err)
             }else if(data){
             console.log(id,"GET find ")
-           res.redirect(`http://${data.url}`)
+           res.redirect(`${data.url}`)
             }else{
             console.log("GET Eroor")
             }
