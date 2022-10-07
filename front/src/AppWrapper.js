@@ -6,6 +6,7 @@ import Whoami from './Pages/Whoami'
 import Layout from "./Layout";
 import UrlShort from './Pages/UrlShort'
 import './index.css'
+import { WorkOut } from './Pages/workout';
 
 export default function AppWrapper (){
     return (
@@ -16,6 +17,7 @@ export default function AppWrapper (){
           <Route path="TimeService" element={<Timeservice />} />
           <Route path="whoami" element={<Whoami />} />
           <Route path="Urlshort" element={<UrlShort/>}/>
+          <Route path='WorkOut' element={<WorkOut/>}/>
        </Route>
      </Routes>
      </BrowserRouter>

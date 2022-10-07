@@ -8,6 +8,7 @@ const Whoami= require ("./Routes/Whoami")
 const TimeService= require ("./Routes/Timeservice").TimeService
 const UrlShort = require('./Routes/Url').UrlShort
 const index = require("./Routes/index")
+const WorkOut = require('./Routes/WorkOut').WorkOut
 const path = require("path");
 const db = require('./dbConnection').main
 const ObjectId = require('mongodb').ObjectID;
@@ -37,6 +38,7 @@ index(app)
 Whoami(app)
 TimeService(app)
 UrlShort(app,db)
+WorkOut(app,db)
 
 ////End Route invoke
 

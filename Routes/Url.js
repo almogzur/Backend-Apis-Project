@@ -55,15 +55,8 @@ db(async (callback) => { ///api/urlsort/:url?
 
    .get((req,res,next)=>{ // need to be free for redirect call 
          const id = req.params.url
-
-         3
-
-
-
-
-
-
-         console.log("Get at 'api/shorturl/")
+         
+       console.log("Get at 'api/shorturl/")
          if(id){
          db_URLS.findOne({_id:ObjectId(id)},function(err,data){
              if(err){
