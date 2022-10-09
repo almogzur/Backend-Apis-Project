@@ -7,7 +7,6 @@ export default  function WorkOut () { // nexted component {WorkOutForm}
 
 const [user, setUser]= useState("")
 
-
 const change = (e)=>{
     setUser(e.target.value)
   
@@ -47,7 +46,7 @@ return (
         </form>
         </div>
 
-        <WorkOutForm/>
+        <WorkOutForm user={user}/>
     </div>
 )
 }
@@ -55,11 +54,13 @@ return (
 
 
 ///////// Form Component /////
-function WorkOutForm (){
+function WorkOutForm (props){
+
 const [id , setId]=useState("")
 const [description, setDescription]= useState("")
 const [duration , setDuration]=useState("")
 const [date, setDate]= useState("")
+const user = props.user
 
 const change = (e)=>{
 setId(e.target.value)
@@ -68,25 +69,21 @@ setDuration(e.target.value)
 setDate(e.target.value)
 }
 
-const click = ()=>{
+const click = (e)=>{
     fetch('/api/workour/',{
         method:"POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body:`id=${id}
                `
-
-
-        
     })
+    console.log(user)
     setDate("")
     setDescription("")
     setDate("")
     setDuration("")
 
-
-
 }
-    return(
+return(
         <div id="filds">
 
             <form>
