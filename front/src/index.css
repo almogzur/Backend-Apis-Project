@@ -50,6 +50,39 @@
 }
 #nav{
     background-color: #fff;
-   margin-left: 40vw;
+   margin-left: 20vw;
 
+}
+#work{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+}
+#filds{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:rgba(46, 134, 234, 0.244);
+    height: 270px;
+    width: 400px;
+    margin-top: 20px;
+}
+input{
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+}
+#work-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:400px;
+    background-color:rgba(46, 134, 234, 0.244);
+   
+  
+}
+#user-btn{
+    margin-left: 60px;
 }
