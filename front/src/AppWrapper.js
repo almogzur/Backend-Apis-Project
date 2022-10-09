@@ -6,7 +6,7 @@ import Whoami from './Pages/Whoami'
 import Layout from "./Layout";
 import UrlShort from './Pages/UrlShort'
 import './index.css'
-import { WorkOut } from './Pages/workout';
+import WorkOut from './Pages/workout'
 
 export default function AppWrapper (){
     return (
