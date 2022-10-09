@@ -1,6 +1,6 @@
 const ObjectId = require('mongodb').ObjectID;
 
-exports.WorkOur= function(app,db){
+exports.WorkOut= function WorkOut(app,db){
 
     db(async(callback)=>{
 
@@ -8,8 +8,7 @@ exports.WorkOur= function(app,db){
   const db_log = await callback.db("WorkOut").collection("logs")
   const db_exercises= await callback.db("WorkOut").collection("exercises")
 
-
-  app.route('/api/users/:_id/')
+  app.route('/api/workout/:_id/')
   .post((req,res,next)=>{
     
 
@@ -18,6 +17,8 @@ exports.WorkOur= function(app,db){
   .get((req,res,next)=>{
 
   })
+
+  app.route('/api/workout/user')
 
     })
 }

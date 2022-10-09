@@ -1,9 +1,22 @@
-
+import React from "react"
 const { useState } = require("react")
 
 
 //////// Main Componenet ////////
+
 export default  function WorkOut () { // nexted component {WorkOutForm}
+
+    const postData = async ()=>{
+    const res  = fetch('/api/workout',{
+            method:"POST",
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body:`user=${user}`
+        })
+    const data = await res.json()
+
+    return data
+
+    }
 
 const [user, setUser]= useState("")
 
@@ -12,10 +25,8 @@ const change = (e)=>{
   
 }
 const click = ()=>{
-    fetch('/api/workout',{
-        method:"POST",
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:`user=${user}`
+    postData().then((data)=>{
+        console.log(data)
     })
     setUser("")
 }
@@ -39,7 +50,6 @@ return (
         <button
         className="btn btn-info"
         id="user-btn"
-        type="submit"
         onClick={click}
         >click me
         </button>
@@ -54,7 +64,7 @@ return (
 
 
 ///////// Form Component /////
-function WorkOutForm (props){
+const WorkOutForm = (props)=> {
 
 const [id , setId]=useState("")
 const [description, setDescription]= useState("")
