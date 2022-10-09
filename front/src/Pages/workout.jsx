@@ -1,35 +1,24 @@
 
 const { useState } = require("react")
 
-export default  function WorkOut () {
+
+//////// Main Componenet ////////
+export default  function WorkOut () { // nexted component {WorkOutForm}
 
 const [user, setUser]= useState("")
-const [id, setId]= useState("")
-const [email , setEmail]=useState("")
-const [time, setTime]= useState("")
+
 
 const change = (e)=>{
     setUser(e.target.value)
-    setEmail(e.target.value)
-    setId(e.target.value)
-    setTime(e.target.value)
-
+  
 }
-
 const click = ()=>{
     fetch('/api/workout',{
         method:"POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:`user=${user}
-              id=${id}
-              email=${email}
-              time=${time}`
+        body:`user=${user}`
     })
     setUser("")
-    setId("")
-    setEmail("")
-    setId("")
-    setTime("")
 }
 return (
     <div id="work">
@@ -37,18 +26,23 @@ return (
 
         <div id="work-form">
           <form action="submit">
+
             <input 
             id="user"
             placeholder="User"
-            type="text"s
+            type="text"
+            value={user}
             onChange={change}
              />
+
              <br/>
+
         <button
         className="btn btn-info"
         id="user-btn"
         type="submit"
-        onClick={click}>click me
+        onClick={click}
+        >click me
         </button>
         </form>
         </div>
@@ -57,23 +51,86 @@ return (
     </div>
 )
 }
+///////////////
 
+
+///////// Form Component /////
 function WorkOutForm (){
+const [id , setId]=useState("")
+const [description, setDescription]= useState("")
+const [duration , setDuration]=useState("")
+const [date, setDate]= useState("")
+
+const change = (e)=>{
+setId(e.target.value)
+setDescription(e.target.value)
+setDuration(e.target.value)
+setDate(e.target.value)
+}
+
+const click = ()=>{
+    fetch('/api/workour/',{
+        method:"POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body:`id=${id}
+               `
+
+
+        
+    })
+    setDate("")
+    setDescription("")
+    setDate("")
+    setDuration("")
+
+
+
+}
     return(
         <div id="filds">
+
             <form>
                 <input
-                placeholder="id"></input><br/>
+                placeholder="ID"
+                value={id}
+                onChange={change}
+                >
+                
+                </input>
+                <br/>
+
                 <input
-                placeholder="email"></input><br/>
+                placeholder="Description"
+                value={description}
+                onChange={change}
+                >
+                </input>
+                <br/>
+
                 <input
-                placeholder="distance"></input><br/>
+                placeholder="Duration"
+                value={duration}
+                onChange={change}
+                
+                >
+                </input>
+                <br/>
+                
                 <input
-                placeholder="time"></input><br/>
+                placeholder="Date"
+                value={date}
+                onChange={change}
+                >
+                </input>
+                <br/>
             </form>
+
             <button
+            onClick={click}
             className="btn btn-info"
             >SEND</button>
         </div>
     )
 }
+////////////////////
+
