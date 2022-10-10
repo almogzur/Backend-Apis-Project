@@ -8,17 +8,31 @@ exports.WorkOut= function WorkOut(app,db){
   const db_log = await callback.db("WorkOut").collection("logs")
   const db_exercises= await callback.db("WorkOut").collection("exercises")
 
-  app.route('/api/workout/:_id/')
+  app.route('/workout/api/:users')
   .post((req,res,next)=>{
-    
-
+    console.log("POST /api/workout")
+    console.log(req.body)
+    //console.log("body ,",req.body)
+    //console.log( "quary",req.quary)
+    res.json({"req":req.body})
   })
-
   .get((req,res,next)=>{
-
+    console.log("GET , Api/WorkOut")
+    const parms = req.parms
+    const quary = req.quary
+   // console.log(parms,"<=req params")
+    console.log( req.body)
+    //res.json({"req":parms})
   })
 
-  app.route('/api/workout/user')
+  app.route('workout/api/user/:_id/data/')
+  .post((req,res,next)=>{
+    console.log("POST","workout/api/user/:_id/data/")
 
+  })
+  .get((req,res,next)=>{
+    console.log("GET","workout/api/user/:_id/data/")
+  })
     })
-}
+  }
+

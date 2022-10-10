@@ -1,28 +1,31 @@
 import React from "react"
 const { useState } = require("react")
-
-
 //////// Main Componenet ////////
-
 export default  function WorkOut () { // nexted component {WorkOutForm}
 
-    const postData = async ()=>{
+ //////// state ///////////
+const [user, setUser]= useState("")
+/////// end state ////////
+
+////// async functions /////
+const postData = async ()=>{
     const res  = fetch('/api/workout',{
-            method:"POST",
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body:`user=${user}`
+       method:'POST',
+       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+       body:`user=${user}`,
         })
     const data = await res.json()
-
-    return data
-
+           return data
     }
 
-const [user, setUser]= useState("")
+ const getData = async()=>{
 
+  }
+/////////// end async functions ////
+
+  // functions ///////////
 const change = (e)=>{
     setUser(e.target.value)
-  
 }
 const click = ()=>{
     postData().then((data)=>{
@@ -30,13 +33,12 @@ const click = ()=>{
     })
     setUser("")
 }
+////// end functions /////
 return (
     <div id="work">
         <h1>Exercise Tracker</h1>
 
         <div id="work-form">
-          <form action="submit">
-
             <input 
             id="user"
             placeholder="User"
@@ -44,23 +46,21 @@ return (
             value={user}
             onChange={change}
              />
-
              <br/>
-
         <button
         className="btn btn-info"
         id="user-btn"
         onClick={click}
         >click me
         </button>
-        </form>
+        
         </div>
 
         <WorkOutForm user={user}/>
     </div>
 )
 }
-///////////////
+/////////////// end main Componenet /////
 
 
 ///////// Form Component /////
@@ -77,6 +77,7 @@ setId(e.target.value)
 setDescription(e.target.value)
 setDuration(e.target.value)
 setDate(e.target.value)
+
 }
 
 const click = (e)=>{
