@@ -9,7 +9,7 @@ const [user, setUser]= useState("")
 
 ////// async functions /////
 const postData = async ()=>{
-    const res  = fetch('/api/workout',{
+    const res  = fetch('/workout/api/',{
        method:'POST',
        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
        body:`user=${user}`,
