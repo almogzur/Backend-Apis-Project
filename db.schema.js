@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
-const ObjectId = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectId;
 
 const userSchema = new Schema({
         "Name":String,
@@ -15,7 +15,6 @@ const userSchema = new Schema({
         
     })
 
-
-
     
 exports.userSchema = userSchema
+//console.log(module.exports,"exports from  db.schema")

@@ -23,6 +23,7 @@ async function main (callback){
 
 
   exports.main = main
+  console.log(module.exports,"exports from main.db")
 
 
 
