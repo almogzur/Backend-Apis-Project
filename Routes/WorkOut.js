@@ -1,13 +1,11 @@
-
 exports.WorkOut= function WorkOut(app,db){
 
   db(async(callback)=>{
-
-   const db_users = await callback.db("WorkOut").collection("users")
+//const db_users = await callback.db("WorkOut").collection("users")
    
    const userSchema= require('../db.schema').userSchema
 
-   const USERDATA = db.model('USERDATA', userSchema); 
+   const USERDATA = model('USERDATA', userSchema); 
 
     app.route('/workout/api/:user?')
       .post((req,res,next)=>{
