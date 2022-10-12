@@ -13,7 +13,6 @@ const path = require("path");
 const db = require('./dbConnection').main
 const ObjectId = require('mongodb').ObjectID;
 const cors = require("cors");
-const userSchema = require('./db.schema').userSchema
 const User = require('./db.schema').User
 const corsOptions = {
   origin: "https://www.freecodecamp.org",
@@ -21,7 +20,8 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
+app.use(express.json()) // for parsing application/json
 app.use(
   session({
   secret: process.env["ESSION_SECRET"],
