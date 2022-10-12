@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const { MongoClient } = require('mongodb');
 
 async function main (callback){
@@ -9,6 +8,8 @@ async function main (callback){
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
+
+   
   try {
 
     await db.connect()
@@ -18,6 +19,11 @@ async function main (callback){
     console.log(e,"mongo err")
   }
   }
+
+  
+   const User = 
+
+
   exports.main = main
   console.log(module.exports,"exports from main.db")
 

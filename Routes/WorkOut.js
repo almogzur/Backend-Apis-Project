@@ -1,27 +1,16 @@
-exports.WorkOut= function WorkOut(app,db){
+exports.WorkOut= function WorkOut(app,User){
 
-  db(async(callback)=>{
-//const db_users = await callback.db("WorkOut").collection("users")
-   
-   const userSchema= require('../db.schema').userSchema
-
-   const USERDATA = model('USERDATA', userSchema); 
 
     app.route('/workout/api/:user?')
       .post((req,res,next)=>{
           console.log("POST /api/workout")
           console.log(req.body)
           const inputUser = req.body.user
-          USERDATA.find(USERDATA,function(err,user){
-            if(err){
-              console.log(err)
-            }else if(user){
-              res.json({user:user})
-            }else{
-              //USERDATA.save()
-              console.log("user data else ")
-            }
+          const doc = new User({
+            Name: inputUser
           })
+          console.log(doc)
+
        
   })
       .get((req,res,next)=>{
@@ -29,6 +18,12 @@ exports.WorkOut= function WorkOut(app,db){
          const parms = req.parms
          const quary = req.quary
   })
+    app.route('/workout/api/user/:_id?/exercises')
+    .post((req,res,next)=>{
+       console.log("POST workout/api/user/:_id?/exercises'")
+    })
+    .get((req,res,next)=>{
+      console.log("GET workout/api/user/:_id?/exercises'")
     })
   }
 
