@@ -8,7 +8,7 @@
     "DF": "(cd front && npm run start )",
     "DB": "nodemon -- inspect  server.js",
     "L": "npm start --staging",
-    "RB":"(cd front && npm run build)"
+    "RB": "(cd front && npm run build)"
   },
   "keywords": [
     "TimeServer"
@@ -25,6 +25,7 @@
     "express-session": "^1.17.3",
     "greenlock": "^4.0.4",
     "greenlock-express": "^4.0.3",
+    "mongodb": "^4.10.0",
     "mongoose": "^6.5.3",
     "nodemon": "^2.0.19",
     "path": "^0.12.7"
