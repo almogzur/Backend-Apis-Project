@@ -7,12 +7,12 @@ exports.WorkOut= function WorkOut(app,User){
     app.route('/workout/api/:users?')
       .post((req,res,next)=>{
           console.log("POST /workout/api/:user?/")
-          console.log(req.body)
+       //   console.log(req.body)
           const inputUser = req.body.user;
-          findUserOrSave(inputUser)
-        
-         
-        
+          if(inputUser){
+            findUserOrSave(inputUser)
+          }else{console.log("nouser")}
+          
   })
       .get((req,res,next)=>{
          console.log("GET ,/workout/api/:user?")
