@@ -5,16 +5,16 @@
   "main": "server.js",
   "scripts": {
     "I": "(npm install && cd front && npm install && npm audit fix --force )",
-    "DF": "(cd front && npm run start )",
-    "DB": "nodemon -- inspect  server.js",
+    "React": "(cd front && npm run start )",
+    "Exprexs": "nodemon -- inspect  server.js",
     "L": "npm start --staging",
     "RB": "(cd front && npm run build)"
   },
   "keywords": [
-    "TimeServer"
+    "TimeServer","UrlShort","WhoIAm","Index","Tracker"
   ],
   "author": "Almog Zur",
-  "license": "ISC",
+  "license": "ISC", 
   "dependencies": {
     "body-parser": "^1.20.0",
     "concurrently": "^7.3.0",
