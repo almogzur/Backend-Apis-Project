@@ -1,9 +1,7 @@
-exports.WorkOut= function WorkOut(app,User){
+const findUserOrSave = require('../db.schema').findUserOrSave
+const findAllUsers = require('../db.schema').findAllUsers
 
-  const createAndSave = require('../db.schema').createAndSave
-  const findUserOrSave = require('../db.schema').findUserOrSave
-  const findAllUsers = require('../db.schema').findAllUsers
-
+  exports.WorkOut= function WorkOut(app){
     app.route('/workout/api/:users?')
       .post((req,res,next)=>{
           console.log("POST /workout/api/:user?/")
@@ -11,7 +9,9 @@ exports.WorkOut= function WorkOut(app,User){
           const inputUser = req.body.user;
           if(inputUser){
             findUserOrSave(inputUser)
-          }else{console.log("nouser")}
+          }else{
+            console.log("no user")
+          }
           
   })
       .get((req,res,next)=>{
@@ -19,10 +19,6 @@ exports.WorkOut= function WorkOut(app,User){
          console.log(req.body,req.parms,req.quary)
          const parms = req.parms
          const quary = req.quary
-         doc.find({})
-         console.log(doc)
-  
-
   })
   
    

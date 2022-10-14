@@ -13,7 +13,6 @@ const path = require("path");
 const db = require('./dbConnection').main
 const ObjectId = require('mongodb').ObjectID;
 const cors = require("cors");
-const UserModle = require('./db.schema').User
 const corsOptions = {
   origin: "https://www.freecodecamp.org",
   optionsSuccessStatus: 200
@@ -37,6 +36,6 @@ index(app)
 Whoami(app)
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
-WorkOut(app,UserModle) // Schema RealM db
+WorkOut(app) // Schema RealM db
 ////End Route invoke
 module.exports = app // for GL

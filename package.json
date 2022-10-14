@@ -26,7 +26,7 @@
     "greenlock": "^4.0.4",
     "greenlock-express": "^4.0.3",
     "mongodb": "^4.10.0",
-    "mongoose": "4.13.20",
+    "mongoose": "5.0.0",
     "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^2.0.19",
     "path": "^0.12.7"

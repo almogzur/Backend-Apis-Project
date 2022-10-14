@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 async function main (callback){
 
   const URI = process.env["MONGO"]
-  const db = new MongoClient (URI,{})
+  const db = new MongoClient (URI,{  })
 console.log("mongo Connected")
    
   try {

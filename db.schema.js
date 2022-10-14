@@ -5,7 +5,7 @@ const autoIncrement = require('mongoose-auto-increment');
 
 mongoose.connect(process.env["MONGO"])
 
-const userSchema = new Schema({
+ const userSchema = new Schema({
     "Name":String,
     "seq":{type:Number,default:0},
     "logs":[
@@ -16,27 +16,34 @@ const userSchema = new Schema({
       }
          ]    
    }) 
-const User = mongoose.model('User',userSchema)
+  
+ const User = mongoose.model('User',userSchema)
 
-const findUserOrSave= (userName)=>{
+ const findUserOrSave= (userName)=>{
   console.log("findUserOrSave Inv")
 
-    User.findOne({"Name":userName},
-     function(err,user){
-        if(err){ console.error(err)}
+    User.findOne({Name:userName},function(err,user){
+
+      console.log("find func inv ")
+
+        if(err){ console.log(err)}
         else if(user){ console.log(user,"FinD")}
+
         else{
             const doc = new User ({Name:userName})
-            doc.save(function(err){
+            doc.save(function(err,data){
+
+              console.log("save function inv ")
+
               if(err){
                 console.log(err,"Svae")
               }else{
-                console.log("saved")}
+                console.log(data)}
                })
               }
     })
   }
-const findAllUsers=()=>{
+ const findAllUsers=()=>{
     User.find({},function(err,data){
       if(err){
         console.log(err)
@@ -47,9 +54,13 @@ const findAllUsers=()=>{
     })
   }
 
+ 
 
-
-exports.User=User
 exports.userSchema =userSchema
 exports.findUserOrSave=findUserOrSave
 exports.findAllUsers=findAllUsers
+
+
+
+
+
