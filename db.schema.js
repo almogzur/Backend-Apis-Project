@@ -1,13 +1,19 @@
+// db setup for Modele || doc calls 
+
 require('dotenv').config();
 const mongoose = require('mongoose');
 const {Schema} = mongoose
-const autoIncrement = require('mongoose-auto-increment');
 
-mongoose.connect(process.env["MONGO"])
+mongoose.connect(process.env["MONGO"], 
+{
+  useNewUrlParser: true,
+  useFindAndModify: false
+}
+  );
 
  const userSchema = new Schema({
     "Name":String,
-    "seq":{type:Number,default:0},
+    "count":Number,
     "logs":[
       {
           "description": String,

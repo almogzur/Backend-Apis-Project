@@ -1,10 +1,11 @@
+// this db setup is for CRUD Opertions (async callback)
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
 async function main (callback){
 
   const URI = process.env["MONGO"]
-  const db = new MongoClient (URI,{  })
+  const db = new MongoClient (URI,{useUnifiedTopology: true  })
 console.log("mongo Connected")
    
   try {
