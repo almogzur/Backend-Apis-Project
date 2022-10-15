@@ -1,5 +1,6 @@
 const findUserOrSave = require('../db.schema').findUserOrSave
 const findAllUsers = require('../db.schema').findAllUsers
+const timestamp = Math.floor(new Date().getTime()/1000);
 
   exports.WorkOut= function WorkOut(app){
     app.route('/workout/api/:users?')
@@ -10,13 +11,17 @@ const findAllUsers = require('../db.schema').findAllUsers
           const inputUser = req.body.user;
           const userName = req.body.username
           if(inputUser){
-            findUserOrSave(inputUser)
+            console.log( findUserOrSave(inputUser) )
+            res.json({"username":"user"})
           }else if(userName){
-            findUserOrSave(userName)
+              const user = findUserOrSave(userName)
+         
+            console.log("ex data",data)
           }
           else{
             console.log("no user")
           }
+          
           
   })
       .get((req,res,next)=>{
