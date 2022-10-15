@@ -1,8 +1,8 @@
-// db setup for Modele || doc calls 
-
+// db setup for Modle || doc calls 
 require('dotenv').config();
 const mongoose = require('mongoose');
 const {Schema} = mongoose
+const ObjectID = require('mongodb').ObjectID
 
 mongoose.connect(process.env["MONGO"], 
 {
@@ -12,23 +12,31 @@ mongoose.connect(process.env["MONGO"],
   );
 
  const userSchema = new Schema({
-    "Name":String,
-    "count":Number,
-    "logs":[
-      {
-          "description": String,
-          "duration": Number,
-          "date": String,
-      }
-         ]    
+    "username":String,  
+    _id:ObjectID
    }) 
-  
+ const ExerciseSchema = new Schema({
+    "username":String,
+    "description":String,
+    "duration":Number,
+    "data":String,
+ })
+ const LogSchema = ({
+   username:String,
+   count:Number,
+   logs:[{
+    ref:Exercise
+   }]
+})
+
+ const Exercise= mongoose.model('Exercise',ExerciseSchema)
  const User = mongoose.model('User',userSchema)
+ const logs = mongoose.model('Logs',LogSchema)
 
  const findUserOrSave= (userName)=>{
   console.log("findUserOrSave Inv")
 
-    User.findOne({Name:userName},function(err,user){
+    User.findOne({username:userName},function(err,user){
 
       console.log("find func inv ")
 
@@ -54,13 +62,11 @@ mongoose.connect(process.env["MONGO"],
       if(err){
         console.log(err)
       }else{
-        console.log("saving data",data)
+        console.log(data)     
         return data
       }
     })
   }
-
- 
 
 exports.userSchema =userSchema
 exports.findUserOrSave=findUserOrSave
