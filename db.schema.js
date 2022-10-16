@@ -36,31 +36,31 @@ mongoose.connect(process.env["MONGO"],
 })
 const logs = mongoose.model('Logs',LogSchema)
 
- const findUserOrSave= (userName)=>{
-     console.log("findUserOrSave Inv")
-     User.findOne({"username":userName},
-        function(err,user){
-          console.log("find func inv ")
-           if(err){ 
-             console.log(err)}
-           else if(user){ 
-             console.log(user,"FinD")
-           return user
-        }
-        else{
-          console.log("didnt find saving ...")
-            const doc = new User ({"username":userName})
-            doc.save(function(err,data){
-              console.log("save function inv ")
-              if(err){
-                console.log(err,"Svae")
-              }else{
-                console.log(data)}
-                return data
-               })
-              }
+const findUserOrSave = (userName)=>{
+
+ console.log("findUserOrSave Inv")
+
+    const userdata =  User.findOne({"username":userName},
+              function(err,user){
+                        console.log("find func inv ")
+                          if(err){  console.log(err),"err"}
+                          else if(user){ //find
+                                      // console.log(user._id,"FinD")
+                                 return user 
+                                        }
+                           else{//save
+                            console.log("didnt find saving ...")
+                           const doc = new User ({"username":userName})
+                             doc.save(function(err,data){
+                                    console.log("save function inv ")
+                                     if(err){ console.log(err,"Svae") }
+                                      else{ return data  }
+                                           })
+                                             return doc    
+                                        }
     })
-  }
+   return userdata
+}
  const findAllUsers=()=>{
     User.find({},function(err,data){
       if(err){
