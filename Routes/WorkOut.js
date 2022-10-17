@@ -15,16 +15,16 @@ const timestamp = Math.floor(new Date().getTime()/1000);
           const userName = req.body.username
           
           if(inputUser){
-            const user = findUser(inputUser).then((data)=>data)
-            const dbres= await user
+            const dbres = findUser(inputUser).then((data)=>data)
+            const user= await dbres
             console.log(dbres,"db res")
-            if(dbres){
-              res.redirect('/workout/api/'+dbres)
+            if(user){
+              res.redirect('/workout/api/'+user)
             }else{
               console.log("no user in db ")
-              const user = saveUser(inputUser).then((data)=>data)
-              const dbres= await user
-                   if(dbres){  res.redirect('/workout/api/'+dbres) }
+              const dbres = saveUser(inputUser).then((data)=>data)
+              const user= await dbres
+                   if(user){  res.redirect('/workout/api/'+user) }
             }
             
           }else if(userName){
