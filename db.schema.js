@@ -4,13 +4,17 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose
 const ObjectID = require('mongodb').ObjectID
 
+function nCallback (err,data){
+   console.log("callback invoke",)
+      if(err)return console.error(err)
+      return data
+}
 mongoose.connect(process.env["MONGO"], 
 {
   useNewUrlParser: true,
   useFindAndModify: false
 }
   );
-
  const userSchema = new Schema({
     "username":String,  
    }) 
@@ -36,32 +40,17 @@ mongoose.connect(process.env["MONGO"],
 })
 const logs = mongoose.model('Logs',LogSchema)
 
-const findUserOrSave = (userName)=>{
-
- console.log("findUserOrSave Inv")
-
-    const userdata =  User.findOne({"username":userName},
-              function(err,user){
-                        console.log("find func inv ")
-                          if(err){  console.log(err),"err"}
-                          else if(user){ //find
-                                      // console.log(user._id,"FinD")
-                                 return user 
-                                        }
-                           else{//save
-                            console.log("didnt find saving ...")
-                           const doc = new User ({"username":userName})
-                             doc.save(function(err,data){
-                                    console.log("save function inv ")
-                                     if(err){ console.log(err,"Svae") }
-                                      else{ return data  }
-                                           })
-                                             return doc    
-                                        }
-    })
+const findUser  = async(userName)=>{
+ console.log("findUser Inv")
+ const userdata = await User.findOne({"username":userName},nCallback)
    return userdata
 }
- const findAllUsers=()=>{
+const saveUser = (userName)=>{
+  console.log("save invk")
+  const doc = new User({username:userName},nCallback)
+  return doc
+}
+const findAllUsers=()=>{
     User.find({},function(err,data){
       if(err){
         console.log(err)
@@ -73,7 +62,8 @@ const findUserOrSave = (userName)=>{
   }
 
 exports.userSchema =userSchema
-exports.findUserOrSave=findUserOrSave
+exports.findUser =findUser
+exports.saveUser=saveUser
 exports.findAllUsers=findAllUsers
 
 

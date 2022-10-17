@@ -1,7 +1,7 @@
-const findUserOrSave = require('../db.schema').findUserOrSave
+const findUser = require('../db.schema').findUser
+const saveUser = require('../db.schema').saveUser
 const findAllUsers = require('../db.schema').findAllUsers
 const timestamp = Math.floor(new Date().getTime()/1000);
-let sdata ;
   exports.WorkOut=  async function WorkOut(app){
     
     app.route('/workout/api/:users?')
@@ -13,12 +13,23 @@ let sdata ;
           const userName = req.body.username
           
           if(inputUser){
-            const user = findUserOrSave(userName)
-            console.log("ex data",user)
-           // res.json({"username":"user"})
+            const user = findUser(inputUser).then((data)=>data)
+            const dbres= await user
+            console.log(dbres,"db res")
+            if(dbres){
+              res.redirect('https://sitecss.online/workout/api/'+dbres)
+            }else{
+              console.log("no user in db ")
+              const user = saveUser(inputUser)
+              const dbres= await user
+                   if(dbres){
+                   res.redirect('https://sitecss.online/workout/api/'+dbres)
+                   }
+              console.log(user)
+            }
+            
           }else if(userName){
-             const user = findUserOrSave(userName)
-            console.log("ex data",user)
+         
           }
           else{
             console.log("no user")
@@ -26,9 +37,10 @@ let sdata ;
   })
       .get(async (req,res,next)=>{
          console.log("GET ,/workout/api/:user?")
-         console.log(req.body,req.parms,req.quary)
-         const parms = req.parms
+         const parmas = req.params
          const quary = req.quary
+         console.log(parmas,quary)
+
   })
   app.route('/workout/api/users/:_id?')
   .post((req,res,next)=>{
