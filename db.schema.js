@@ -45,10 +45,11 @@ const findUser  = async(userName)=>{
  const userdata = await User.findOne({"username":userName},nCallback)
    return userdata
 }
-const saveUser = (userName)=>{
+const saveUser =async (userName)=>{
   console.log("save invk")
   const doc = new User({username:userName},nCallback)
-  return doc
+     const data =  doc.save(nCallback)
+      return data
 }
 const findAllUsers=()=>{
     User.find({},function(err,data){
