@@ -16,28 +16,15 @@ mongoose.connect(process.env["MONGO"],
   );
  const userSchema = new Schema({
                "username":String,  
+               logs:[{
+                "description":String,
+                "duration":Number,
+                "data":String,
+                   }],
+               "count":Number
                  }, { versionKey: false }) 
  const User = mongoose.model('User',userSchema)
 
- const ExerciseSchema = new Schema({
-    "username":userSchema.path('username'),
-    "_id":userSchema.path('_id'),
-    "description":String,
-    "duration":Number,
-    "data":String,
-    
- }, { versionKey: false })
- const Exercise= mongoose.model('Exercise',ExerciseSchema)
-
- const LogSchema = ({
-   username:String,
-   count:Number,
-   logs:[{
-    ref:ExerciseSchema.path('description'),
-   }],
-   
-}, { versionKey: false })
-const logs = mongoose.model('Logs',LogSchema)
 
 const findUser  = async(userName)=>{
  console.log("findUser Inv")

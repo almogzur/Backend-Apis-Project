@@ -54,17 +54,7 @@ app.route('/workout/api/:users?')
   .get((req,res,next)=>{
     console.log("GET /workout/api/users/:_id/exercises ")
    })
-  app.route('/api/users/:_id/:log?')
-   .post(async(req,res,next)=>{
-    const reqbody= req.body
-    console.log("POST /api/users/:_id/log",reqbody)
 
-   })
-   .get(async(req,res,next)=>{
-    const reqparam= req.params
-    console.log("GET /api/users/:_id/log",reqparam)
-
-   })
   }
 
 console.log(module.exports,"exports from WorkOut")

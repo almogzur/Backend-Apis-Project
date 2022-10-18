@@ -14,7 +14,7 @@ const postData = async ()=>{
        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
        body:`username=${user}`,
         })
-    const data = await res.json()
+    const data = await res
            return data
     }
  const getData = async()=>{
@@ -100,6 +100,7 @@ return(
                 placeholder="ID"
                 value={id}
                 onChange={change}
+                required
                 >
                 
                 </input>
@@ -109,6 +110,7 @@ return(
                 placeholder="Description"
                 value={description}
                 onChange={change}
+                required
                 >
                 </input>
                 <br/>
@@ -117,7 +119,7 @@ return(
                 placeholder="Duration"
                 value={duration}
                 onChange={change}
-                
+            
                 >
                 </input>
                 <br/>

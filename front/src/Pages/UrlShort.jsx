@@ -10,7 +10,7 @@ const Urlshot = ()=>{
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body:`url=${input}`,
                        })
-    const data = await res.json()
+    const data = await res
              return data
   }
    const [input, setInput]= useState("")
