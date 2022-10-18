@@ -1,13 +1,14 @@
 import React from "react"
 const { useState } = require("react")
+
 //////// Main Componenet ////////
 export default  function WorkOut () { // nexted component {WorkOutForm}
 
  //////// state ///////////
 const [user, setUser]= useState("")
+const [userid,setUserid]=useState("")
 /////// end state ////////
-
-////// async functions /////
+//////  fatch functions /////
 const postUserData = async ()=>{
     const res  = fetch('/workout/api/',{
        method:'POST',
@@ -17,88 +18,98 @@ const postUserData = async ()=>{
     const data = await res
            return data
     }
-    const postLogs = async ()=>{
-        const res = fetch('/workout/api/',{
-            method:'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body:`username=${user}`,
-        })
-    }
- const getData = async()=>{
-
+const getData = async()=>{
   }
-/////////// end async functions ////
-
-  // functions ///////////
+// end fatch functions ////
+//  Componenet functions ///////////
 const change = (e)=>{
     setUser(e.target.value)
 }
 const click = ()=>{
     postUserData().then((data)=>{
         console.log(data)
+        setUserid(data.id)
     })
     setUser("")
 }
-////// end functions /////
+////// end Componenet functions /////
 return (
     <div id="work">
         <h1>Exercise Tracker</h1>
-
         <div id="work-form">
-            <input 
+         <input 
             id="user"
             placeholder="User"
             type="text"
             value={user}
             onChange={change}
-             />
+            required
+          />
              <br/>
-        <button
-        className="btn btn-info"
-        id="user-btn"
-        onClick={click}
-        >click me
-        </button>
-        
+           <button
+           className="btn btn-info"
+           id="user-btn"
+            onClick={click}
+            >click me
+          </button>
         </div>
-
-        <WorkOutForm user={user}/>
+        <WorkOutForm user={userid}/>
     </div>
 )
 }
 /////////////// end main Componenet /////
 
-///////// Form Component /////
-const WorkOutForm = (props)=> {
+///////// Form Component ////////////////////////
 
+const WorkOutForm = (props)=> {
+    ///////// State /////////////
 const [id , setId]=useState("")
 const [description, setDescription]= useState("")
 const [duration , setDuration]=useState("")
 const [date, setDate]= useState("")
-const user = props.user
-
-const change = (e)=>{
-setId(e.target.value)
-setDescription(e.target.value)
-setDuration(e.target.value)
-setDate(e.target.value)
-
-}
-
-const click = (e)=>{
-    fetch('/api/workour/',{
+///////// End Of State /////////////
+//////  fatch functions /////
+const postLogs = async (user)=>{
+    const res =   fetch('/api/workour/users/'+user._id+"/exercises",{
         method:"POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:`id=${id}
-               `
-    })
-    console.log(user)
+        body:`id=${id} description=${description} duration=${duration} date=${date} `
+               })
+        const data = await res
+        return data 
+    }
+    ////// end fatch functions /////
+////////// Props //////////
+const userid = props.user
+
+/////////// End Of Props 
+
+//////////// Fucntions //////////
+
+const idchange = (e)=>{
+     setId(e.target.value)
+}
+const decchange= (e)=>{
+    setDescription(e.target.value)
+}
+
+const durchange = (e)=>{
+    setDuration(e.target.value)
+}
+const datchange= (e)=>{
+    setDate(e.target.value)
+
+}
+const click = (e)=>{
+    postLogs(userid||id).then((data)=>data)
+    console.log(userid)
     setDate("")
     setDescription("")
     setDate("")
     setDuration("")
 
 }
+//////////////End Of Functions /////////////////
 return(
         <div id="filds">
 
@@ -106,7 +117,7 @@ return(
                 <input
                 placeholder="ID"
                 value={id}
-                onChange={change}
+                onChange={idchange}
                 required
                 >
                 
@@ -116,7 +127,7 @@ return(
                 <input
                 placeholder="Description"
                 value={description}
-                onChange={change}
+                onChange={decchange}
                 required
                 >
                 </input>
@@ -125,7 +136,7 @@ return(
                 <input
                 placeholder="Duration"
                 value={duration}
-                onChange={change}
+                onChange={durchange}
             
                 >
                 </input>
@@ -134,7 +145,7 @@ return(
                 <input
                 placeholder="Date"
                 value={date}
-                onChange={change}
+                onChange={datchange}
                 >
                 </input>
                 <br/>
@@ -147,5 +158,4 @@ return(
         </div>
     )
 }
-////////////////////
-
+//////////////////// End  Form Component ///////////
