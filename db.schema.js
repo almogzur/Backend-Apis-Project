@@ -2,7 +2,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const {Schema} = mongoose
-const ObjectID = require('mongodb').ObjectID
 
 function nCallback (err,data){
    console.log("callback invoke",)
@@ -16,8 +15,8 @@ mongoose.connect(process.env["MONGO"],
 }
   );
  const userSchema = new Schema({
-    "username":String,  
-   }) 
+               "username":String,  
+                 }, { versionKey: false }) 
  const User = mongoose.model('User',userSchema)
 
  const ExerciseSchema = new Schema({
@@ -27,7 +26,7 @@ mongoose.connect(process.env["MONGO"],
     "duration":Number,
     "data":String,
     
- })
+ }, { versionKey: false })
  const Exercise= mongoose.model('Exercise',ExerciseSchema)
 
  const LogSchema = ({
@@ -37,7 +36,7 @@ mongoose.connect(process.env["MONGO"],
     ref:ExerciseSchema.path('description'),
    }],
    
-})
+}, { versionKey: false })
 const logs = mongoose.model('Logs',LogSchema)
 
 const findUser  = async(userName)=>{
@@ -49,17 +48,12 @@ const saveUser =async (userName)=>{
   console.log("save invk")
   const doc = new User({username:userName},nCallback)
      const data =  doc.save(nCallback)
-      return data
+     console.log( doc,"saved user ")
+      return doc
 }
 const findAllUsers=()=>{
-    User.find({},function(err,data){
-      if(err){
-        console.log(err)
-      }else{
-        console.log(data)     
-        return data
-      }
-    })
+    const data = User.find({},nCallback)
+    return data
   }
 
 exports.userSchema =userSchema

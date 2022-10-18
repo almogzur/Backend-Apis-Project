@@ -12,12 +12,11 @@ const postData = async ()=>{
     const res  = fetch('/workout/api/',{
        method:'POST',
        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-       body:`user=${user}`,
+       body:`username=${user}`,
         })
     const data = await res.json()
            return data
     }
-
  const getData = async()=>{
 
   }
