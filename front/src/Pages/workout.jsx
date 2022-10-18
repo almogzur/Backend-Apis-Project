@@ -8,7 +8,7 @@ const [user, setUser]= useState("")
 /////// end state ////////
 
 ////// async functions /////
-const postData = async ()=>{
+const postUserData = async ()=>{
     const res  = fetch('/workout/api/',{
        method:'POST',
        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -16,6 +16,13 @@ const postData = async ()=>{
         })
     const data = await res
            return data
+    }
+    const postLogs = async ()=>{
+        const res = fetch('/workout/api/',{
+            method:'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body:`username=${user}`,
+        })
     }
  const getData = async()=>{
 
@@ -27,7 +34,7 @@ const change = (e)=>{
     setUser(e.target.value)
 }
 const click = ()=>{
-    postData().then((data)=>{
+    postUserData().then((data)=>{
         console.log(data)
     })
     setUser("")
