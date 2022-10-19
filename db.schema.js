@@ -3,8 +3,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const {Schema} = mongoose
 
-const nCallback =  (err,data)=>{
-   console.log("callback invoke",this)
+function nCallback (err,data,from){
+   console.log("callback invoke",from? from: arguments)
       if(err)return console.error(err)
       return data
 }
@@ -22,30 +22,30 @@ mongoose.connect(process.env["MONGO"],
                 "data":String,
                    }],
                "count":Number
-                 }, { versionKey: false }) 
+                 },
+                 { versionKey: false }) 
  const User = mongoose.model('User',userSchema)
 
- const userCount= User.count({},nCallback)
+ //const userCount= User.count({},nCallback)
 
-
-const findUser  = async(userName)=>{
+async function findUser(userName){
  console.log("findUser Inv")
- const userdata = await User.findOne({"username":userName},nCallback)
+ const userdata = await User.findOne({"username":userName},nCallback(null,null,"find"))
    return userdata
 }
-const saveUser =async (userName)=>{
+async function saveUser(userName){
   console.log("save invk")
-  const doc = new User({username:userName},nCallback)
-     const data =  doc.save(nCallback)
+  const doc = new User({username:userName})
+     const data =  doc.save(nCallback(null,null,"save"))
      console.log( doc,"saved user ")
-      return doc
+      return data
 }
-const findAllUsers=()=>{
-    const data = User.find({},nCallback)
+async function findAllUsers(){
+    const data = User.find({},nCallback(null,null,"findAll"))
     return data
-  }
-const updateUser = async  (id)=>{
- const dbreq = await User.findOneAndUpdate({_id:id},{},nCallback)
+}
+async function updateUser(id){
+ const dbreq = await User.findOneAndUpdate({_id:id},{},nCallback(null,null,"update"))
      return dbreq
 }
 exports.updateUser=updateUser
