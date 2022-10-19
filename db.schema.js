@@ -45,7 +45,9 @@ async function findAllUsers(){
     return data
 }
 async function updateUser(id){
- const dbreq = await User.findOneAndUpdate({_id:id},{},nCallback(null,null,"update"))
+ const dbreq = await User.findOneAndUpdate({_id:id},{
+  
+ },nCallback(null,null,"update"))
      return dbreq
 }
 exports.updateUser=updateUser

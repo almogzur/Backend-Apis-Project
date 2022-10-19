@@ -74,7 +74,7 @@ const postLogs = async ()=>{
     const res =  fetch('/workout/api/users/' + id +'/',{
         method:"POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:`id=${id} description=${description} duration=${duration} date=${date} `
+        body:` description=${description} duration=${duration} date=${date} `
                })
         const data = await res
         return data 
@@ -96,12 +96,12 @@ const datchange= (e)=>{
     setDate(e.target.value)
 
 }
-const click = (e)=>{
-   postLogs().then((data)=>data)
-    setDate("")
-    setDescription("")
-    setDate("")
-    setDuration("")
+const click =async (e)=>{
+   const req = postLogs().then((data)=>data)
+    await setId("")
+    await setDate("")
+     await setDescription("")
+     await setDuration("")
 }
 //////////////End Of Functions /////////////////
 return(
