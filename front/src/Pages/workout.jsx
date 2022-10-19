@@ -2,7 +2,7 @@ import React from "react"
 const { useState } = require("react")
 
 //////// Main Componenet ////////
-export default  function WorkOut () { // nexted component {WorkOutForm}
+export default function WorkOut () { // nexted component {WorkOutForm}
 
  //////// state ///////////
 const [user, setUser]= useState("")
@@ -58,12 +58,16 @@ return (
 ///////// Form Component ////////////////////////
 
 const WorkOutForm = ()=> {
+
+
     ///////// State /////////////
 const [id , setId]=useState("")
 const [description, setDescription]= useState("")
 const [duration , setDuration]=useState("")
 const [date, setDate]= useState("")
 ///////// End Of State /////////////
+
+
 
 //////  fatch functions /////
 const postLogs = async ()=>{
@@ -80,7 +84,8 @@ const postLogs = async ()=>{
         const data = await res
         return data 
     }
-    ////// end fatch functions /////
+////// end fatch functions /////
+
 
 //////////// omponent Fucntions //////////
 
@@ -98,13 +103,19 @@ const datchange= (e)=>{
 
 }
 const click =async (e)=>{
-   await postLogs().then((data)=>data)
+    if(id){
+        await postLogs().then((data)=>data)
+    }else {
+   window.alert(" ID is Required")
+    }
     setId("")
     setDate("")
     setDescription("")
     setDuration("")
 }
 //////////////End Of Functions /////////////////
+
+
 return(
         <div id="filds">
 

@@ -74,6 +74,12 @@ input{
     margin: 5px;
     text-align: center;
 }
+input[type=date]{
+    width:200px;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+}
 #work-form{
     display: flex;
     flex-direction: column;
