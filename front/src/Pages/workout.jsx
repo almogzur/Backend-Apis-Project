@@ -53,7 +53,7 @@ return (
             >click me
           </button>
         </div>
-        <WorkOutForm user={userid}/>
+        <WorkOutForm />
     </div>
 )
 }
@@ -61,16 +61,17 @@ return (
 
 ///////// Form Component ////////////////////////
 
-const WorkOutForm = (props)=> {
+const WorkOutForm = ()=> {
     ///////// State /////////////
 const [id , setId]=useState("")
 const [description, setDescription]= useState("")
 const [duration , setDuration]=useState("")
 const [date, setDate]= useState("")
 ///////// End Of State /////////////
+
 //////  fatch functions /////
-const postLogs = async (user)=>{
-    const res =   fetch('/api/workour/users/'+user._id+"/exercises",{
+const postLogs = async ()=>{
+    const res =  fetch('/workout/api/users/' + id +'/',{
         method:"POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body:`id=${id} description=${description} duration=${duration} date=${date} `
@@ -79,12 +80,8 @@ const postLogs = async (user)=>{
         return data 
     }
     ////// end fatch functions /////
-////////// Props //////////
-const userid = props.user
 
-/////////// End Of Props 
-
-//////////// Fucntions //////////
+//////////// omponent Fucntions //////////
 
 const idchange = (e)=>{
      setId(e.target.value)
@@ -92,7 +89,6 @@ const idchange = (e)=>{
 const decchange= (e)=>{
     setDescription(e.target.value)
 }
-
 const durchange = (e)=>{
     setDuration(e.target.value)
 }
@@ -101,13 +97,11 @@ const datchange= (e)=>{
 
 }
 const click = (e)=>{
-    postLogs(userid||id).then((data)=>data)
-    console.log(userid)
+   postLogs().then((data)=>data)
     setDate("")
     setDescription("")
     setDate("")
     setDuration("")
-
 }
 //////////////End Of Functions /////////////////
 return(
