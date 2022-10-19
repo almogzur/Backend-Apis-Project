@@ -1,9 +1,9 @@
 const findUser = require('../db.schema').findUser
 const saveUser = require('../db.schema').saveUser
 const findAllUsers = require('../db.schema').findAllUsers
+const updateUser = require('../db.schema').updateUser
 const timestamp = Math.floor(new Date().getTime()/1000);
   exports.WorkOut=  async function WorkOut(app){
-    
     
 app.route('/workout/api/:users?')
      .post(async (req,res,next)=>{
@@ -48,9 +48,16 @@ app.route('/workout/api/:users?')
   app.route('/workout/api/users/:_id?/:exercises?')
   .post(async (req,res,next)=>{
     const reqBody = req.body
-    console.log("POST /workout/api/users/:_id/exercises ",reqBody)
-    
-     
+    console.log("POST /workout/api/users/:_id/exercises ")
+    const id = req.params._id
+    const desc = req.body.description
+    const date = req.body.date
+    const dur = req.body.duration
+  //  console.log(id,desc,date,dur)
+     const quary = updateUser(id)
+     const data = await quary 
+     console.log(data) 
+
   })
   .get((req,res,next)=>{
     console.log("GET /workout/api/users/:_id/exercises ")

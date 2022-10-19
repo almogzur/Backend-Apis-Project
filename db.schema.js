@@ -25,6 +25,8 @@ mongoose.connect(process.env["MONGO"],
                  }, { versionKey: false }) 
  const User = mongoose.model('User',userSchema)
 
+ const userCount= User.count({},nCallback)
+
 
 const findUser  = async(userName)=>{
  console.log("findUser Inv")
@@ -42,7 +44,11 @@ const findAllUsers=()=>{
     const data = User.find({},nCallback)
     return data
   }
-
+const updateUser = async  (id)=>{
+ const dbreq = await User.findOneAndUpdate({_id:id},{},nCallback)
+     return dbreq
+}
+exports.updateUser=updateUser
 exports.userSchema =userSchema
 exports.findUser =findUser
 exports.saveUser=saveUser
