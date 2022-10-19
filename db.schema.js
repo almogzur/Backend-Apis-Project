@@ -3,8 +3,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const {Schema} = mongoose
 
-function nCallback (err,data){
-   console.log("callback invoke",)
+const nCallback =  (err,data)=>{
+   console.log("callback invoke",this)
       if(err)return console.error(err)
       return data
 }

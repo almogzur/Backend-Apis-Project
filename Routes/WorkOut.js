@@ -56,7 +56,7 @@ app.route('/workout/api/:users?')
   //  console.log(id,desc,date,dur)
      const quary = updateUser(id)
      const data = await quary 
-     console.log(data) 
+ 
 
   })
   .get((req,res,next)=>{
