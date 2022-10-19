@@ -129,6 +129,7 @@ return(
                 <br/>
 
                 <input
+                type="number"
                 placeholder="Duration"
                 value={duration}
                 onChange={durchange}
@@ -138,6 +139,7 @@ return(
                 <br/>
                 
                 <input
+                type="date"
                 placeholder="Date"
                 value={date}
                 onChange={datchange}
