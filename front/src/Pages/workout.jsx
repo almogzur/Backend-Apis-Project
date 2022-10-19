@@ -6,7 +6,6 @@ export default  function WorkOut () { // nexted component {WorkOutForm}
 
  //////// state ///////////
 const [user, setUser]= useState("")
-const [userid,setUserid]=useState("")
 /////// end state ////////
 //////  fatch functions /////
 const postUserData = async ()=>{
@@ -25,11 +24,8 @@ const getData = async()=>{
 const change = (e)=>{
     setUser(e.target.value)
 }
-const click = ()=>{
-    postUserData().then((data)=>{
-        console.log(data)
-        setUserid(data.id)
-    })
+const click = async ()=>{
+     postUserData().then((data)=>{ console.log(data)  })
     setUser("")
 }
 ////// end Componenet functions /////
@@ -71,11 +67,16 @@ const [date, setDate]= useState("")
 
 //////  fatch functions /////
 const postLogs = async ()=>{
-    const res =  fetch('/workout/api/users/' + id +'/',{
+    const res =  fetch('/workout/api/users/' + id +'/exercises',{
         method:"POST",
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:` description=${description} duration=${duration} date=${date} `
-               })
+        headers: { 'Content-Type': 'application/json' },
+        body: 
+            JSON.stringify({
+            "description":description,
+            "duration":duration,
+            "date":date,
+            })
+            })
         const data = await res
         return data 
     }
@@ -97,11 +98,11 @@ const datchange= (e)=>{
 
 }
 const click =async (e)=>{
-   const req = postLogs().then((data)=>data)
-    await setId("")
-    await setDate("")
-     await setDescription("")
-     await setDuration("")
+   await postLogs().then((data)=>data)
+    setId("")
+    setDate("")
+    setDescription("")
+    setDuration("")
 }
 //////////////End Of Functions /////////////////
 return(

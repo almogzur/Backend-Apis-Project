@@ -50,13 +50,8 @@ app.route('/workout/api/:users?')
     const reqBody = req.body
     console.log("POST /workout/api/users/:_id/exercises ")
     const id = req.params._id
-    const desc = req.body.description
-    const date = req.body.date
-    const dur = req.body.duration
-     console.log(id,desc,date,dur)
-   
- 
-
+     const json= req.body
+     console.log(json)
   })
   .get((req,res,next)=>{
     console.log("GET /workout/api/users/:_id/exercises ")
