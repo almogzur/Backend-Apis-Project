@@ -20,13 +20,18 @@ const postUserData = async ()=>{
 const getData = async()=>{
   }
 // end fatch functions ////
+
 //  Componenet functions ///////////
 const change = (e)=>{
     setUser(e.target.value)
 }
 const click = async ()=>{
+    if(user.length>=3&& user.length<25){
      postUserData().then((data)=>{ console.log(data)  })
     setUser("")
+    }else{
+        window.alert("User Name Must Have 3 Charecters ")
+    }
 }
 ////// end Componenet functions /////
 return (
@@ -58,8 +63,6 @@ return (
 ///////// Form Component ////////////////////////
 
 const WorkOutForm = ()=> {
-
-
     ///////// State /////////////
 const [id , setId]=useState("")
 const [description, setDescription]= useState("")
@@ -102,14 +105,15 @@ const datchange= (e)=>{
 
 }
 const click =async (e)=>{
-    if(id){
+    console.log(id.length)
+    if(id.length>=3){
         await postLogs().then((data)=>data)
     setId("")
     setDate("")
     setDescription("")
     setDuration("")
     }else {
-    window.alert(" ID is Required")
+    window.alert(" ID is Required And Need To be At list 3 Carecters")
     }
     
 }

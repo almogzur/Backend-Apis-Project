@@ -19,7 +19,7 @@ exports.WorkOut=  async function WorkOut(app){
                   res.send({username:user.username,"_id":user._id})
                 }
                     else{
-                        console.log("no user in db ")
+                        
                         const dbres = saveUser(userName).then((data)=>data)
                         const user= await dbres
                         if(user){  
@@ -46,16 +46,24 @@ exports.WorkOut=  async function WorkOut(app){
 
 
   })
-  app.route('/workout/api/users/:_id?/:exercises?')
+  app.route('/workout/api/users/:id?/:exercises?')
   .post(async (req,res,next)=>{
     const reqBody = req.body
     console.log("POST /workout/api/users/:_id/exercises ")
-    const id = req.params._id
+    const id = req.params.id
     const jbody= req.body 
     const des = jbody.description
     const dur = jbody.duration
-    const date = jbody.date
+    const date = jbody.date? jbody.date: new Date().toString()
+     
+    const logObj= {
+      "description":des,
+      "duration":dur,
+      "data":date
+    }
      console.log(id,des,dur,date)
+
+     updateUser(id,logObj)
   })
   .get((req,res,next)=>{
     console.log("GET /workout/api/users/:_id/exercises ")
@@ -63,5 +71,6 @@ exports.WorkOut=  async function WorkOut(app){
   }
 
 console.log(module.exports,"exports from WorkOut")
+
 
 
