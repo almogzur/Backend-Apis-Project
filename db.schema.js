@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose
 const ObjectId = require('mongodb').ObjectID;
 
+
 function nCallback (err,data,from){
    console.log("callback invoke",from? from: arguments)
       if(err)return console.error(err)
@@ -21,7 +22,7 @@ mongoose.connect(process.env["MONGO"],
                "logs":[{
                 "description":String,
                 "duration":Number,
-                "data":String
+                "date":String
               }],
                "count":"",
                  },
@@ -48,11 +49,9 @@ async function findAllUsers(){
 }
 async function updateUser(id,log){
   console.log("update",log)
-  const  hexreg = /[0-9A-Fa-f]{24}/g;
-  const hexid = id.match(hexreg)
-  if(hexid){
+  if(id.length ==24){
     const dbreq =  User.updateOne(
-      {'_id': hexid},// finnd 
+      {'_id': id},// finnd 
         {
           $push:{"logs":log}
         },// update

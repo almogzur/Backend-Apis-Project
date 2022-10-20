@@ -14,13 +14,13 @@ exports.TimeService = function TimeService(app){
      if(SRparms == undefined){
         console.log("from undefined")
         const def = new Date() ; // defult 
-        let s = addZero(def.getSeconds());
-        let h = addZero(def.getHours());
-        let m = addZero(def.getMinutes());
-        let day =def.getDay()
-        let date =def.getDate()
-        let month = def.getMonth()
-        let year= def.getFullYear()
+        const s = addZero(def.getSeconds());
+        const h = addZero(def.getHours());
+        const m = addZero(def.getMinutes());
+        const day =def.getDay()
+        const date =def.getDate()
+        const month = def.getMonth()
+        const year= def.getFullYear()
       res.json({
       "unix":def.getTime(),
       "utc":`${daysarr[day]}, ${date} ${monthsarr[month]} ${year} ${h}:${m}:${s} GMT`})
