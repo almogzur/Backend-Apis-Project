@@ -46,7 +46,7 @@ return (
            className="btn btn-info"
            id="user-btn"
             onClick={click}
-            >click me
+            >Regester/Find User
           </button>
         </div>
         <WorkOutForm />
@@ -66,7 +66,6 @@ const [description, setDescription]= useState("")
 const [duration , setDuration]=useState("")
 const [date, setDate]= useState("")
 ///////// End Of State /////////////
-
 
 
 //////  fatch functions /////
@@ -105,13 +104,14 @@ const datchange= (e)=>{
 const click =async (e)=>{
     if(id){
         await postLogs().then((data)=>data)
-    }else {
-   window.alert(" ID is Required")
-    }
     setId("")
     setDate("")
     setDescription("")
     setDuration("")
+    }else {
+    window.alert(" ID is Required")
+    }
+    
 }
 //////////////End Of Functions /////////////////
 
@@ -162,7 +162,7 @@ return(
             <button
             onClick={click}
             className="btn btn-info"
-            >SEND</button>
+            >Update User</button>
         </div>
     )
 }
