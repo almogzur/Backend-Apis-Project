@@ -38,7 +38,7 @@ exports.WorkOut=  async function WorkOut(app){
   })
     .get(async (req,res,next)=>{
          console.log("GET ,/workout/api/:user?")
-         console.log(req.params)
+         console.log(req.params,req.body,req.query)
          let user = req.params.users
          
          if(user=="users"){
@@ -69,11 +69,11 @@ exports.WorkOut=  async function WorkOut(app){
     // console.log(userUptades)
   })
   .get(async(req,res,next)=>{
-     const Dataneeted = req.params.Dataneeted
-    if(Dataneeted=="logs"){
-      console.log("Log Req")
-    }
+    const body =req.body
+    const Dataneeted = req.params.Dataneeted
+
   })
+
   }
 
 console.log(module.exports,"exports from WorkOut")

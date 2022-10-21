@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose
 const ObjectId = require('mongodb').ObjectID;
 
-
 function nCallback (err,data,from){
    console.log("callback invoke",from? from: arguments)
       if(err)return console.error(err)

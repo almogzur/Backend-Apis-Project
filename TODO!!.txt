@@ -36,11 +36,31 @@ build url id , store it ,  -- conact mongo to store data
 
 add route  for incoming req whid the route incloded 
 
-finde the route in data bace 
+finde the route in data bace  
 
 and redirect do site 
 
 create react button that interact whid Ex api bace on text input value
+
+
+
+/////// 
+
+
+21 / 10 
+
+
+
+Create  the Json response for User update 
+
+find out what is better window.redirect // Express res.redicert  
+
+add count to db Schema  ( user count or exercises count )
+
+
+fix Url regester responce 
+
+
 
 
 
