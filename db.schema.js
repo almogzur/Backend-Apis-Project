@@ -5,7 +5,7 @@ const {Schema} = mongoose
 const ObjectId = require('mongodb').ObjectID;
 
 function nCallback (err,data,from){
-   console.log("callback invoke",from? from: arguments)
+   console.log("callback","from",from? from: arguments)
       if(err)return console.error(err)
       return data
 }
@@ -48,8 +48,8 @@ async function findAllUsers(){
 }
 async function updateUser(id,log){
   console.log("update",log)
-  if(id.length ==24){
-    const dbreq =  User.updateOne(
+  if(id.length == 24){
+    const dbreq =  User.findOneAndUpdate(
       {'_id': id},// finnd 
         {
           $push:{"logs":log}
@@ -59,12 +59,11 @@ async function updateUser(id,log){
         const data = await dbreq
         return data 
   }else{
-    const dbreq = User.updateOne(
-        {userename:id},// finnd 
-        {
-          $push:{"logs":log}
-        },// update
-        nCallback(null,null,"update" ),//callback 
+    const dbreq = User.findOneAndUpdate(
+        {"username":id}, 
+        {$push:{"logs":log}},
+        {new:true},
+        nCallback(null,null,"update" )
     )
     const data = await dbreq
     return data

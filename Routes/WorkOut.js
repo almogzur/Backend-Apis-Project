@@ -48,11 +48,11 @@ exports.WorkOut=  async function WorkOut(app){
           res.send(list)
          }
   })
-  app.route('/workout/api/users/:id?/:Dataneeted?')
+  app.route('/workout/api/users/:_id?/:Dataneeted?')
   .post(async (req,res,next)=>{
     const reqBody = req.body
-    console.log("POST /workout/api/users/:_id/Exercises|Logs ", req.params)
-    const id = req.params.id
+    console.log("POST /workout/api/users/:_id/Dataneeted ", req.params)
+    const id = req.params._id
     const jbody= req.body 
     const des = jbody.description
     const dur = jbody.duration
@@ -65,8 +65,8 @@ exports.WorkOut=  async function WorkOut(app){
     }
      const dbreq = updateUser(id,logObj)
      const userUptades = await dbreq
+     console.log(userUptades,'return for find ad update ')
 
-    // console.log(userUptades)
   })
   .get(async(req,res,next)=>{
     const body =req.body
@@ -74,7 +74,7 @@ exports.WorkOut=  async function WorkOut(app){
 
   })
 
-  }
+  } 
 
 console.log(module.exports,"exports from WorkOut")
 
