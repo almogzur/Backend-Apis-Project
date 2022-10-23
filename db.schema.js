@@ -32,7 +32,7 @@ mongoose.connect(process.env["MONGO"],
 
 async function findUser(userName){
  console.log("findUser Inv")
- const userdata = await User.findOne({"username":userName},nCallback(null,null,"find"))
+ const userdata = await User.findOne({"username":userName},{new:false},nCallback(null,null,"find"))
    return userdata
 }
 async function saveUser(userName){
@@ -50,10 +50,9 @@ async function updateUser(id,log){
   console.log("update",log)
   if(id.length == 24){
     const dbreq =  User.findOneAndUpdate(
-      {'_id': id},// finnd 
-        {
-          $push:{"logs":log}
-        },// update
+        {'_id': id},// finnd 
+        { $push:{"logs":log}},// update
+        {new:true},
         nCallback(null,null,"update"),//callback
         )
         const data = await dbreq
