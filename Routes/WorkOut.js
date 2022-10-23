@@ -20,10 +20,8 @@ exports.WorkOut=  async function WorkOut(app){
 
               const dbres = findUser(userName).then((data)=>data)
               const user= await dbres
-
                 if(user){ res.send({username:user.username,"_id":user._id}) }
-                else if()
-                        {         
+                else{         
                    const dbres = saveUser(userName).then((data)=>data)
                    const user= await dbres
                       res.send({username:user.username,"_id":user._id})
