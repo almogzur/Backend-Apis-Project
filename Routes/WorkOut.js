@@ -31,7 +31,6 @@ exports.WorkOut=  async function WorkOut(app){
                     res.send({username:user.username,"_id":user._id})
                         }
   })
-
     .get(async (req,res,next)=>{
          console.log("GET ,/workout/api/:user?")
          console.log(req.params,req.body,req.query)
