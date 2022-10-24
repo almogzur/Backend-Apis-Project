@@ -17,8 +17,6 @@ const postUserData = async ()=>{
     const data = await res
            return data
     }
-const getData = async()=>{
-  }
 // end fatch functions ////
 
 //  Componenet functions ///////////

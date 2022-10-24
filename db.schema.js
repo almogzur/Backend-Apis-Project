@@ -19,6 +19,7 @@ mongoose.connect(process.env["MONGO"],
              {
                "username":String,  
                "logs":[{
+                _id: false,
                 "description":String,
                 "duration":Number,
                 "date":String
@@ -29,10 +30,17 @@ mongoose.connect(process.env["MONGO"],
  const User = mongoose.model('User',userSchema)
 
  //const userCount= User.count({},nCallback)
-
-async function findUser(userName){
+async function findUserById (id){
+  console.log("findUserById")
+  const dbreq = User.findOne({"_id":id},nCallback(null,null,"findUserById"))
+  const data=  await dbreq
+  console.log(data)
+  return data
+}
+async function findUserByName(userName){
  console.log("findUser Inv")
- const userdata = await User.findOne({"username":userName},{new:false},nCallback(null,null,"find"))
+ const userdata = await User.findOne({"username":userName},nCallback(null,null,"find"))
+    console.log(  userdata,"User ")
    return userdata
 }
 async function saveUser(userName){
@@ -52,7 +60,9 @@ async function updateUser(id,log){
     const dbreq =  User.findOneAndUpdate(
         {'_id': id},// finnd 
         { $push:{"logs":log}},// update
-        {new:true},
+        {
+        new:true,
+        },
         nCallback(null,null,"update"),//callback
         )
         const data = await dbreq
@@ -61,7 +71,10 @@ async function updateUser(id,log){
     const dbreq = User.findOneAndUpdate(
         {"username":id}, 
         {$push:{"logs":log}},
-        {new:true},
+        {
+          new:true,
+         
+        },
         nCallback(null,null,"update" )
     )
     const data = await dbreq
@@ -70,9 +83,10 @@ async function updateUser(id,log){
      
 }
 exports.updateUser=updateUser
-exports.findUser =findUser
+exports.findUserByName =findUserByName
 exports.saveUser=saveUser
 exports.findAllUsers=findAllUsers
+exports.findUserById=findUserById
 
 
 
