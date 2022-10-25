@@ -59,9 +59,7 @@ exports.WorkOut=  async function WorkOut(app){
     const bodyDay= bodyDate.getDay() 
     const bodyMonth = bodyDate.getMonth()//bace 0 array of months 
     const bodyYear = bodyDate.getFullYear()
-    const date = body.date? 
-          `${daysarr[bodyDay]} ${monthsarr[bodyMonth]} ${addZero(bodyMonth+1)} ${bodyYear}` :
-          `${daysarr[day]} ${monthsarr[month]} ${Tdate} ${year}`
+    const date = body.date?  new Date(body.date).toDateString() : new Date().toDateString()
     const logObj= { "description":des , "duration":dur , "date":date }
        // update user 
     console.log("Updating User ... ",logObj)
@@ -94,23 +92,27 @@ exports.WorkOut=  async function WorkOut(app){
   })
   .get(async(req,res,next)=>{
      const params = req.params
-        console.log("Get" ,"Id :",params._id,"Serching ... ")
-     const dbreq = findUserById(params._id)
-     const user = await dbreq
+     const query = Object.keys(req.query).length === 0 ? "" : req.query 
+              console.log("Get" ,"Id :",params,"Serching ... ", query )
+
+     const dbreq = findUserById(params._id,query)
+
+     let user = await dbreq
          
-     if (user){
-      console.log("User Find")
+        if (user){
+           console.log("User Find",user)
 
-      const logsLength= user.logs.length
+          const logsLength= user.logs.length
 
-      const responceJson={
-        "username":user.username,
-          "count":logsLength,
-          "_id":user._id,
-          "log":user.logs,
-              }
-              console.log("Sending User")
-       res.json(responceJson)
+          const responceJson={
+             "username":user.username,
+              "count":logsLength,
+              "_id":user._id,
+              "log":user.logs,
+                   }
+
+              console.log("Sending User",responceJson)
+           res.json(responceJson)
      }else {
       console.log("no User In DB")
      }
