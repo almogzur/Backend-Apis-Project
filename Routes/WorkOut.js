@@ -13,7 +13,6 @@ const Tdate =addZero(Time.getDate())
 const month = addZero(Time.getMonth()+1)
 const year= addZero(Time.getFullYear())
 
-
 exports.WorkOut=  async function WorkOut(app){
     
  app.route('/workout/api/:users?')
@@ -28,7 +27,7 @@ exports.WorkOut=  async function WorkOut(app){
                  } else{         
                     const dbres = saveUser(userName).then((data)=>data)
                     const user= await dbres
-                    res.send({username:user.username,"_id":user._id})
+                       res.send({username:user.username,"_id":user._id})
                         }
   })
     .get(async (req,res,next)=>{
@@ -46,14 +45,25 @@ exports.WorkOut=  async function WorkOut(app){
   app.route('/workout/api/users/:_id?/:Dataneeted?')
 
   .post(async (req,res,next)=>{
+
     console.log("POST /workout/api/users/:_id/Dataneeted ", req.params)
     const id = req.params._id
-    const jbody= req.body 
-    const des = jbody.description
-    const dur = jbody.duration
-    const date = jbody.date? jbody.date: `${daysarr[day]} ${monthsarr[month]} ${Tdate} ${year}`
+    const body= req.body 
+    const des = body.description
+    const dur = body.duration
+    const bodyDate = new Date(body.date)
+    const bodyDay= bodyDate.getDay() 
+    const bodyMonth = bodyDate.getMonth()//bace 0 array of months 
+    const bodyYear = bodyDate.getFullYear()
+    const date = body.date? 
+
+          `${daysarr[bodyDay]} ${monthsarr[bodyMonth]} ${addZero(bodyMonth+1)} ${bodyYear}` :
+
+          `${daysarr[day]} ${monthsarr[month]} ${Tdate} ${year}`
+
     // Forming Update json to mongo 
     const logObj= { "description":des , "duration":dur , "date":date }
+
     // sending update (user id , log json)
      const dbreq = updateUser(id,logObj)
      const userUptades = await dbreq
@@ -67,20 +77,30 @@ exports.WorkOut=  async function WorkOut(app){
                 "username": userUptades.username,
                 "description":lastLogDescription,
                 "duration":lastLogDuration,
-                "_id" :userUptades._id,
                 "date":lastLogDate,
+                "_id" :userUptades._id,
                             }
            res.json(responsesJson) 
       }
  
   })
   .get(async(req,res,next)=>{
-    const params = req.params
-    console.log("Get",params)
-   const dbreq = findUserById(params._id)
-   const user = await dbreq
-   console.log(user,params)
+       const params = req.params
+        console.log("Get" ,"Id :",params._id,"Serching ... ")
+       const dbreq = findUserById(params._id)
+       const user = await dbreq
+        console.log(user,params)
 
+        const logsLength= user.logs.length
+
+        const responceJson={
+          "username":user.username,
+            "count":logsLength,
+            "_id":user._id,
+            "logs":user.logs,
+        }
+
+         res.json(responceJson)
   })
 
   } 

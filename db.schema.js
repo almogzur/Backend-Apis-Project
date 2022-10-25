@@ -18,15 +18,15 @@ mongoose.connect(process.env["MONGO"],
  const userSchema = new Schema(
              {
                "username":String,  
+               "count":"Number",
                "logs":[{
                 _id: false,
                 "description":String,
                 "duration":Number,
-                "date":String
+                "date":String,
               }],
-               "count":"",
-                 },
-                 { versionKey: false }) 
+              
+     },{ versionKey: false }) 
  const User = mongoose.model('User',userSchema)
 
  //const userCount= User.count({},nCallback)
@@ -34,20 +34,17 @@ async function findUserById (id){
   console.log("findUserById")
   const dbreq = User.findOne({"_id":id},nCallback(null,null,"findUserById"))
   const data=  await dbreq
-  console.log(data)
   return data
 }
 async function findUserByName(userName){
  console.log("findUser Inv")
  const userdata = await User.findOne({"username":userName},nCallback(null,null,"find"))
-    console.log(  userdata,"User ")
    return userdata
 }
 async function saveUser(userName){
   console.log("save invk")
   const doc = new User({username:userName})
      const data =  doc.save(nCallback(null,null,"save"))
-     console.log( doc,"saved user ")
       return data
 }
 async function findAllUsers(){
