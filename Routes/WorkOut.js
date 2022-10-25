@@ -4,14 +4,6 @@ const findAllUsers = require('../db.schema').findAllUsers
 const updateUser = require('../db.schema').updateUser
 const findUserById = require('../db.schema').findUserById
 const findLastLog = (arr)=>{ return arr[arr.length-1]}
-const addZero = (i)=> {if (i < 10){i = "0" + i} return i; }
-const daysarr = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-const monthsarr= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",]
-const Time = new Date()
-const day =Time.getDay()
-const Tdate =addZero(Time.getDate())
-const month = addZero(Time.getMonth()+1)
-const year= addZero(Time.getFullYear())
 
 exports.WorkOut=  async function WorkOut(app){
     
@@ -55,10 +47,6 @@ exports.WorkOut=  async function WorkOut(app){
     const des = body.description
     const dur = body.duration
       // Forming Update json to mongo 
-    const bodyDate = new Date(body.date)
-    const bodyDay= bodyDate.getDay() 
-    const bodyMonth = bodyDate.getMonth()//bace 0 array of months 
-    const bodyYear = bodyDate.getFullYear()
     const date = body.date?  new Date(body.date).toDateString() : new Date().toDateString()
     const logObj= { "description":des , "duration":dur , "date":date }
        // update user 
@@ -69,7 +57,7 @@ exports.WorkOut=  async function WorkOut(app){
           if (userUptades){
 
                console.log("Update Seccsessful  ", )
-                if(userUptades.logs.length > 0){ // if user hse logs return the last log object of the array 
+                 if(userUptades.logs.length > 0){ // if user hse logs return the last log object of the array 
                   const lastLogDate = findLastLog(userUptades.logs).date 
                   const lastLogDuration = findLastLog(userUptades.logs).duration 
                   const lastLogDescription = findLastLog(userUptades.logs).description
@@ -82,7 +70,8 @@ exports.WorkOut=  async function WorkOut(app){
                    "_id" :userUptades._id,
                          }
             res.json(responsesJson) 
-                 }else {
+                 }
+                 else{
 
                  }
 
