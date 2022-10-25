@@ -5,7 +5,7 @@ const {Schema} = mongoose
 const ObjectId = require('mongodb').ObjectID;
 
 function nCallback (err,data,from){
-   console.log("callback","from",from? from: arguments)
+   //console.log(from? from: null)
       if(err)return console.error(err)
       return data
 }
@@ -31,18 +31,17 @@ mongoose.connect(process.env["MONGO"],
 
  //const userCount= User.count({},nCallback)
 async function findUserById (id){
-  console.log("findUserById")
+  //console.log("findUserById")
   const dbreq = User.findOne({"_id":id},nCallback(null,null,"findUserById"))
   const data=  await dbreq
   return data
 }
 async function findUserByName(userName){
- console.log("findUser Inv")
+ //console.log("findUser Inv")
  const userdata = await User.findOne({"username":userName},nCallback(null,null,"find"))
    return userdata
 }
 async function saveUser(userName){
-  console.log("save invk")
   const doc = new User({username:userName})
      const data =  doc.save(nCallback(null,null,"save"))
       return data
@@ -52,14 +51,11 @@ async function findAllUsers(){
     return data
 }
 async function updateUser(id,log){
-  console.log("update",log)
   if(id.length == 24){
     const dbreq =  User.findOneAndUpdate(
         {'_id': id},// finnd 
         { $push:{"logs":log}},// update
-        {
-        new:true,
-        },
+        {new:true,},
         nCallback(null,null,"update"),//callback
         )
         const data = await dbreq
