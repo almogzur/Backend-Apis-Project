@@ -29,30 +29,36 @@ mongoose.connect(process.env["MONGO"],
  const User = mongoose.model('User',userSchema)
 
  //const userCount= User.count({},nCallback)
-async function findUserById (id,Squery){
 
-  if(Object.keys(Squery).length != 0){
-    console.log("Quary Find")
-    const dbreq = await User.findOne({"_id":id},null,{Squery},nCallback())
-    return dbreq
-   }else{
-    console.log("Noraml Find")
-     const dbreq = await User.findOne({"_id":id},nCallback())
-     return dbreq
-  }
+async function gFind  (id,Squary){
+  console.log("Quary Serch... ")
+  let serchPar = [] 
+  let serchval = []
+  const input = id.length < 24 ?  `_username`  : `_id` ; console.log("input", input, "id",id)
+
+       for (const i in Squary){ serchPar.push(i); serchval.push(Squary[i]) } ; 
+
+          if(input == "_id"){ 
+              const dbres= await  User.findOne({"_id":id},{},nCallback)
+                   return dbres
+          }else{
+            const dbres= await  User.findOne({"username":id},nCallback)
+                   return dbres
+          }
+
+    
+    }
+ 
+  
+async function findUserById (id){
+   const dbreq = await User.findOne({"_id":id},nCallback())
+   return dbreq
+  
 }
-async function findUserByName(userName,Squery){
-
-  if(Squery && Object.keys(Squery).length !== 0){
-      console.log("Quary Find")
-    const userdate= await(User.find({"username":userName},null,{Squery},nCallback()))
-    return userdate
-
-  }else{
-    console.log("Noraml Find")
+async function findUserByName(userName){
    const userdata = await User.findOne({"username":userName},nCallback())
    return userdata
-  }
+  
 }
 async function saveUser(userName){
   const doc = new User({username:userName})
@@ -93,6 +99,7 @@ exports.findUserByName =findUserByName
 exports.saveUser=saveUser
 exports.findAllUsers=findAllUsers
 exports.findUserById=findUserById
+exports.gFind=gFind
 
 
 

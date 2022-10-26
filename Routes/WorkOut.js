@@ -3,8 +3,8 @@ const saveUser = require('../db.schema').saveUser
 const findAllUsers = require('../db.schema').findAllUsers
 const updateUser = require('../db.schema').updateUser
 const findUserById = require('../db.schema').findUserById
+const gFind = require('../db.schema').gFind
 const findLastLog = (arr)=>{ return arr[arr.length-1]}
-
 exports.WorkOut=  async function WorkOut(app){
     
  app.route('/workout/api/:users?')
@@ -81,32 +81,42 @@ exports.WorkOut=  async function WorkOut(app){
   })
   .get(async(req,res,next)=>{
      const params = req.params
+
      const query = Object.keys(req.query).length === 0 ? "" : req.query 
-              console.log("Get" ,"Id :",params,"Serching ... ", query )
 
-     const dbreq = findUserById(params._id,query)
+            console.log("Get Params : ",params , "Querys", query ,"Serching ... " )
 
-     let user = await dbreq
-         
-        if (user){
-           console.log("User Find",user)
+             if(query != "" ){
 
-          const logsLength= user.logs.length
+               const User= await gFind(params._id,query)
+               
+               console.log(User,"express exprestion")
+               
+              }else {
 
-          const responceJson={
-             "username":user.username,
-              "count":logsLength,
-              "_id":user._id,
-              "log":user.logs,
-                   }
+                  const User = await findUserById(params._id)
 
-              console.log("Sending User",responceJson)
-           res.json(responceJson)
-     }else {
-      console.log("no User In DB")
-     }
-      
-    
+                  if (User){
+                     console.log("User Find",User)
+          
+                    const logsLength= User.logs.length
+          
+                    const responceJson={
+                       "username":User.username,
+                        "count":logsLength,
+                        "_id":User._id,
+                        "log":User.logs,
+                             }
+          
+                        console.log("Sending User",responceJson)
+                     res.json(responceJson)
+               }else {
+                console.log("no User In DB")
+               }
+
+             
+              }
+
   })
 
   } 
