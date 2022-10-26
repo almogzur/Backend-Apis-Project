@@ -39,19 +39,21 @@ async function gFind  (id,Squary){
        for (const i in Squary){ serchPar.push(i); serchval.push(Squary[i]) } ; 
 
           if(input == "_id"){ 
-              const dbres= await  User.findOne({"_id":id},{},nCallback)
+
+              const dbres= await  User.findById({"_id":id},"+logs,null,nCallback)
                    return dbres
           }else{
             const dbres= await  User.findOne({"username":id},nCallback)
-                   return dbres
           }
 
     
     }
+  
+    
  
   
 async function findUserById (id){
-   const dbreq = await User.findOne({"_id":id},nCallback())
+   const dbreq = await User.findById({id},nCallback())
    return dbreq
   
 }
