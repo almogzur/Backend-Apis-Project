@@ -40,7 +40,7 @@ async function gFind  (id,Squary){
 
           if(input == "_id"){ 
 
-              const dbres= await  User.findById({"_id":id},"+logs,null,nCallback)
+              const dbres= await  User.findById({"_id":id},"-_id -username",null,nCallback)
                    return dbres
           }else{
             const dbres= await  User.findOne({"username":id},nCallback)
