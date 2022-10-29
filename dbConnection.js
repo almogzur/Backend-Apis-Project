@@ -5,9 +5,8 @@ const { MongoClient } = require('mongodb');
 async function main (callback){
 
   const URI = process.env["MONGO"]
-  const db = new MongoClient (URI,{useUnifiedTopology: true  })
-console.log("mongo Connected")
-   
+  const db = new MongoClient ('mongodb+srv://almog:<AA6377251a>@cluster0.1non7.mongodb.net/?retryWrites=true&w=majority',{useUnifiedTopology: true  })
+
   try {
 
     await db.connect()
@@ -16,10 +15,10 @@ console.log("mongo Connected")
   }catch(e){
     console.log(e,"mongo err")
   }
+  console.log("mongo Connected")
   }
 
   
-   const User = 
 
 
   exports.main = main

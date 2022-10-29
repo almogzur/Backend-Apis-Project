@@ -6,7 +6,7 @@
   "scripts": {
     "I": "(npm install && cd front && npm install && npm audit fix --force )",
     "React": "(cd front && npm run start )",
-    "Exprexs": "nodemon -- inspect  server.js",
+    "Ex": "node MainEx.js",
     "L": "npm start --staging",
     "RB": "(cd front && npm run build)"
   },
