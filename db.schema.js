@@ -2,7 +2,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const {Schema} = mongoose
-const ObjectId = require('mongodb').ObjectID;
 
 function nCallback (err,data){
       if(err)return console.error(err)
@@ -32,28 +31,34 @@ mongoose.connect(process.env["MONGO"],
 
 async function gFind  (id,Squary){
   console.log("Quary Serch... ")
-  let serchPar = [] 
-  let serchval = []
-  const input = id.length < 24 ?  `_username`  : `_id` ; console.log("input", input, "id",id)
-
-       for (const i in Squary){ serchPar.push(i); serchval.push(Squary[i]) } ; 
+  const input = id.length == 24 ?  "_id"  : "username" ; console.log("input", input, "id",id)
+  const sFrom = Squary.from;
+  const sTo = Squary.to;
+  const sLimit = Squary.limit
 
           if(input == "_id"){ 
-
-              const dbres= await  User.findById({"_id":id},"-_id -username",null,nCallback)
-                   return dbres
+            // 3 quary options from to  limit set them as constent for exprtion use
+          
+                      if(sFrom&&sTo){
+                        console.log(sFrom,sTo,"Serching From To ",sFrom,sTo)
+                        const dbres = await User.findById({"_id":id},{},{},nCallback())
+                            return dbres
+                      }else if(sLimit){
+                         console.log(sLimit)
+                          }
+            
           }else{
             const dbres= await  User.findOne({"username":id},nCallback)
+            return dbres
           }
 
-    
     }
   
     
  
   
 async function findUserById (id){
-   const dbreq = await User.findById({id},nCallback())
+   const dbreq = await User.findById({"_id":id},nCallback())
    return dbreq
   
 }

@@ -84,7 +84,7 @@ exports.WorkOut=  async function WorkOut(app){
 
      const query = Object.keys(req.query).length === 0 ? "" : req.query 
 
-            console.log("Get Params : ",params , "Querys", query ,"Serching ... " )
+            console.log("Get Params : ",params , query ,"Serching ... " )
 
              if(query != "" ){
 
