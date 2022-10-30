@@ -5,7 +5,7 @@ const { MongoClient } = require('mongodb');
 async function main (callback){
 
   const URI = process.env["MONGO"]
-  const db = new MongoClient ('mongodb+srv://almog:<AA6377251a>@cluster0.1non7.mongodb.net/?retryWrites=true&w=majority',{useUnifiedTopology: true  })
+  const db = new MongoClient (URI,{useUnifiedTopology: true  })
 
   try {
 

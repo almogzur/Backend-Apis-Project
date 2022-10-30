@@ -86,17 +86,20 @@ exports.WorkOut=  async function WorkOut(app){
 
             console.log("Get Params : ",params , query ,"Serching ... " )
 
-             if(query != "" ){
+               if(query != "" ){
 
                const User= await gFind(params._id,query)
+            
+               console.log(User,"Returnd Quary")
                
-               console.log(User,"express exprestion")
                
-              }else {
+               }else {
 
                   const User = await findUserById(params._id)
 
                   if (User){
+
+
                      console.log("User Find",User)
           
                     const logsLength= User.logs.length
@@ -111,6 +114,7 @@ exports.WorkOut=  async function WorkOut(app){
                         console.log("Sending User",responceJson)
                      res.json(responceJson)
                }else {
+
                 console.log("no User In DB")
                }
 

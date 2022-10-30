@@ -30,33 +30,39 @@ mongoose.connect(process.env["MONGO"],
  //const userCount= User.count({},nCallback)
 
 async function gFind  (id,Squary){
-  console.log("Quary Serch... ")
-  const input = id.length == 24 ?  "_id"  : "username" ; console.log("input", input, "id",id)
+ 
+  const input = id.length == 24 ?  "_id"  : "username" ;
+         
+  // 3 quary options from to  limit set them as constent for exprtion use
+
   const sFrom = Squary.from;
   const sTo = Squary.to;
   const sLimit = Squary.limit
 
           if(input == "_id"){ 
-            // 3 quary options from to  limit set them as constent for exprtion use
-          
+              console.log("Quary Serch... ", input)
                       if(sFrom&&sTo){
-                        console.log(sFrom,sTo,"Serching From To ",sFrom,sTo)
-                        const dbres = await User.findById({"_id":id},{},{},nCallback())
-                            return dbres
-                      }else if(sLimit){
+                             console.log("Serching From To ",sFrom,sTo)
+                             const dbres = await User.findById(
+                              {"_id":id},
+                              {"logs.date" :  {$elemMatch: { $gte: new Date(sFrom).toDateString(), $lt:new Date("1990-01-02").toDateString() }}},
+                              nCallback())
+                                    return dbres
+
+                      }else if(sLimit){                      
                          console.log(sLimit)
                           }
             
           }else{
+             console.log("Quary Serch... ,input ")
+
             const dbres= await  User.findOne({"username":id},nCallback)
             return dbres
           }
 
     }
   
-    
- 
-  
+      
 async function findUserById (id){
    const dbreq = await User.findById({"_id":id},nCallback())
    return dbreq
