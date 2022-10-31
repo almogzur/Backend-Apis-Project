@@ -43,11 +43,13 @@ async function gFind  (id,Squary){
               console.log("Quary Serch... ", input)
                       if(sFrom&&sTo){
                              console.log("Serching From To ",sFrom,sTo)
-                             const dbres = await User.findById(
-                              {"_id":id},
-                              {"logs.date" :  {$elemMatch: { $gte: new Date(sFrom).toDateString(), $lt:new Date("1990-01-02").toDateString() }}},
-                              nCallback())
-                                    return dbres
+                             console.log(new Date(sTo).toDateString() < new Date("1900-01-02").toDateString() )
+                             const query = await User.findOne({ "_id":id , },
+                             {logs : { $elemMatch: {date: {$gt : new Date(sFrom).toDateString(), $lt: new Date ("1990-01-02").toDateString() } } } }
+
+                            ,nCallback())
+                                   
+                                    return query
 
                       }else if(sLimit){                      
                          console.log(sLimit)
