@@ -25,11 +25,12 @@ mongoose.connect(process.env["MONGO"],
               }],
               
      },{ versionKey: false }) 
+
  const User = mongoose.model('User',userSchema)
 
  //const userCount= User.count({},nCallback)
 
-async function gFind  (id,Squary){
+async function quaryFind  (id,Squary){
  
       const input = id.length == 24 ?  "_id"  : "username" ;
          
@@ -39,29 +40,30 @@ async function gFind  (id,Squary){
       const sTo = Squary.to;
       const sLimit = Squary.limit
 
-          if(input == "_id"){   console.log("Quary Serch... ", input)
+              if(input == "_id"){   console.log("Quary Serch... ", input)
+                let arr=[]
+                const quary = await User.findById(id,nCallback(),{})
 
                  if(sFrom&&sTo){
-                  let arr=[]
-                      console.log("Serching From To ",sFrom,sTo)
-                   const quary = await User.findById(id,function(err,user){
-                                       if(err){return console.log(err)}
-                                       else if(user){return user}
-                                                  })
+                  console.log("Serching From To ",sFrom,sTo)
                           quary.logs.map(function(log){  
-                                      if( log.date > new Date(sFrom).toDateString() || log.date < new Date(sTo).toDateString()){
-                                                    arr.push (log) }else{console.log(log.date,"else")}
-                                                 })
-                                           const reJson ={  "_id":quary._id,  "username":quary.username,"log":arr }
-                                                 return reJson
-                          
-                            }
-                            else if(sLimit){                      
-                         console.log(sLimit)
+                      if( log.date > new Date(sFrom).toDateString() || 
+                          log.date < new Date(sTo).toDateString()){ 
+                             arr.push(log) }
+                                 })
+                           const reJson ={  "_id":quary._id,  "username":quary.username,"log":arr }
+                                             return reJson
+                            }     
+                 else if(sLimit){    
+                       console.log("Serching Limit", sLimit,id)
+                     const bla=  quary["logs"].limit(1)
+                       console.log(bla)
+                       
                           }
             
           }else{
              console.log("Quary Serch... ,input ")
+             
 
             const dbres= await  User.findOne({"username":id},nCallback)
             return dbres
@@ -113,12 +115,13 @@ async function updateUser(id,log){
   }
      
 }
+
 exports.updateUser=updateUser
 exports.findUserByName =findUserByName
 exports.saveUser=saveUser
 exports.findAllUsers=findAllUsers
 exports.findUserById=findUserById
-exports.gFind=gFind
+exports.quaryFind=quaryFind
 
 
 

@@ -3,7 +3,7 @@ const saveUser = require('../db.schema').saveUser
 const findAllUsers = require('../db.schema').findAllUsers
 const updateUser = require('../db.schema').updateUser
 const findUserById = require('../db.schema').findUserById
-const gFind = require('../db.schema').gFind
+const quaryFind = require('../db.schema').quaryFind
 const findLastLog = (arr)=>{ return arr[arr.length-1]}
 exports.WorkOut=  async function WorkOut(app){
     
@@ -80,15 +80,16 @@ exports.WorkOut=  async function WorkOut(app){
            } 
   })
   .get(async(req,res,next)=>{
-     const params = req.params
 
-     const query = Object.keys(req.query).length === 0 ? "" : req.query 
+     const params = req.params
+     
+     const query = Object.keys(req.query).length === 0 ? null : req.query 
 
             console.log("Get Params : ",params , query ,"Serching ... " )
 
-               if(query != "" ){
+               if(query != null ){
 
-               const User= await gFind(params._id,query)
+               const User= await quaryFind(params._id,query)
             
                console.log(User,"Returnd Quary")
 
