@@ -91,6 +91,8 @@ exports.WorkOut=  async function WorkOut(app){
                const User= await gFind(params._id,query)
             
                console.log(User,"Returnd Quary")
+
+               res.json(User)
                
                
                }else {

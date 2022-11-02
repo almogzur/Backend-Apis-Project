@@ -31,26 +31,32 @@ mongoose.connect(process.env["MONGO"],
 
 async function gFind  (id,Squary){
  
-  const input = id.length == 24 ?  "_id"  : "username" ;
+      const input = id.length == 24 ?  "_id"  : "username" ;
          
   // 3 quary options from to  limit set them as constent for exprtion use
 
-  const sFrom = Squary.from;
-  const sTo = Squary.to;
-  const sLimit = Squary.limit
+      const sFrom = Squary.from;
+      const sTo = Squary.to;
+      const sLimit = Squary.limit
 
-          if(input == "_id"){ 
-              console.log("Quary Serch... ", input)
-                      if(sFrom&&sTo){
-                             console.log("Serching From To ",sFrom,sTo)
-                             console.log(new Date(sFrom).toDateString() < new Date("1900-01-02").toDateString() )
-                            const quary = User.find(
-                              { logs: { $elemMatch: {  date: { $gte: new Date(sFrom).toDateString(), $lt: new Date("1900-01-03").toDateString() } } }  }
-                             
-                              )
-                                    return quary
+          if(input == "_id"){   console.log("Quary Serch... ", input)
 
-                      }else if(sLimit){                      
+                 if(sFrom&&sTo){
+                  let arr=[]
+                      console.log("Serching From To ",sFrom,sTo)
+                   const quary = await User.findById(id,function(err,user){
+                                       if(err){return console.log(err)}
+                                       else if(user){return user}
+                                                  })
+                          quary.logs.map(function(log){  
+                                      if( log.date > new Date(sFrom).toDateString() || log.date < new Date(sTo).toDateString()){
+                                                    arr.push (log) }else{console.log(log.date,"else")}
+                                                 })
+                                           const reJson ={  "_id":quary._id,  "username":quary.username,"log":arr }
+                                                 return reJson
+                          
+                            }
+                            else if(sLimit){                      
                          console.log(sLimit)
                           }
             
@@ -62,8 +68,7 @@ async function gFind  (id,Squary){
           }
 
     }
-  
-      
+        
 async function findUserById (id){
    const dbreq = await User.findById({"_id":id},nCallback())
    return dbreq
