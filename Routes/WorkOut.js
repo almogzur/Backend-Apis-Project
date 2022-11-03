@@ -57,10 +57,10 @@ exports.WorkOut=  async function WorkOut(app){
           if (userUptades){
 
                console.log("Update Seccsessful  ", )
-                 if(userUptades.logs.length > 0){ // if user hse logs return the last log object of the array 
-                  const lastLogDate = findLastLog(userUptades.logs).date 
-                  const lastLogDuration = findLastLog(userUptades.logs).duration 
-                  const lastLogDescription = findLastLog(userUptades.logs).description
+                 if(userUptades.log.length > 0){ // if user hse logs return the last log object of the array 
+                  const lastLogDate = findLastLog(userUptades.log).date 
+                  const lastLogDuration = findLastLog(userUptades.log).duration 
+                  const lastLogDescription = findLastLog(userUptades.log).description
 
               const responsesJson = {
                     "username": userUptades.username,
@@ -105,13 +105,13 @@ exports.WorkOut=  async function WorkOut(app){
 
                      console.log("User Find",User)
           
-                    const logsLength= User.logs.length
+                    const logsLength= User.log.length
           
                     const responceJson={
                        "username":User.username,
                         "count":logsLength,
                         "_id":User._id,
-                        "log":User.logs,
+                        "log":User.log,
                              }
           
                         console.log("Sending User",responceJson)
