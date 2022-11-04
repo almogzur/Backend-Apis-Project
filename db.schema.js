@@ -49,10 +49,10 @@ async function quaryFind  (id,Squary){
 
               if(sLimit&&sFrom&&sTo){ console.log("All Quarys Serch....",sFrom,sTo,sLimit)
              
-                 const quary = await User.findOne({
-                  "id":id,
-                  "log.date": {$gt: fromStr, $lt : toStr}
-                 })
+                 const quary = await User.findById(
+                  id,
+                 { "log.date": {$gt: fromStr, $lt : toStr}}
+                 )
 
                     console.log(quary)
 
