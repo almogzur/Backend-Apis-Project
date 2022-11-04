@@ -49,20 +49,21 @@ async function quaryFind  (id,Squary){
 
               if(sLimit&&sFrom&&sTo){ console.log("All Quarys Serch....",sFrom,sTo,sLimit)
              
-                 const quary = await User.where("_id",id).where("log").exec(nCallback())
+                 const quary = await User.findOne({
+                  "id":id,
+                  "log.date": {$gt: fromStr, $lt : toStr}
+                 })
 
                     console.log(quary)
 
                     }
               else if(sFrom&&sTo){ console.log("Serching From To ",sFrom,sTo)
-                  
-                     const quary = await User.findById(id)
-                                quary.log.map(function(log){  
-                      if( log.date > new Date(sFrom).toDateString() || 
-                          log.date < new Date(sTo).toDateString()){ 
-                             arr.push(log) }
-                                 })
-                     const reJson ={  "_id":quary._id,  "username":quary.username,"log":arr }
+        
+                 const quary = await User.findById(id)
+                       quary.log.map(function(log){  
+                                if( log.date > fromStr || log.date < toStr){ arr.push(log) }})
+
+                const reJson ={  "_id":quary._id,  "username":quary.username,"log":arr }
                                              return reJson
                             }     
               else if(sLimit){  console.log("Serching Limit", sLimit,id)
