@@ -21,7 +21,7 @@ mongoose.connect(process.env["MONGO"],
                    _id: false,
                    "description":String,
                    "duration":Number,
-                   "date":{type:Date, default:new Date().toDateString()}
+                   "date":String
               }],
               
      },{ versionKey: false }) 
@@ -30,7 +30,7 @@ mongoose.connect(process.env["MONGO"],
 
  //const userCount= User.count({},nCallback)
 
-async function quaryFind  (id,Squary){
+async function quaryFind (id,Squary){
  
   // 3 quary options from to  limit set them as constent for exprtion use
       const sFrom = Squary.from;
@@ -45,12 +45,16 @@ async function quaryFind  (id,Squary){
 
               if(sLimit&&sFrom&&sTo){ console.log("All Quarys Serch....",sFrom,sTo,sLimit)
 
-                const quary = User.find({
-                  "_id":id,
-                   log:{date:{$gt:toStr}}
-                })  
+                const quary =await User.findById(id,{
+                                   log:{$elemMatch:
+                                                  {
+                                                  date:{$gte:fromStr}}
+                                                                }
+                                                                }
+                                                                )
+                return quary
                           
-               console.log(await quary)
+               console.log( quary)
                   
                     }
               else if(sFrom&&sTo){ console.log("Serching From To ",sFrom,sTo)
