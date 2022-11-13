@@ -100,10 +100,7 @@ exports.WorkOut=  async function WorkOut(app){
 
                   const User = await findUserById(params._id)
 
-                  if (User){
-
-
-                     console.log("User Find",User)
+                  if (User){  console.log("User Find",User)
           
                     const logsLength= User.log.length
           
@@ -115,6 +112,7 @@ exports.WorkOut=  async function WorkOut(app){
                              }
           
                         console.log("Sending User",responceJson)
+
                      res.json(responceJson)
                }else {
 

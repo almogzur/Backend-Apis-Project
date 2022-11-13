@@ -36,40 +36,34 @@ async function quaryFind (id,Squary){
       const sFrom = Squary.from;
       const sTo = Squary.to;
       const sLimit = Number(Squary.limit)
+      
 
       // format dates 
-      const fromStr = new Date(sFrom).toDateString()
-      const toStr = new Date(sTo).toDateString()
-    
-       let arr=[] 
+      const from = new Date(sFrom).toDateString()
+      const to = new Date(sTo).toDateString()
 
-              if(sLimit&&sFrom&&sTo){ console.log("All Quarys Serch....",sFrom,sTo,sLimit)
+              if(sLimit&&sFrom&&sTo){ console.log("All Quarys Serch....",sFrom,sTo,sLimit, typeof sLimit)
 
-                const quary =await User.findById(id,{
-                                   log:{$elemMatch:
-                                                  {
-                                                  date:{$gte:fromStr}}
-                                                                }
-                                                                }
-                                                                )
+              const quary = await User.find(
+                {
+                 "_id":id,
+                  'log.date':{$gt:from,$lt:to }
+                }
+               )
+
                 return quary
                           
-               console.log( quary)
                   
                     }
               else if(sFrom&&sTo){ console.log("Serching From To ",sFrom,sTo)
         
-                 const quary = await User.findById(id)
-
-                       quary.log.map(function(log){  
-                                if( log.date > fromStr || log.date < toStr){
-                                   arr.push(log) 
-                                  }}
-                                   )
-
-                 const reJson ={  "_id":quary._id,  "username":quary.username,"log":arr }
-                   
-                      return reJson
+                 const quary = await User.find(
+                                   {
+                                    "_id":id,
+                                     'log.date':{$gt:from,$lt:to}
+                                   }
+                                  )
+                  return quary[0]
                             }     
               else if(sLimit){  console.log("Serching Limit", sLimit,id)
 
