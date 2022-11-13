@@ -36,26 +36,27 @@ async function quaryFind (id,Squary){
       const sFrom = Squary.from;
       const sTo = Squary.to;
       const sLimit = Number(Squary.limit)
-      
-
-      // format dates 
+  // format dates 
       const from = new Date(sFrom).toDateString()
       const to = new Date(sTo).toDateString()
 
-              if(sLimit&&sFrom&&sTo){ console.log("All Quarys Serch....",sFrom,sTo,sLimit, typeof sLimit)
+         if(sLimit&&sFrom&&sTo){ console.log("All Quarys Serch....",sFrom,sTo,sLimit)
 
-              const quary = await User.find(
+              const quary = User.find(
                 {
                  "_id":id,
-                  'log.date':{$gt:from,$lt:to }
+                 'log.date':{$gt:from,$lt:to }
+                },
+                {
+                 log:{$slice:sLimit}
                 }
                )
-
-                return quary
-                          
+               const Res = await quary
                   
-                    }
-              else if(sFrom&&sTo){ console.log("Serching From To ",sFrom,sTo)
+                return  Res
+                               
+           }
+        else if(sFrom&&sTo){ console.log("Serching From To ",sFrom,sTo)
         
                  const quary = await User.find(
                                    {
@@ -64,17 +65,16 @@ async function quaryFind (id,Squary){
                                    }
                                   )
                   return quary[0]
-                            }     
-              else if(sLimit){  console.log("Serching Limit", sLimit,id)
+           }     
+        else if(sLimit){  console.log("Serching Limit", sLimit,id)
 
-                  const  quary = await User.findById( id , { "log" : { $slice: sLimit} },nCallback())  
+                  const  quary = await User.findById( id , { "log" : { $slice: sLimit} }, nCallback())  
                   
                        return quary
-                    }
-              else { console.log("Err Quary Serch")}
+           }
+        else { console.log("Err Quary Serch")}
    
-    }
-         
+}
 async function findUserById (id){
    const dbreq = await User.findById({"_id":id},nCallback())
    return dbreq
@@ -119,7 +119,6 @@ async function updateUser(id,log){
   }
      
 }
-
 exports.updateUser=updateUser
 exports.findUserByName =findUserByName
 exports.saveUser=saveUser

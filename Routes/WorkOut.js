@@ -87,32 +87,23 @@ exports.WorkOut=  async function WorkOut(app){
 
             console.log("Get Params : ",params , query ,"Serching ... " )
 
-               if(query != null ){
-
-               const User= await quaryFind(params._id,query)
-            
-               console.log(User,"Returnd Quary")
-
-               res.json(User)
-               
-               
-               }else {
-
+               if(query != null ){ 
+                  const User= await quaryFind(params._id,query)
+                  console.log(User,"Returnd Quary")
+                  res.json(User)
+               }
+               else {
                   const User = await findUserById(params._id)
+                  if(User){console.log("User Find",User)
+                       const logsLength= User.log.length 
 
-                  if (User){  console.log("User Find",User)
-          
-                    const logsLength= User.log.length
-          
-                    const responceJson={
-                       "username":User.username,
-                        "count":logsLength,
-                        "_id":User._id,
-                        "log":User.log,
+                       const responceJson={
+                           "username":User.username,
+                           "count":logsLength,
+                           "_id":User._id,
+                           "log":User.log,
                              }
-          
                         console.log("Sending User",responceJson)
-
                      res.json(responceJson)
                }else {
 
