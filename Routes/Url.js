@@ -8,12 +8,14 @@ db(async (callback) => { ///api/urlsort/:url?
 
    app.route("/api/shorturl/:url?")
 
-   .post((req,res,next)=>{ // HTTP POST REQ Hendler to update data 
-        console.log(`POST /api/shorturl/`);  
+   .post((req,res,next)=>{ console.log(`POST /api/shorturl/`);  
+
         const url = req.body.url
-        let reg = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/ // <- from https://uibakery.io/regex-library/url
-        let result = url.match(reg)
+        const reg = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/ // <- from https://uibakery.io/regex-library/url
+        const result = url.match(reg)
+
         if(result!==null){
+
           const Furl = result.toString()
               console.log("VALID URL" ,Furl)
               console.log("Serching DB")
@@ -35,13 +37,12 @@ db(async (callback) => { ///api/urlsort/:url?
                            if(err){
                                console.log(err)
                             }else{
-                               console.log(doc,"POST SAVE")
+                              console.log(doc,"POST SAVE")
                               console.log("Saving Url")
                               next(null,doc)             
                              res.send({
                                original_url :Furl,
-                              short_url :doc.insertedId
-                             
+                               short_url :doc.insertedId     
                      })
             }
           })}
@@ -51,20 +52,20 @@ db(async (callback) => { ///api/urlsort/:url?
               res.send({"error":"invalid url"})
           }
            
-        })
+  })
 
    .get((req,res,next)=>{ // need to be free for redirect call 
          const id = req.params.url
-         
+
        console.log("Get at 'api/shorturl/")
          if(id){
-         db_URLS.findOne({_id:ObjectId(id)},function(err,data){
+         db_URLS.findOne({_id:ObjectId(id)},(err,data)=>{
              if(err){
-            console.log(err)
-            }else if(data){
-            console.log(id,"GET find ")
-           res.redirect(`${data.url}`)
-            }else{
+            console.log(err)  }
+             else if(data){
+             console.log(id,"GET find ")
+              res.redirect(`${data.url}`)}
+            else{
             console.log("GET Eroor")
             }
             })
@@ -74,13 +75,10 @@ db(async (callback) => { ///api/urlsort/:url?
             res.send({a:"a"})
 
           }
-           }) 
+  }) 
   
-    })
-         
-}
-    
-    
-       
-  
+  })
+}    
+
 console.log(module.exports,"exports from UrlShort Route")
+

@@ -5,10 +5,11 @@ const updateUser = require('../db.schema').updateUser
 const findUserById = require('../db.schema').findUserById
 const quaryFind = require('../db.schema').quaryFind
 const findLastLog = (arr)=>{ return arr[arr.length-1]}
+
 exports.WorkOut=  async function WorkOut(app){
     
- app.route('/workout/api/:users?')
-    .post(async (req,res,next)=>{ // user regester/find
+app.route('/workout/api/:users?')
+ .post(async (req,res,next)=>{ // user regester/find
      console.log("POST  /Workout/api/:user?" , req.body   ) ;
           const userName = req.body.username   
           const dbres = findUserByName(userName).then((data)=>data)
@@ -25,7 +26,7 @@ exports.WorkOut=  async function WorkOut(app){
                        res.send({username:user.username,"_id":user._id})
                         }
   })
-    .get(async (req,res,next)=>{
+ .get(async (req,res,next)=>{
       const params = req.params
       console.log("Get Workout/api/:user? " ,params,"Serching ... ")
 
@@ -37,9 +38,9 @@ exports.WorkOut=  async function WorkOut(app){
           res.send(list)
          }
   })
-  app.route('/workout/api/users/:_id?/:exercises?')
 
-  .post(async (req,res,next)=>{
+app.route('/workout/api/users/:_id?/:exercises?')
+ .post(async (req,res,next)=>{
        console.log("POST /Workout/api/users/:_id/Exercises ", req.params._id)
        //Req consts
     const id = req.params._id
@@ -79,7 +80,7 @@ exports.WorkOut=  async function WorkOut(app){
           console.log("ERR Updating ")
            } 
   })
-  .get(async(req,res,next)=>{
+ .get(async(req,res,next)=>{
 
      const params = req.params
      
@@ -114,7 +115,6 @@ exports.WorkOut=  async function WorkOut(app){
               }
 
   })
-
   } 
 
 console.log(module.exports,"exports from WorkOut")

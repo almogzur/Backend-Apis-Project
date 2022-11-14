@@ -2,36 +2,35 @@ import React from "react";
 import { useState , useEffect  } from "react";
 
 const Urlshot = ()=>{
+
+  const [input, setInput]= useState("")
   
-   const postData = async ()=>{
+   const postData = async () => {
   
-    const res = await fetch('/api/shorturl/' ,{
+        const res = await fetch('/api/shorturl/' ,{
         method: 'POST', /* or 'PUT'*/
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body:`url=${input}`,
                        })
-    const data = await res
-             return data
+             return res
   }
-   const [input, setInput]= useState("")
-
    const change = (e)=>{
         setInput(e.target.value)
-        console.log("change fun inv")
-    }
+      
+  }
    const click = (e) => {
+
   console.log(input,"click inv")
-  postData().then((data)=>{
-    console.log(data)   
-    if(data._id){
-      window.location.href='/api/shorturl/'
-    }else{
-      window.location.href='/api/shorturl/'
-    }
+
+      postData().then((data)=>{
+    
+              window.location.href=`/api/shorturl/${data._id}`
+          
+
   })
   setInput("")
-   }  
-return (
+  }  
+   return (
    
 <div className="Url" >
 <h1 className="text-center">URL Shortener Microservice</h1>
@@ -69,6 +68,5 @@ return (
 )
 
 }
-
 
 export default Urlshot
