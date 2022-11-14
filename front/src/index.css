@@ -50,7 +50,7 @@
 }
 #nav{
     background-color: #fff;
-   margin-left: 20vw;
+   margin-left: 22vw;
 
 }
 #work{
@@ -91,4 +91,7 @@ input[type=date]{
 }
 #user-btn{
     margin-left: 0px;
+}
+#metadata{
+   background-color: aqua; 
 }

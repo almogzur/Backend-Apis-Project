@@ -11,6 +11,7 @@ function Navbar() {
     <Link to="/Whoami">Whoami | </Link>
     <Link to="/UrlShort">UrlShort | </Link>
     <Link to="/WorkOut">WorkOut | </Link>
+    <Link to="/MetaData">MetaDate</Link>
    </div> 
   );
 }

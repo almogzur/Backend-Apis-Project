@@ -53,7 +53,7 @@ async function quaryFind (id,Squary){
                )
                const Res = await quary
                   
-                return  Res
+                return  Res[0]
                                
            }
         else if(sFrom&&sTo){ console.log("Serching From To ",sFrom,sTo)

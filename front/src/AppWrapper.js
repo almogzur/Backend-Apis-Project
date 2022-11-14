@@ -7,6 +7,7 @@ import Layout from "./Layout";
 import UrlShort from './Pages/UrlShort'
 import './index.css'
 import WorkOut from './Pages/workout'
+import MetaData from './Pages/metadata';
 
 export default function AppWrapper (){
     return (
@@ -18,6 +19,8 @@ export default function AppWrapper (){
           <Route path="whoami" element={<Whoami />} />
           <Route path="Urlshort" element={<UrlShort/>}/>
           <Route path='WorkOut' element={<WorkOut/>}/>
+          <Route path='MetaData' element={<MetaData/>}/>
+
        </Route>
      </Routes>
      </BrowserRouter>
