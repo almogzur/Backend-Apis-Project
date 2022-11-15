@@ -30,7 +30,7 @@ const Urlshot = ()=>{
       })
   }  
 
-  if(error){return <div>{JSON.stringify(error)}</div>}
+  if(error){return <div className="text-center">{JSON.stringify(error)}</div>}
   else if(json){return <div>{JSON.stringify(json)}</div>}
   else {
      return (

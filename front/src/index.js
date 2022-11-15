@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+let root = ReactDOM.createRoot(document.getElementById('root')); // let and not Const needs to be change in Conditional rendreing 
 
 root.render(
   <React.StrictMode>

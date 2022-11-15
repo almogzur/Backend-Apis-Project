@@ -36,7 +36,9 @@ const click = async ()=>{
 }
 ////// end Componenet functions /////
 if(json){
-  return( <JSONPretty id="json-pretty" data={json}></JSONPretty>)
+   let root = document.body
+    root =  <JSONPretty id="json-pretty" className="text-center" data={json}></JSONPretty>
+   return root 
     }
 else{
     return (
@@ -60,7 +62,9 @@ else{
               </button>
             </div>
             <WorkOutForm />
+           
         </div>
+        
     )
 }
 
@@ -127,7 +131,10 @@ const click =async (e)=>{
     
 }
 //////////////End Of Functions /////////////////
- if(json){ return( <JSONPretty id="json-pretty" data={json}></JSONPretty>)}
+ if(json){
+      document.getElementById("work-form").style.visibility= "hidden"
+     return( <div className="text-center"> {<JSONPretty id="json-pretty" data={json}></JSONPretty>} </div> )
+ }
  else{return(
     <div id="filds">
 
@@ -175,6 +182,11 @@ const click =async (e)=>{
         onClick={click}
         className="btn btn-info"
         >Update User</button>
+         <p className="text-center">
+                <strong>GET</strong> user's exercise log: GET /api/users/:_id/logs?[from][&to][&limit]<br/>
+                []=optional<br/>
+                from, to = dates (yyyy-mm-dd); limit = number<br/>
+              </p>
     </div>
 )}
 
