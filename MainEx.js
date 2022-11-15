@@ -9,6 +9,7 @@ const TimeService= require ("./Routes/Timeservice").TimeService
 const UrlShort = require('./Routes/Url').UrlShort
 const index = require("./Routes/index")
 const WorkOut = require('./Routes/WorkOut').WorkOut
+const MetaData= require('./Routes/metaData').MetaData
 const path = require("path");
 const db = require('./dbConnection').main
 const cors = require("cors");
@@ -36,5 +37,6 @@ Whoami(app)
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
 WorkOut(app) // Schema RealM db
+MetaData(app)
 ////End Route invoke
 module.exports = app // for GL

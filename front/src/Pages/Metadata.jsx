@@ -3,6 +3,16 @@ const { useState } = require("react")
 
 export default function MetaData (){
 
+   async function postData () {
+    const res= await fetch('/api/fileanalyse',{
+       method:'POST',
+       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      // body:`username=${user}`,
+      })
+      const json = res.json()
+      return json
+   }
+
    const [state,setState] = useState("")
 
    const click = (e)=>{
@@ -10,17 +20,20 @@ export default function MetaData (){
    }
 
 
-   return(
-<div id="metadata">
+   return( 
+      <div className="text-center" id="metadata">
     <h1>API Project: File Metadata Microservice</h1>
-    <div id="metabox">
-     <textarea
-     disabled
-     placeholder="File Name"
-     /> 
-    <button onClick={click} >Upload</button>
-    </div>
-   
-</div>
+    <form action="/api/fileanalyse" method="post" enctype="multipart/form-data">
+    <input 
+    type="file"
+    name="avatar"
+    accept=".txt,.pdf,.docx,.jpge,.jpg,.rtf"
+   /> 
+   <br/>
+   <button
+   onClick={click}
+   >upload</button>
+   </form>
+   </div>
    ) 
 }
