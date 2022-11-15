@@ -39,10 +39,9 @@ if(json){
    let root = document.body
     root =  <JSONPretty id="json-pretty" className="text-center" data={json}></JSONPretty>
    return root 
-    }
+}
 else{
     return (
-        
         <div id="work">
             <h1>Exercise Tracker</h1>
             <div id="work-form">
@@ -64,15 +63,18 @@ else{
             </div>
             <WorkOutForm />
            
-               <p className="text-center">
+               <p id="info" className="text-center">
                 <strong>GET</strong> user's exercise log: GET /api/users/:_id/logs?[from][&to][&limit]<br/>
                 []=optional<br/>
                 from, to = dates (yyyy-mm-dd); limit = number<br/>
+                <br/>
+                 Exmple  = [Domain]/api/users/6373a7880fc4b682494d15d8/logs?from=2010-01-01&to=2012-01-31&limit=3
+
               </p>
+             <h3 className="text-center"> Made By Almog Zur For FreeCodeCamp :)_ </h3>
         </div>
         
-    )
-}
+)}
 
 }
 /////////////// end main Componenet /////
@@ -139,6 +141,7 @@ const click =async (e)=>{
 //////////////End Of Functions /////////////////
  if(json){
       document.getElementById("work-form").style.visibility= "hidden"
+      document.getElementById("info").style.visibility="hidden"
      return( <div className="text-center"> {<JSONPretty id="json-pretty" data={json}></JSONPretty>} </div> )
  }
  else{
