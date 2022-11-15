@@ -75,7 +75,6 @@ else{
         </div>
         
 )}
-
 }
 /////////////// end main Componenet /////
 

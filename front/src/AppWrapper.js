@@ -7,7 +7,7 @@ import Layout from "./Layout";
 import UrlShort from './Pages/UrlShort'
 import './index.css'
 import WorkOut from './Pages/workout'
-import MetaData from './Pages/metadata';
+import MetaData from './Pages/Metadata';
 
 
 export default function AppWrapper (){

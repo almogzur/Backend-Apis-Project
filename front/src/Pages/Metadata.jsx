@@ -12,8 +12,15 @@ export default function MetaData (){
 
    return(
 <div id="metadata">
-    <h1>MetaData</h1>
-    <button onClick={click} ></button>
+    <h1>API Project: File Metadata Microservice</h1>
+    <div id="metabox">
+     <textarea
+     disabled
+     placeholder="File Name"
+     /> 
+    <button onClick={click} >Upload</button>
+    </div>
+   
 </div>
    ) 
 }
