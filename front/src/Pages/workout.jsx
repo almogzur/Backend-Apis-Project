@@ -42,6 +42,7 @@ if(json){
     }
 else{
     return (
+        
         <div id="work">
             <h1>Exercise Tracker</h1>
             <div id="work-form">
@@ -63,6 +64,11 @@ else{
             </div>
             <WorkOutForm />
            
+               <p className="text-center">
+                <strong>GET</strong> user's exercise log: GET /api/users/:_id/logs?[from][&to][&limit]<br/>
+                []=optional<br/>
+                from, to = dates (yyyy-mm-dd); limit = number<br/>
+              </p>
         </div>
         
     )
@@ -135,8 +141,9 @@ const click =async (e)=>{
       document.getElementById("work-form").style.visibility= "hidden"
      return( <div className="text-center"> {<JSONPretty id="json-pretty" data={json}></JSONPretty>} </div> )
  }
- else{return(
-    <div id="filds">
+ else{
+    return(
+         <div id="filds">
 
         <form>
             <input
@@ -182,12 +189,11 @@ const click =async (e)=>{
         onClick={click}
         className="btn btn-info"
         >Update User</button>
-         <p className="text-center">
-                <strong>GET</strong> user's exercise log: GET /api/users/:_id/logs?[from][&to][&limit]<br/>
-                []=optional<br/>
-                from, to = dates (yyyy-mm-dd); limit = number<br/>
-              </p>
-    </div>
+   
+</div>
+
+
+
 )}
 
 }
