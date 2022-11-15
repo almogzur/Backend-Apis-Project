@@ -37,7 +37,7 @@ db(async (callback) => { ///api/urlsort/:url?
                            if(err){
                                console.log(err)
                             }else{
-                              console.log(doc,"POST SAVE")
+                              console.log(doc.ops,"POST SAVE")
                               console.log("Saving Url")
                               next(null,doc)             
                              res.send({
