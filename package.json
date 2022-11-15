@@ -15,7 +15,8 @@
     "UrlShort",
     "WhoIAm",
     "Index",
-    "Tracker"
+    "Tracker",
+    "MetaData"
   ],
   "author": "Almog Zur",
   "license": "ISC",

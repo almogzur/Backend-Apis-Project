@@ -3,15 +3,6 @@ const { useState } = require("react")
 
 export default function MetaData (){
 
-   async function postData () {
-    const res= await fetch('/api/fileanalyse',{
-       method:'POST',
-       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      // body:`username=${user}`,
-      })
-      const json = res.json()
-      return json
-   }
 
    const [state,setState] = useState("")
 
