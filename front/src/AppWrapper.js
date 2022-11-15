@@ -9,18 +9,18 @@ import './index.css'
 import WorkOut from './Pages/workout'
 import MetaData from './Pages/metadata';
 
+
 export default function AppWrapper (){
     return (
      <BrowserRouter>
      <Routes>
-       <Route path="/" element={< Layout />}>
+        <Route path="/" element={< Layout />}>
           <Route index element={<HomePage />} />
           <Route path="TimeService" element={<Timeservice />} />
           <Route path="whoami" element={<Whoami />} />
           <Route path="Urlshort" element={<UrlShort/>}/>
           <Route path='WorkOut' element={<WorkOut/>}/>
-          <Route path='MetaData' element={<MetaData/>}/>
-
+          <Route path='MetaData' element={<MetaData/>}/>    
        </Route>
      </Routes>
      </BrowserRouter>

@@ -1,60 +1,69 @@
 import React from "react"
 const { useState } = require("react")
+const JSONPretty = require('react-json-pretty');
 
 //////// Main Componenet ////////
+
 export default function WorkOut () { // nexted component {WorkOutForm}
 
- //////// state ///////////
 const [user, setUser]= useState("")
-/////// end state ////////
-//////  fatch functions /////
-const postUserData = async ()=>{
-    const res  = fetch('/workout/api/',{
+const [err,setErr]=useState("")
+const[json,setJson]=useState("")
+
+async function postUserData (){
+    const res  =  await fetch('/workout/api/',{
        method:'POST',
        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
        body:`username=${user}`,
         })
-    const data = await res
-           return data
-    }
-// end fatch functions ////
-
-//  Componenet functions ///////////
+    const json =  res.json()
+           return json
+}
+//  Componenet  //////
 const change = (e)=>{
     setUser(e.target.value)
 }
 const click = async ()=>{
     if(user.length>=3&& user.length<25){
-     postUserData().then((data)=>{ console.log(data)  })
-    setUser("")
+     postUserData().then((data)=>{
+         console.log(data)
+         setJson(data)
+    })
+
     }else{
         window.alert("User Name Must Have 3 Charecters ")
     }
 }
 ////// end Componenet functions /////
-return (
-    <div id="work">
-        <h1>Exercise Tracker</h1>
-        <div id="work-form">
-         <input 
-            id="user"
-            placeholder="User"
-            type="text"
-            value={user}
-            onChange={change}
-            required
-          />
-             <br/>
-           <button
-           className="btn btn-info"
-           id="user-btn"
-            onClick={click}
-            >Regester/Find User
-          </button>
+if(json){
+  return( <JSONPretty id="json-pretty" data={json}></JSONPretty>)
+    }
+else{
+    return (
+        <div id="work">
+            <h1>Exercise Tracker</h1>
+            <div id="work-form">
+             <input 
+                id="user"
+                placeholder="User"
+                type="text"
+                value={user}
+                onChange={change}
+                required
+              />
+                 <br/>
+               <button
+               className="btn btn-info"
+               id="user-btn"
+                onClick={click}
+                >Regester/Find User
+              </button>
+            </div>
+            <WorkOutForm />
         </div>
-        <WorkOutForm />
-    </div>
-)
+    )
+}
+
 }
 /////////////// end main Componenet /////
 
@@ -66,12 +75,13 @@ const [id , setId]=useState("")
 const [description, setDescription]= useState("")
 const [duration , setDuration]=useState("")
 const [date, setDate]= useState("")
+const [json,setJson]=useState("")
 ///////// End Of State /////////////
 
 
 //////  fatch functions /////
-const postLogs = async ()=>{
-    const res =  fetch('/workout/api/users/' + id +'/exercises',{
+async function postLogs () {
+    const res = await fetch('/workout/api/users/' + id +'/exercises',{
         method:"POST",
         headers: { 'Content-Type': 'application/json' },
         body: 
@@ -81,13 +91,11 @@ const postLogs = async ()=>{
             "date":date,
             })
             })
-        const data = await res
-        return data 
+        const json =  res.json()
+        return json 
     }
 ////// end fatch functions /////
-
-
-//////////// omponent Fucntions //////////
+//////////// Component Fucntions //////////
 
 const idchange = (e)=>{
      setId(e.target.value)
@@ -105,7 +113,10 @@ const datchange= (e)=>{
 const click =async (e)=>{
     console.log(id.length)
     if(id.length>=3){
-        await postLogs().then((data)=>data)
+        await postLogs().then((data)=>{
+       console.log(data)
+       setJson(data)
+    })
     setId("")
     setDate("")
     setDescription("")
@@ -116,56 +127,56 @@ const click =async (e)=>{
     
 }
 //////////////End Of Functions /////////////////
+ if(json){ return( <JSONPretty id="json-pretty" data={json}></JSONPretty>)}
+ else{return(
+    <div id="filds">
 
-
-return(
-        <div id="filds">
-
-            <form>
-                <input
-                placeholder="ID"
-                value={id}
-                onChange={idchange}
-                required
-                >
-                
-                </input>
-                <br/>
-
-                <input
-                placeholder="Description"
-                value={description}
-                onChange={decchange}
-                required
-                >
-                </input>
-                <br/>
-
-                <input
-                type="number"
-                placeholder="Duration"
-                value={duration}
-                onChange={durchange}
+        <form>
+            <input
+            placeholder="ID"
+            value={id}
+            onChange={idchange}
+            required
+            >
             
-                >
-                </input>
-                <br/>
-                
-                <input
-                type="date"
-                placeholder="Date"
-                value={date}
-                onChange={datchange}
-                >
-                </input>
-                <br/>
-            </form>
+            </input>
+            <br/>
 
-            <button
-            onClick={click}
-            className="btn btn-info"
-            >Update User</button>
-        </div>
-    )
+            <input
+            placeholder="Description"
+            value={description}
+            onChange={decchange}
+            required
+            >
+            </input>
+            <br/>
+
+            <input
+            type="number"
+            placeholder="Duration"
+            value={duration}
+            onChange={durchange}
+        
+            >
+            </input>
+            <br/>
+            
+            <input
+            type="date"
+            placeholder="Date"
+            value={date}
+            onChange={datchange}
+            >
+            </input>
+            <br/>
+        </form>
+
+        <button
+        onClick={click}
+        className="btn btn-info"
+        >Update User</button>
+    </div>
+)}
+
 }
 //////////////////// End  Form Component ///////////
