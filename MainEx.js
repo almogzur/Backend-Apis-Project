@@ -14,7 +14,8 @@ const path = require("path");
 const db = require('./dbConnection').main
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
-const cors = require("cors");
+const cors = require("cors")
+
 const corsOptions = {
   origin: "https://www.freecodecamp.org",
   optionsSuccessStatus: 200
