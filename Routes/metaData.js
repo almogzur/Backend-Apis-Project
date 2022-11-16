@@ -1,15 +1,14 @@
 
-
-export async function metaData (app,upload,fs){
-
-
-app.route('/api/fileanalyse')
+exports.metaData = function metaData (app,upload){
 
 
-.post(upload.single('avatar'),(req,res)=>{
-    console.log("Post /api/fileanalyse")
-    const files = req.files
-    const body = req.body
+app.route('/api/fileanalyse',upload.single('avatar'))
+
+.post((req,res)=>{
+   const file = req.file
+   const body= req.body
+    console.log("Post /api/fileanalyse",file)
+    
 })
 
 
