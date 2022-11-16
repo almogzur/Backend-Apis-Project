@@ -12,8 +12,7 @@ const WorkOut = require('./Routes/WorkOut').WorkOut
 const metaData= require('./Routes/metaData').metaData
 const path = require("path");
 const db = require('./dbConnection').main
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+
 const cors = require("cors")
 
 const corsOptions = {
@@ -41,6 +40,6 @@ Whoami(app)
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
 WorkOut(app) // Schema RealM db
-metaData(app,upload)
+metaData(app)
 ////End Route invoke
 module.exports = app // for GL
