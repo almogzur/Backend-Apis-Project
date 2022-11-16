@@ -1,6 +1,6 @@
 
 
-exports.metaData= async function metaData (app,upload,fs){
+export async function metaData (app,upload,fs){
 
 
 app.route('/api/fileanalyse')
