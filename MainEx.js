@@ -9,9 +9,11 @@ const TimeService= require ("./Routes/Timeservice").TimeService
 const UrlShort = require('./Routes/Url').UrlShort
 const index = require("./Routes/index")
 const WorkOut = require('./Routes/WorkOut').WorkOut
-const MetaData= require('./Routes/metaData').MetaData
+const metaData= require('./Routes/metaData').metaData
 const path = require("path");
 const db = require('./dbConnection').main
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 const cors = require("cors");
 const corsOptions = {
   origin: "https://www.freecodecamp.org",
@@ -31,12 +33,13 @@ app.use(
 }));
 app.use(express.static(path.join(__dirname, "front", "build")))
 
+
 /// Routes invoke ///
 index(app)
 Whoami(app)
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
 WorkOut(app) // Schema RealM db
-MetaData(app)
+metaData(app,upload)
 ////End Route invoke
 module.exports = app // for GL
