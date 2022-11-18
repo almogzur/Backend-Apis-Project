@@ -12,17 +12,20 @@ const WorkOut = require('./Routes/WorkOut').WorkOut
 const metaData= require('./Routes/metaData').metaData
 const path = require("path");
 const db = require('./dbConnection').main
-
 const cors = require("cors")
-
 const corsOptions = {
   origin: "https://www.freecodecamp.org",
   optionsSuccessStatus: 200
 }
-
 app.use(cors(corsOptions))
-app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
-app.use(express.json()) // for parsing application/json
+
+app.use(bodyParser.urlencoded({
+  extended: true,
+  limit: '50mb'
+})); // for parsing application/x-www-form-urlencoded
+app.use(express.json({
+  limit: '50mb'
+})) // for parsing application/json
 app.use(
   session({
   secret: process.env["SESSION_SECRET"],

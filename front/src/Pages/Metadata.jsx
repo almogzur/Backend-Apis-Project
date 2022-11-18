@@ -1,10 +1,26 @@
 import React from "react"
+import { useRef } from "react";
 const { useState } = require("react")
 
 export default function MetaData (){
+  
+      const [selectedFile, setSelectedFile] = useState("");
+      
+      const changeHandler = (event) => {
+         setSelectedFile(event.target.files[0]);
+            console.log("file set ", selectedFile)
+      };
 
-   const [file,setFile] = useState("")
+      const handleSubmission = async  () => {
+         const formData = new FormData();
+         formData.append('File', selectedFile);
+           const res =  fetch( '/api/fileanalyse',{
+               method: 'POST',
+               body: formData,
+            })
+            return  await res 
 
+      };
 
    return( 
    <div className="text-center" id="metadata">
@@ -19,20 +35,23 @@ export default function MetaData (){
     >
 
     <input 
+    id="metafile"
     type="file"
-    name="avatar"
-    accept=".txt,.pdf,.docx,.jpge,.jpg,.rtf"
-
+    onChange={changeHandler}
+   
+    accept=".pdf,.txt,jnpg,.jpg,.docx,.rtf"
+    multiple
+    required
     />
-    <input
-    type="submit"
-    value="Upload"
-    />
-
    </form>
+
    <br/>
 
-   
+   <button
+   onClick={handleSubmission}
+   >Upload
+    </button>
+
    </div>
    ) 
 }

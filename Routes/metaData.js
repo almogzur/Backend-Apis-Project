@@ -1,10 +1,11 @@
-const multer  = require('multer')
+const multer = require ('multer')
+
 const upload = multer({ dest: 'uploads/' })
 
-exports.metaData = function metaData (app){
+ async function metaData (app){
 
 
-app.route('/api/fileanalyse',upload.single('avatar'))
+app.route('/api/fileanalyse',upload.any('file'))
 
 .post((req,res)=>{
    const file = req.file
@@ -13,11 +14,8 @@ app.route('/api/fileanalyse',upload.single('avatar'))
     
 })
 
-
-
-
-    
-
-
 console.log(exports,"backend metadata")
 }
+
+exports.metaData=metaData
+
