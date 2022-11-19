@@ -55,7 +55,7 @@ else{
               />
                  <br/>
                <button
-               className="btn btn-info"
+               className="btn btn-danger"
                id="user-btn"
                 onClick={click}
                 >Regester/Find User
@@ -189,7 +189,7 @@ const click =async (e)=>{
 
         <button
         onClick={click}
-        className="btn btn-info"
+        className="btn btn-danger"
         >Update User</button>
    
 </div>

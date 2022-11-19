@@ -2,12 +2,11 @@ const multer = require ('multer')
 
 const upload = multer({ dest: 'uploads/' })
 
+const type = upload.single('avatar')
+
  async function metaData (app){
 
-
-app.route('/api/fileanalyse',upload.any('file'))
-
-.post((req,res)=>{
+app.post('/api/fileanalyse',type,(req,res)=>{
    const file = req.file
    const body= req.body
     console.log("Post /api/fileanalyse",file,body)

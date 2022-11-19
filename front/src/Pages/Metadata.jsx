@@ -8,16 +8,22 @@ export default function MetaData (){
       
       const changeHandler = (event) => {
          setSelectedFile(event.target.files[0]);
-            console.log("file set ", selectedFile)
+   
       };
 
       const handleSubmission = async  () => {
+
          const formData = new FormData();
+
          formData.append('File', selectedFile);
+
+         console.log("formData ", formData)
+
            const res =  fetch( '/api/fileanalyse',{
                method: 'POST',
                body: formData,
             })
+
             return  await res 
 
       };
@@ -27,21 +33,15 @@ export default function MetaData (){
 
    <h1>API Project: File Metadata Microservice</h1>
     
-   <form 
-    id="metaform"
-    action='/api/fileanalyse'
-    method="post" 
-    enctype="multipart/form-data"
+   <form   id="metaform" action='/api/fileanalyse' method="post" enctype="multipart/form-data"
     >
 
     <input 
-    id="metafile"
     type="file"
+    name="avatar"
     onChange={changeHandler}
-   
     accept=".pdf,.txt,jnpg,.jpg,.docx,.rtf"
     multiple
-    required
     />
    </form>
 
