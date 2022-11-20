@@ -1,20 +1,31 @@
 const multer = require ('multer')
 
-const upload = multer({ dest: 'uploads/' })
+const reactfile = multer({ dest: 'uploads/'}).single("upfile")
 
-const type = upload.single('avatar')
 
- async function metaData (app){
+function metaData (app){
 
-app.post('/api/fileanalyse',type,(req,res)=>{
+app.post('/api/fileanalyse',reactfile,(req,res)=>{console.log("POST",req.path)
    const file = req.file
-   const body= req.body
-    console.log("Post /api/fileanalyse",file,body)
+
+   const resJson= {
+    "size":file.size,
+    "name":file.originalname,
+    "type":file.mimetype,
     
+ }
+ console.log("Sending Json",resJson)
+
+    res.json(resJson)
 })
 
-console.log(exports,"backend metadata")
-}
+app.get('/api/fileanalyse',(req,res)=>{
+    console.log("Get")
+})
 
+
+ }
+
+ 
 exports.metaData=metaData
 
