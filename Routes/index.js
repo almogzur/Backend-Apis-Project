@@ -1,11 +1,11 @@
-const express = require("express");
-const app = express(); 
-const path = require("path");
+exports.main =  function main (app){
 
-module.exports = function main(app){
-app.get("/",(req,res,next)=>{
-  res.sendFile(path.join(__dirname, "front", "build", "index.html"))
-    next()
-  })
+app.route("/")
+
+.get((req,res)=>{
+  console.log("somting")
+})
+
 }
 console.log(module.exports,"exports from Index Route")
+

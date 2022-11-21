@@ -1,18 +1,20 @@
  'use strict';
 require('dotenv').config();
 const express = require("express");
+const session = require('express-session');
 const app = express(); 
 const bodyParser = require("body-parser");
-const session = require('express-session');
 const Whoami= require ("./Routes/Whoami")
+const sendHtml = require('./SendHtml').sendHtml
 const TimeService= require ("./Routes/Timeservice").TimeService
 const UrlShort = require('./Routes/Url').UrlShort
-const index = require("./Routes/index")
+const Main = require("./Routes/index").main
 const WorkOut = require('./Routes/WorkOut').WorkOut
 const metaData= require('./Routes/metaData').metaData
 const path = require("path");
 const db = require('./dbConnection').main
 const cors = require("cors")
+
 const corsOptions = {
   origin: "https://www.freecodecamp.org",
   optionsSuccessStatus: 200
@@ -38,7 +40,8 @@ app.use(express.static(path.join(__dirname, "front", "build")))
 
 
 /// Routes invoke ///
-index(app)
+Main(app)
+sendHtml(app)
 Whoami(app)
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db

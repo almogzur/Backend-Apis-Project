@@ -4,16 +4,15 @@ const { useState } = require("react")
 export default function MetaData (){
   
    const [selectedFile, setSelectedFile] = useState("");
-      
+
+ 
    const changeHandler = (event) => {
 
          setSelectedFile(event.target.files[0]);
          console.log("onclicksetfile ", selectedFile)
    
       };
-         document.addEventListener(()=>{
-            
-         })
+        
    return( 
       
    <div className="text-center" id="metadata">
@@ -34,7 +33,10 @@ export default function MetaData (){
     multiple
     />
 
-    <input type="submit" value="Uplopad"/>
+    <input 
+    type="submit"
+    value="Uplopad"
+    />
    </form>
 
    <br/>
