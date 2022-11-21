@@ -5,7 +5,6 @@ const session = require('express-session');
 const app = express(); 
 const bodyParser = require("body-parser");
 const Whoami= require ("./Routes/Whoami")
-const sendHtml = require('./SendHtml').sendHtml
 const TimeService= require ("./Routes/Timeservice").TimeService
 const UrlShort = require('./Routes/Url').UrlShort
 const Main = require("./Routes/index").main
@@ -41,7 +40,6 @@ app.use(express.static(path.join(__dirname, "front", "build")))
 
 /// Routes invoke ///
 Main(app)
-sendHtml(app)
 Whoami(app)
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
