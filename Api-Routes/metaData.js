@@ -19,9 +19,6 @@ app.post('/api/fileanalyse',reactfile,(req,res)=>{console.log("POST",req.path)
     res.json(resJson)
 })
 
-app.get('/api/fileanalyse',(req,res)=>{
-    console.log("Get")
-})
 
 
  }

@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import AppWrapper from './AppWrapper'
 import reportWebVitals from './reportWebVitals';
 
-
-
 let root = ReactDOM.createRoot(document.getElementById('root')); // let and not Const needs to be change in Conditional rendreing 
 
 root.render(

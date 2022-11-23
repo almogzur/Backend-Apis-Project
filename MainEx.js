@@ -8,13 +8,13 @@ const path = require("path");
 const db = require('./dbConnection').main
 const cors = require("cors")
 
-
-const Whoami= require ("./Routes/Whoami")
-const TimeService= require ("./Routes/Timeservice").TimeService
-const UrlShort = require('./Routes/Url').UrlShort
-const WorkOut = require('./Routes/WorkOut').WorkOut
-const metaData= require('./Routes/metaData').metaData
-
+//Api modles
+const Whoami= require ("./Api-Routes/Whoami")
+const TimeService= require ("./Api-Routes/Timeservice").TimeService
+const UrlShort = require('./Api-Routes/Url').UrlShort
+const WorkOut = require('./Api-Routes/WorkOut').WorkOut
+const MetaData= require('./Api-Routes/metaData').metaData
+//
 
 
 const corsOptions = {
@@ -46,6 +46,6 @@ Whoami(app)
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
 WorkOut(app) // Schema RealM db
-metaData(app)
+MetaData(app)
 ////End Route invoke
 module.exports = app // for GL
