@@ -6,6 +6,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const db = require('./dbConnection').main
 const cors = require("cors")
+const path = require("path");
+const loc = path.join(__dirname, "front", "build")
+
 
 //Api modles
 const apiroot = require('./Api-Routes/root').apiroot
@@ -23,6 +26,7 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
+
 app.use(bodyParser.urlencoded({
   extended: true,
   limit: '50mb'
@@ -38,13 +42,13 @@ app.use(
   cookie: { secure: false },
   key:'express.sid',
 }));
-//app.use('/home',express.static(loc))
+
 
 
 /// Routes invoke ///
 apiroot(app)
 Whoami(app)
-sendFront(app)
+sendFront(app,express)// home
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
 WorkOut(app) // Schema RealM db
