@@ -13,13 +13,12 @@ export default function AppWrapper (){
     return (
      <BrowserRouter>
      <Routes>
-        <Route path="/" element={< Layout />}>
-          <Route index element={<MetaData />} />
+        <Route path="/home" element={< Layout />}>
+          <Route index element={<MetaData/>} />
           <Route path="TimeService" element={<Timeservice />} />
           <Route path="whoami" element={<Whoami />} />
           <Route path="Urlshort" element={<UrlShort/>}/>
           <Route path='WorkOut' element={<WorkOut/>}/>
-          
        </Route>
      </Routes>
      </BrowserRouter>

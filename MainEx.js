@@ -4,18 +4,18 @@ const express = require("express");
 const session = require('express-session');
 const app = express(); 
 const bodyParser = require("body-parser");
-const path = require("path");
 const db = require('./dbConnection').main
 const cors = require("cors")
 
 //Api modles
+const apiroot = require('./Api-Routes/root').apiroot
+const sendFront= require('./sendFront').sendFront
 const Whoami= require ("./Api-Routes/Whoami")
 const TimeService= require ("./Api-Routes/Timeservice").TimeService
 const UrlShort = require('./Api-Routes/Url').UrlShort
 const WorkOut = require('./Api-Routes/WorkOut').WorkOut
 const MetaData= require('./Api-Routes/metaData').metaData
 //
-
 
 const corsOptions = {
   origin: "https://www.freecodecamp.org",
@@ -38,11 +38,13 @@ app.use(
   cookie: { secure: false },
   key:'express.sid',
 }));
-app.use(express.static(path.join(__dirname, "front", "build")))
+//app.use('/home',express.static(loc))
 
 
 /// Routes invoke ///
+apiroot(app)
 Whoami(app)
+sendFront(app)
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
 WorkOut(app) // Schema RealM db
