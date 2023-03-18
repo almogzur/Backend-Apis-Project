@@ -10,14 +10,14 @@ const path = require("path");
 const loc = path.join(__dirname, "front", "build")
 
 
+
 //Api modles
-const apiroot = require('./Api-Routes/root').apiroot
-const sendFront= require('./sendFront').sendFront
 const Whoami= require ("./Api-Routes/Whoami")
 const TimeService= require ("./Api-Routes/Timeservice").TimeService
 const UrlShort = require('./Api-Routes/Url').UrlShort
 const WorkOut = require('./Api-Routes/WorkOut').WorkOut
 const MetaData= require('./Api-Routes/metaData').metaData
+const indexPage = require('./Api-Routes/index').indexPage
 //
 
 const corsOptions = {
@@ -26,14 +26,17 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
+ app.use(express.static(loc))
 
 app.use(bodyParser.urlencoded({
   extended: true,
   limit: '50mb'
+
 })); // for parsing application/x-www-form-urlencoded
 app.use(express.json({
   limit: '50mb'
 })) // for parsing application/json
+
 app.use(
   session({
   secret: process.env["SESSION_SECRET"],
@@ -45,10 +48,10 @@ app.use(
 
 
 
+
 /// Routes invoke ///
-apiroot(app)
+indexPage(app)
 Whoami(app)
-sendFront(app,express)// home
 TimeService(app)
 UrlShort(app,db) // CRUD calls to db
 WorkOut(app) // Schema RealM db

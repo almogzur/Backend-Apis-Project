@@ -3,12 +3,10 @@ require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
 async function main (callback){
-
   const URI = process.env["MONGO"]
   const db = new MongoClient (URI,{useUnifiedTopology: true  })
 
   try {
-
     await db.connect()
     await callback(db)
 
